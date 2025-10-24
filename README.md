@@ -16,4 +16,6 @@ Estilos:
 https://cervezaoleaje.es/ 
 - estio de presentación: https://ampersand.co.jp/ 
 https://www.shipsltd.co.jp/pages/sp_50th_anniversary.aspx 
-- proceso de carga y homepage: https://8enjamin.vercel.app/
+- proceso de carga, cursor, scroll, imágenes y homepage: https://8enjamin.vercel.app/
+
+- esta es solo para que veas lo guapa que está: https://zelviano.strategyfox.in/
