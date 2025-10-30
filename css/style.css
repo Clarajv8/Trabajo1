@@ -1,0 +1,787 @@
+:root {
+    --color-primario: #1a1a1a;
+    --color-fondo: #fdfdfd;
+    --color-fondo-secundario: #ffffff;
+    --color-texto: #333;
+    --color-texto-claro: #f0f0f0;
+    --color-acento: #3b82f6;
+    --ancho-maximo: 1200px;
+    --radio-borde: 8px;
+    --sombra-caja: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    cursor: none;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    /* Dejar espacio para el header fijo */
+    padding-top: 70px; 
+    /* Ocultar scroll al principio por el preloader */
+    overflow-x: hidden; /* Evitar scroll horizontal */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* --- Clases Utilitarias y Contenedores --- */
+.contenedor-principal {
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.seccion-padding {
+    padding: 5rem 0;
+}
+
+.seccion-blanca {
+    background-color: var(--color-fondo-secundario);
+}
+
+.seccion-oscura {
+    background-color: var(--color-primario);
+    color: var(--color-texto-claro);
+}
+
+.seccion-oscura .seccion-titulo {
+    color: var(--color-texto-claro);
+}
+
+.seccion-oscura .seccion-descripcion {
+    color: #ccc;
+}
+
+.seccion-encabezado {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    padding: 0 1rem;
+}
+
+.seccion-titulo {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+}
+
+.seccion-descripcion {
+    font-size: 1.125rem;
+    color: #555;
+}
+
+/* --- Header y Navegación --- */
+.header-principal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    height: 70px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.navbar-logo {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.navbar-enlace {
+    color: #444;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+    padding: 0.25rem 0;
+}
+
+.navbar-enlace::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primario);
+    transition: width 0.3s ease-out;
+}
+
+.navbar-enlace:hover {
+    color: var(--color-primario);
+}
+
+.navbar-enlace:hover::after {
+    width: 100%;
+}
+
+.navbar-boton {
+    background-color: var(--color-primario);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar-boton:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+.navbar-menu-movil-icono {
+    display: none; /* Oculto en escritorio */
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- Sección Hero --- */
+.seccion-hero {
+    height: calc(100vh - 70px); /* Restar altura del header */
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    padding: 1rem;
+}
+
+.hero-imagen-fondo {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: url('https://placehold.co/1920x1080/f0f0f0/cccccc?text=Moda+Sostenible');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+}
+
+.hero-contenido {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    padding: 2.5rem;
+    border-radius: var(--radio-borde);
+    max-width: 90%;
+}
+
+.hero-titulo {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 700;
+    color: var(--color-primario);
+    line-height: 1.1;
+}
+
+.hero-subtitulo {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 300;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.hero-descripcion {
+    font-size: 1.125rem;
+    color: #444;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Sección Tendencias --- */
+.grid-tendencias {
+    display: grid;
+    /* Columnas responsivas */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.tarjeta-tendencia {
+    background-color: var(--color-fondo-secundario);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.tarjeta-tendencia:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+}
+
+.tarjeta-imagen {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.tarjeta-contenido {
+    padding: 1.5rem;
+}
+
+.tarjeta-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+.tarjeta-enlace {
+    font-weight: 600;
+    color: var(--color-acento);
+    transition: color 0.3s;
+}
+
+.tarjeta-enlace:hover {
+    color: #1d4ed8;
+}
+
+/* --- Sección Diseñadores --- */
+.perfil-diseñador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.perfil-diseñador:last-child {
+    margin-bottom: 0;
+}
+
+.perfil-imagen {
+    width: 100%;
+    max-width: 350px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+}
+
+.perfil-info {
+    flex: 1;
+}
+
+.perfil-nombre {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.perfil-etiqueta {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #4f46e5;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.etiqueta-boho {
+    background-color:#fef3c7 ;
+    color: #b45309;
+}
+
+/* --- Sección Datos (Gráficos) --- */
+.contenedor-datos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 2rem;
+    background-color: var(--color-fondo-secundario);
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+}
+
+.grafico-titulo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.barra-grafico {
+    margin-bottom: 1.5rem;
+}
+
+.barra-grafico span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.barra-fondo {
+    background-color: #e5e7eb;
+    border-radius: 9999px;
+    overflow: hidden;
+    height: 2.25rem;
+}
+
+.barra-valor {
+    height: 100%;
+    background-color: var(--color-acento);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 0.75rem;
+    color: white;
+    font-weight: 500;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: width 1.5s ease-out; /* Animación */
+    width: 0; /* Ancho inicial para JS */
+}
+
+/* Modificadores de color para las barras */
+.barra-valor.color-rojo { background-color: #ef4444; }
+.barra-valor.color-amarillo { background-color: #f59e0b; color: #1a1a1a; }
+.barra-valor.color-verde { background-color: #22c55e; }
+
+/* --- Sección Backstage --- */
+.grid-videos {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.tarjeta-video {
+    display: block;
+}
+
+.video-miniatura {
+    position: relative;
+    border-radius: var(--radio-borde);
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.video-miniatura img {
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.tarjeta-video:hover .video-miniatura img {
+    transform: scale(1.05);
+}
+
+.video-play-icono {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.video-play-icono svg {
+    width: 4rem;
+    height: 4rem;
+}
+
+.tarjeta-video:hover .video-play-icono {
+    opacity: 1;
+}
+
+.video-titulo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    color: var(--color-texto-claro);
+}
+
+.video-descripcion {
+    color: #ccc;
+}
+
+/* --- Sección Suscribirse (Formulario) --- */
+.formulario-suscripcion {
+    max-width: 600px;
+    background-color: var(--color-fondo);
+    padding: 2.5rem;
+    border-radius: var(--radio-borde);
+    box-shadow: var(--sombra-caja);
+}
+
+.form-grupo {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radio-borde);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.form-grupo-radio {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.radio-input {
+    /* Ocultar el input real */
+    display: none;
+}
+
+.radio-etiqueta {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid #ccc;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.radio-titulo {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-primario);
+}
+
+.radio-precio {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Estilo cuando el radio está seleccionado */
+.radio-input:checked + .radio-etiqueta {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
+    background-color: #f0f6ff;
+}
+
+.form-grupo-envio {
+    display: none; /* Oculto por defecto */
+    margin-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 1.5rem;
+}
+
+.form-subtitulo-envio {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.form-grupo-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.boton-submit {
+    width: 100%;
+    background-color: var(--color-primario);
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: var(--radio-borde);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.boton-submit:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+.footer-principal {
+    background-color: #f1f1f1;
+    border-top: 1px solid #e0e0e0;
+    padding: 3rem 0;
+    text-align: center;
+    color: #555;
+}
+
+.footer-principal .contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.footer-redes {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.footer-redes a {
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.footer-redes a:hover {
+    color: var(--color-primario);
+}
+
+
+/* --- INICIO: ESTILOS PARA JS (PRELOADER, CURSOR, ANIMACIONES) --- */
+
+/* --- Estilos del Preloader --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-fondo);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    visibility: visible;
+    opacity: 1;
+}
+
+#preloader.loaded {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Spinner simple */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: var(--color-primario);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Estilos del Cursor Personalizado --- */
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primario);
+    border-radius: 50%;
+    position: fixed;
+    z-index: 9990;
+    pointer-events: none; /* Importante */
+    transition: transform 0.1s ease-out, left 0.1s ease-out;
+    top: 0;  /* Añade una posición inicial */
+    left: 0; /* Añade una posición inicial */
+    transform: translate(-50%, -50%); 
+}
+
+.cursor-outline {
+    width: 50px;
+    height: 50px;
+    border: 2px solid rgba(26, 26, 26, 0.5);
+    border-radius: 50%;
+    position: fixed;
+    z-index: 9990;
+    pointer-events: none; /* Importante */
+    
+    top: 0;  /* Añade una posición inicial */
+    left: 0; /* Añade una posición inicial */
+    transform: translate(-50%, -50%); 
+    transition: top 0.2s ease-out, left 0.2s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+/* Estado hover del cursor */
+.cursor-hover {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(26, 26, 26, 0.1);
+}
+
+/* --- Estilos para la Inversión del Cursor --- */
+.cursor-dot.cursor-invertido {
+    /* (el --color-fondo es 'blanco' según tus variables) */
+    background-color: var(--color-fondo); 
+}
+
+.cursor-outline.cursor-invertido {
+    border-color: var(--color-fondo); 
+}
+
+.cursor-outline.cursor-hover.cursor-invertido {
+    background-color: rgba(255, 255, 255, 0.1); /* Blanco translúcido */
+    border: none;
+}
+
+
+/* --- Estilos para Animaciones de Scroll --- */
+/* Clases base para los elementos que se animarán */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 1s ease-out, transform 0.8s ease-out;
+}
+
+/* Tipos de animación */
+.fade-in {
+    opacity: 0;
+}
+
+.slide-in-up {
+    transform: translateY(40px);
+}
+
+/* Clase que se añade con JS cuando el elemento es visible */
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Clases de retraso */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+
+
+/* --- FIN: ESTILOS PARA JS --- */
+
+
+/* --- Media Queries para Responsividad --- */
+
+/* Tablets y móviles grandes */
+@media (min-width: 768px) {
+    .perfil-diseñador {
+        flex-direction: row;
+        gap: 3rem;
+    }
+    .perfil-imagen {
+        width: 40%;
+        max-width: none;
+    }
+    .perfil-invertido {
+        flex-direction: row-reverse;
+    }
+    .contenedor-datos {
+        grid-template-columns: 1fr 1fr;
+    }
+    .grid-videos {
+        grid-template-columns: 1fr 1fr;
+    }
+    .form-grupo-radio {
+        flex-direction: row;
+    }
+    .form-grupo-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer-principal .contenedor-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .footer-redes {
+        margin-top: 0;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 767px) {
+    .navbar-menu {
+        display: none; /* Ocultar menú de escritorio */
+        /* Aquí iría la lógica para un menú desplegable */
+    }
+    .navbar-menu-movil-icono {
+        display: block; /* Mostrar icono de hamburguesa */
+    }
+    .seccion-padding {
+        padding: 3rem 0;
+    }
+    .seccion-titulo {
+        font-size: 2rem;
+    }
+    .hero-contenido {
+        padding: 1.5rem;
+    }
+    .contenedor-principal {
+        padding: 0 1rem;
+    }
+    .grid-tendencias {
+        padding: 0 1rem;
+    }
+    .formulario-suscripcion {
+        padding: 1.5rem;
+    }
+
+    /* Ocultar cursor personalizado en móvil */
+    .cursor-dot, .cursor-outline {
+        display: none;
+    }
+}
+
+
+/* --- Ocultar la "manita" en enlaces y botones --- */
+a,
+button,
+.radio-etiqueta,
+.navbar-logo,
+.navbar-menu-movil-icono {
+    cursor: none;
+}

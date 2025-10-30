@@ -19,3 +19,5 @@ https://www.shipsltd.co.jp/pages/sp_50th_anniversary.aspx
 - proceso de carga, cursor, scroll, imágenes y homepage: https://8enjamin.vercel.app/
 
 - esta es solo para que veas lo guapa que está: https://zelviano.strategyfox.in/
+Menuda burrada de página web, el ordenador se me ha empezado a sobrecalentar jajaja
+He hecho como un esqueletillo de la web, para ir teniendo algo más sólido, he dejado huequitos para cambiar el texto y tal, a ver qué te parece (puedes cambiar toodo lo que quieras sin miedo) He intentado dejar todo nombrado para pdoer diferenciarlo bien.
