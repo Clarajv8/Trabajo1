@@ -40,6 +40,20 @@ $(function() {
                 $('body').removeClass('no-scroll');
             }
         });
+
+        // Cerrar al hacer clic en el overlay (fuera del contenido)
+        $(document).on('click', function(e) {
+            if ($menuMovil.hasClass('menu-abierto')) {
+                const isClickInsideMenu = $menuMovil[0].contains(e.target);
+                const isClickOnIcon = $iconoMenu[0].contains(e.target);
+
+                if (!isClickInsideMenu && !isClickOnIcon) {
+                    $iconoMenu.removeClass('icono-activo');
+                    $menuMovil.removeClass('menu-abierto');
+                    $('body').removeClass('no-scroll');
+                }
+            }
+        });
     }
     
     // --- Lógica del Cursor Personalizado ---
