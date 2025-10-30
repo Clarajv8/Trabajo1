@@ -12,6 +12,35 @@ $(function() {
         // Devolver el scroll al body
         $('body').css('overflow', 'auto');
     });
+
+    // --- Lógica del Menú Móvil ---
+    const $iconoMenu = $('.navbar-menu-movil-icono');
+    const $menuMovil = $('.navbar-menu'); 
+    const $enlacesMenu = $menuMovil.find('a');
+
+    if ($iconoMenu.length && $menuMovil.length) {
+        // Al hacer clic en el icono
+        $iconoMenu.on('click', function() {
+            // 'this' es el icono en el que se hizo clic
+            $(this).toggleClass('icono-activo');
+            
+            // Muestra/oculta el menú (añadiendo .menu-abierto a .navbar-menu)
+            $menuMovil.toggleClass('menu-abierto');
+            
+            // Bloquea/desbloquea el scroll del body
+            $('body').toggleClass('no-scroll');
+        });
+
+        // Opcional: Cerrar el menú si se hace clic en un enlace
+        $enlacesMenu.on('click', function() {
+            // Solo cerramos si está en modo "menu-abierto" (móvil)
+            if ($menuMovil.hasClass('menu-abierto')) {
+                $iconoMenu.removeClass('icono-activo');
+                $menuMovil.removeClass('menu-abierto');
+                $('body').removeClass('no-scroll');
+            }
+        });
+    }
     
     // --- Lógica del Cursor Personalizado ---
     const $cursorDot = $('.cursor-dot');
