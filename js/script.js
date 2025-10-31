@@ -57,33 +57,28 @@ $(function() {
     }
     
     // --- Lógica del Cursor Personalizado ---
-    const $cursorDot = $('.cursor-dot');
     const $cursorOutline = $('.cursor-outline');
 
     // --- Lógica de Inversión del Cursor ---
     const $seccionOscura = $('#backstage');
 
-    if ($seccionOscura.length && $cursorDot.length && $cursorOutline.length) {
+    if ($seccionOscura.length && $cursorOutline.length) {
         // Cuando el ratón entra en la sección oscura
         $seccionOscura.on('mouseenter', () => {
-            $cursorDot.addClass('cursor-invertido');
             $cursorOutline.addClass('cursor-invertido');
         });
         
         // Cuando el ratón sale de la sección oscura
         $seccionOscura.on('mouseleave', () => {
-            $cursorDot.removeClass('cursor-invertido');
             $cursorOutline.removeClass('cursor-invertido');
         });
     }
 
     const $hoverables = $('a, button, .radio-etiqueta, .navbar-logo, .navbar-menu-movil-icono');
 
-    if ($cursorDot.length && $cursorOutline.length) {
+    if ($cursorOutline.length) {
         $(window).on('mousemove', (e) => {
             const { clientX: x, clientY: y } = e;
-            
-            $cursorDot.css('transform', `translate(${x - $cursorDot.outerWidth() / 2}px, ${y - $cursorDot.outerHeight() / 2}px)`);
             
             $cursorOutline.css('transform', `translate(${x - $cursorOutline.outerWidth() / 2}px, ${y - $cursorOutline.outerHeight() / 2}px)`);
         });

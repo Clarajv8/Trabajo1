@@ -14,6 +14,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    cursor: none;
 }
 
 html {
@@ -23,7 +24,6 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
-    cursor: none;
     background-color: var(--color-fondo);
     color: var(--color-texto);
     line-height: 1.6;
@@ -681,19 +681,6 @@ img {
 }
 
 /* --- Estilos del Cursor Personalizado --- */
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background-color: var(--color-primario);
-    border-radius: 50%;
-    position: fixed;
-    z-index: 9990;
-    pointer-events: none; /* Importante */
-    transition: transform 0.1s ease-out, left 0.1s ease-out;
-    top: 0;  /* Añade una posición inicial */
-    left: 0; /* Añade una posición inicial */
-    transform: translate(-50%, -50%); 
-}
 
 .cursor-outline {
     width: 50px;
@@ -715,12 +702,6 @@ img {
     width: 50px;
     height: 50px;
     background-color: rgba(26, 26, 26, 0.1);
-}
-
-/* --- Estilos para la Inversión del Cursor --- */
-.cursor-dot.cursor-invertido {
-    /* (el --color-fondo es 'blanco' según tus variables) */
-    background-color: var(--color-fondo); 
 }
 
 .cursor-outline.cursor-invertido {
@@ -878,7 +859,7 @@ img {
     }
 
     /* Ocultar cursor personalizado en móvil */
-    .cursor-dot, .cursor-outline {
+    .cursor-outline {
         display: none;
     }
 
