@@ -24,3 +24,13 @@ He hecho como un esqueletillo de la web, para ir teniendo algo más sólido, he 
 
 
 Para mañana: Tengo que mejorar el menú / corregir línea css del final (cambiarla de lugar)
+
+
+IDEAS:
+Hacer cursor que se vea a través de el en negativo o incluso que haya una sección 
+Que el título (CBA) se haga pequeño y se covierta en el botón/logo del menú horizontal (Visualmente que ocupen todo el espacio posible)
+Que la chica de la portada no se mueva, si no que sea el titulo, y que ya desde el "segundo apartado" (tras la homepage)ya se empiece a mover la chica.
+
+Popup para suscribirte a la reviste
+
+ABOUT ME: Los elementos se deben poder mover librmente, o que haga algún efecto chulo
