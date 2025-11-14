@@ -662,29 +662,195 @@ img {
     color: var(--color-primario);
 }
 
+/* --- ESTILOS DEL POPUP DE INICIO DE SESIÓN --- */
 
-/* --- INICIO: ESTILOS PARA JS (PRELOADER, CURSOR, ANIMACIONES) --- */
-
-/* --- Estilos del Preloader --- */
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-fondo);
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-    visibility: visible;
-    opacity: 1;
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 2000; 
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-#preloader.loaded {
-    opacity: 0;
-    visibility: hidden;
+.popup-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup-contenedor {
+  background-color: var(--color-primario, #1a1a1a);
+  color: var(--color-texto-claro, #f0f0f0);
+  
+  padding: 2.5rem 2rem;
+  border-radius: var(--radio-borde, 8px);
+  width: 100%;
+  max-width: 400px; 
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  
+  position: relative; 
+  text-align: center;
+
+  transform: translateY(-20px) scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.popup-overlay.visible .popup-contenedor {
+  transform: translateY(0) scale(1);
+}
+
+.popup-cerrar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 300;
+  padding: 0.25rem;
+  transition: color 0.3s;
+}
+
+.popup-cerrar:hover {
+  color: #fff;
+}
+
+.popup-titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #fff;
+}
+
+/* Formulario */
+.popup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-form-grupo {
+  margin-bottom: 1.25rem;
+  text-align: left;
+}
+
+.popup-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: #ccc;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: #333; /* Fondo del input */
+  border: 1px solid #555;
+  color: #fff;
+  border-radius: 6px; /* Esquinas ligeramente redondeadas */
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.popup-input:focus {
+  outline: none;
+  border-color: var(--color-acento, #3b82f6);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Wrapper para el input de contraseña y el ojo */
+.popup-grupo-pass {
+  position: relative;
+}
+
+.popup-input[type="password"] {
+  /* Espacio para el icono del ojo */
+  padding-right: 3rem;
+}
+
+.popup-pass-toggle {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: calc(100% - 4px);
+  width: 2.5rem;
+  background: none;
+  border: none;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+
+.popup-pass-toggle:hover {
+  color: #fff;
+}
+
+.popup-pass-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Lógica para mostrar/ocultar los iconos de ojo */
+.popup-pass-toggle .icono-ojo-tachado {
+  display: none;
+}
+.popup-pass-toggle.mostrando .icono-ojo-tachado {
+  display: block;
+}
+.popup-pass-toggle.mostrando .icono-ojo {
+  display: none;
+}
+
+
+/* Botón de Iniciar Sesión */
+.popup-submit {
+  width: 100%;
+  background-color: var(--color-acento, #3b82f6);
+  color: #fff;
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 700;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-top: 0.5rem;
+}
+
+.popup-submit:hover {
+  background-color: #1d4ed8; 
+  transform: translateY(-2px);
+}
+
+/* Enlaces inferiores */
+.popup-enlaces {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+.popup-enlaces a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.popup-enlaces a:hover {
+  color: var(--color-acento, #3b82f6);
+  text-decoration: underline;
 }
 
 /* Spinner simple */
