@@ -1,4 +1,15 @@
 $(function() {
+    $(window).on('scroll', function() {
+        var scrollUmbral = 50; 
+
+        if ($(window).scrollTop() > scrollUmbral) {
+            $('.header-principal').addClass('scrolled');
+            $('body').addClass('scrolled');
+        } else {
+            $('.header-principal').removeClass('scrolled');
+            $('body').removeClass('scrolled');
+        }
+    });
     const $preloader = $('#preloader');
 
     if ($preloader.length) {
