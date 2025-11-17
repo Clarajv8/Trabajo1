@@ -24,6 +24,61 @@ $(function() {
         $('body').css('overflow', 'auto');
     });
 
+    // --- Lógica del Pop-up de Inicio de Sesión ---
+    const $popup = $('#popup-login');
+    const $popupCerrar = $popup.find('.popup-cerrar');
+    const $enlaceSuscribete = $popup.find('.popup-enlace-accion');
+
+        // para que no sea tan agresivo.
+    $(window).on('load', () => {
+        // Espera 1 segundo (1000ms) después de que todo cargue
+        setTimeout(function() {
+        
+        if ($popup.length) {
+            $popup.addClass('visible');
+            $('body').addClass('no-scroll');
+        }
+        }, 1000); 
+    });
+
+    // 2. Función para cerrar el popup
+    function cerrarPopup() {
+        $popup.removeClass('visible');
+        $('body').removeClass('no-scroll');
+    }
+
+    if ($popupCerrar.length) {
+        $popupCerrar.on('click', cerrarPopup);
+    }
+
+    if ($enlaceSuscribete.length) {
+        $enlaceSuscribete.on('click', cerrarPopup);
+    }
+
+    $popup.on('click', function(e) {
+        if (e.target === this) {
+        cerrarPopup();
+        }
+    });
+
+    // 6. Lógica del "Ojito" para la contraseña
+    const $passToggle = $('#popup-pass-toggle');
+    const $passInput = $('#popup-pass');
+
+    if ($passToggle.length && $passInput.length) {
+        $passToggle.on('click', function() {
+        $(this).toggleClass('mostrando');
+        
+        const tipoActual = $passInput.attr('type');
+        
+        if (tipoActual === 'password') {
+            $passInput.attr('type', 'text');
+        } else {
+            $passInput.attr('type', 'password');
+        }
+        });
+    }
+
     // --- Lógica del Menú Móvil ---
     const $iconoMenu = $('.navbar-menu-movil-icono');
     const $menuMovil = $('.navbar-menu'); 
