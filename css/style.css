@@ -31,7 +31,7 @@ body {
 }
 
 body.scrolled {
-    padding-top: 70px;
+    padding-top: 100vh;
 }
 
 body.no-scroll {
@@ -197,14 +197,10 @@ img {
 }
 
 .navbar-boton {
-    border: var(--color-fondo);
-    color: #fff;
+    color: var(--color-primario);
     padding: 1rem 2rem;
-    border-radius: 9999px;
     font-size: 1.25rem;
     font-weight: 500;
-    border-color: var(--color-fondo);
-    transition: background-color 0.3s, transform 0.3s;
 }
 
 
@@ -853,22 +849,6 @@ img {
   text-decoration: underline;
 }
 
-/* Spinner simple */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left-color: var(--color-primario);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 /* --- Estilos del Cursor Personalizado --- */
 
 .cursor-outline {
@@ -970,94 +950,155 @@ img {
 }
 
 /* Móviles pequeños */
+/* --- MENÚ MÓVIL DE DISEÑO EDITORIAL --- */
 @media (max-width: 768px) {
 
+    /* 1. El contenedor del menú (Fondo) */
     .navbar-menu {
         position: fixed;
         top: 0;
-        right: 0;
-        backdrop-filter: blur(5px); 
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(255, 255, 255, 0.98); /* Casi opaco */
+        backdrop-filter: blur(10px); /* Efecto vidrio */
         z-index: 1000;
+        
         display: flex;
         flex-direction: column;
-
         justify-content: center;
         align-items: center;
-        transform: translateX(100%);
-        transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-        padding: 100px 2rem 60px; 
+        
+        /* Estado inicial: Invisible y desplazado */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s ease, visibility 0.4s ease;
     }
 
+    /* 2. Estado Abierto */
     .navbar-menu.menu-abierto {
-        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
     }
 
-    /* Estilos para el contenedor de enlaces (para que 'display: contents' se anule) */
-    .menu-movil-links, .menu-movil-redes {
+    /* 3. Contenedor de los enlaces */
+    .menu-movil-links {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 1.5rem;
+        counter-reset: menu-contador; /* Iniciar contador CSS */
     }
 
-    /* 3. Estilos de los enlaces en móvil */
-    .navbar-menu a {
-        font-size: 2rem; 
-        font-weight: 700;
-        color: var(--color-primario);
-    }
-    .navbar-menu a:hover {
-        color: var(--color-acento);
-    }
-    .navbar-menu a::after {
-        display: none; 
-    }
-
-    .header-principal.scrolled .navbar-menu-movil-icono {
-    display: flex;
-    }
-
-    .navbar-boton {
-        background-color: var(--color-acento);
-        padding: 0.8rem 1.8rem;
-        border-radius: 9999px;
-        margin-top: 1rem;
-        display: inline-block;
-        font-size: 1.3rem;
-    }
-
-    
-
-    .seccion-padding {
-        padding: 3rem 0;
-    }
-    .seccion-titulo {
+    /* 4. Estilo de los Enlaces (Tipografía Gigante) */
+    .navbar-enlace {
         font-size: 2rem;
-    }
-    .hero-contenido {
-        padding: 1.5rem;
-    }
-    .contenedor-principal {
-        padding: 0 1rem;
-    }
-    .grid-tendencias {
-        padding: 0 1rem;
-    }
-    .formulario-suscripcion {
-        padding: 1.5rem;
+        font-weight: 800; /* Muy negrita */
+        color: var(--color-fondo-secundario);
+        text-transform: uppercase;
+        letter-spacing: -1px;
+        position: relative;
+        display: block;
+        opacity: 0; /* Oculto para la animación */
+        transform: translateY(30px); /* Desplazado hacia abajo */
+        transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s;
     }
 
-    /* Ocultar cursor personalizado en móvil */
-    .cursor-outline {
-        display: none;
+    /* Botón Suscribirse (Diferente) */
+    .navbar-boton {
+        margin-top: 2rem;
+        font-size: 1.2rem;
+        padding: 1rem 2.5rem;
+        background: var(--color-primario);
+        color: #fff !important;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s;
     }
 
-    .navbar-enlace, .navbar-boton, .menu-movil-redes a {
+    /* 5. Animación en Cascada (Stagger) al abrir */
+    /* Cuando el menú tiene la clase .menu-abierto, los hijos se animan */
+    .navbar-menu.menu-abierto .navbar-enlace,
+    .navbar-menu.menu-abierto .navbar-boton,
+    .navbar-menu.menu-abierto .menu-movil-redes {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Retrasos (Delays) para que aparezcan uno tras otro */
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(1) { transition-delay: 0.1s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(2) { transition-delay: 0.2s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(3) { transition-delay: 0.3s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(4) { transition-delay: 0.4s; }
+    .navbar-menu.menu-abierto .navbar-boton { transition-delay: 0.5s; }
+    .navbar-menu.menu-abierto .menu-movil-redes { transition-delay: 0.6s; }
+
+    /* 6. Numeración decorativa (Estilo Revista) */
+    .navbar-enlace::before {
+        counter-increment: menu-contador;
+        content: "0" counter(menu-contador); /* Pone 01, 02... */
+        position: absolute;
+        left: -40px;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 1rem;
-        font-weight: 700;
-        color: #ffffff !important;
-        transition: color 0.3s;
+        font-weight: 400;
+        color: #999;
+        font-family: monospace; /* Fuente técnica */
+        opacity: 0;
+        transition: opacity 0.3s 0.5s; /* Aparece lento */
     }
+
+    .navbar-menu.menu-abierto .navbar-enlace::before {
+        opacity: 1;
+    }
+
+    /* Hover effect en móvil (o desktop pequeño) */
+    .navbar-enlace:hover {
+        color: transparent;
+        -webkit-text-stroke: 1px var(--color-primario); /* Efecto contorno */
+    }
+
+    /* 7. Redes Sociales en el menú */
+    .menu-movil-redes {
+        display: flex;
+        gap: 2rem;
+        margin-top: 3rem;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .menu-movil-redes a {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+    }
+    
+    /* Línea decorativa bajo redes */
+    .menu-movil-redes a::after {
+        content: '';
+        position: absolute;
+        bottom: -5px; left: 0; width: 0; height: 1px;
+        background: var(--color-primario);
+        transition: width 0.3s;
+    }
+    .menu-movil-redes a:hover::after { width: 100%; }
+
+    /* 8. Icono Hamburguesa (Ajustes de visibilidad) */
+    .header-principal.scrolled .navbar-menu-movil-icono {
+        display: flex;
+    }
+    
+    /* Asegurar que el icono esté por encima del menú blanco */
+    .navbar-menu-movil-icono {
+        z-index: 1001; 
+    }
+    
+    /* Ocultar cursor personalizado en móvil */
+    .cursor-outline { display: none; }
 }
 
 

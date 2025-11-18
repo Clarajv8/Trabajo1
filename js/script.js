@@ -1,233 +1,197 @@
 $(function() {
-    $(window).on('scroll', function() {
-        var scrollUmbral = 50; 
-
-        if ($(window).scrollTop() > scrollUmbral) {
-            $('.header-principal').addClass('scrolled');
-            $('body').addClass('scrolled');
-        } else {
-            $('.header-principal').removeClass('scrolled');
-            $('body').removeClass('scrolled');
-        }
-    });
+    // Referencias a elementos comunes
+    const $window = $(window);
+    const $body = $('body');
+    const $header = $('.header-principal');
     const $preloader = $('#preloader');
+    const $popup = $('#popup-login');
 
-    if ($preloader.length) {
-        $('body').css('overflow', 'hidden');
-    }
+    // ------------------------------------------------------
+    // 1. LÓGICA DEL PRELOADER Y CARGA INICIAL
+    // ------------------------------------------------------
+    // Bloquear scroll mientras carga
+    if ($preloader.length) $body.addClass('no-scroll');
 
-    $(window).on('load', () => {
+    $window.on('load', function() {
+        // A. Quitar preloader
         if ($preloader.length) {
             $preloader.addClass('loaded');
         }
-        // Devolver el scroll al body
-        $('body').css('overflow', 'auto');
-    });
 
-    // --- Lógica del Pop-up de Inicio de Sesión ---
-    const $popup = $('#popup-login');
-    const $popupCerrar = $popup.find('.popup-cerrar');
-    const $enlaceSuscribete = $popup.find('.popup-enlace-accion');
-
-        // para que no sea tan agresivo.
-    $(window).on('load', () => {
-        // Espera 1 segundo (1000ms) después de que todo cargue
-        setTimeout(function() {
+        // B. Permitir scroll temporalmente (por si el popup falla)
+        $body.removeClass('no-scroll');
         
-        if ($popup.length) {
-            $popup.addClass('visible');
-            $('body').addClass('no-scroll');
-        }
-        }, 1000); 
+        // C. Mostrar Popup tras 1 segundo
+        setTimeout(function() {
+            if ($popup.length) {
+                $popup.addClass('visible');
+                $body.addClass('no-scroll'); // Bloquear scroll de nuevo
+            }
+        }, 1000);
     });
 
-    // 2. Función para cerrar el popup
+
+    // ------------------------------------------------------
+    // 2. LÓGICA DEL HEADER (EFECTO ABC GIGANTE)
+    // ------------------------------------------------------
+    $window.on('scroll', function() {
+        // Si bajamos más de 50px
+        if ($window.scrollTop() > 50) {
+            $header.addClass('scrolled');
+            $body.addClass('scrolled'); // Añade padding al body
+        } else {
+            $header.removeClass('scrolled');
+            $body.removeClass('scrolled');
+        }
+    });
+
+
+    // ------------------------------------------------------
+    // 3. LÓGICA DEL POPUP (LOGIN / REGISTRO / BIENVENIDA)
+    // ------------------------------------------------------
+    
+    // Referencias a las vistas
+    const $viewLogin = $('#view-login');
+    const $viewRegistro = $('#view-registro');
+    const $viewExito = $('#view-exito');
+
+    // Función para cerrar popup y resetear vistas
     function cerrarPopup() {
         $popup.removeClass('visible');
-        $('body').removeClass('no-scroll');
+        $body.removeClass('no-scroll');
+        
+        // Esperar a que termine la animación de cierre (300ms) para resetear
+        setTimeout(() => {
+            $viewLogin.show();
+            $viewRegistro.hide();
+            $viewExito.hide();
+            // Limpiar inputs
+            $('.popup-input').val('');
+        }, 300);
     }
 
-    if ($popupCerrar.length) {
-        $popupCerrar.on('click', cerrarPopup);
-    }
+    // Botones de cierre generales
+    $('.popup-cerrar, #btn-cerrar-final').on('click', cerrarPopup);
 
-    if ($enlaceSuscribete.length) {
-        $enlaceSuscribete.on('click', cerrarPopup);
-    }
-
+    // Cerrar clicando fuera
     $popup.on('click', function(e) {
-        if (e.target === this) {
-        cerrarPopup();
+        if (e.target === this) cerrarPopup();
+    });
+
+    // CAMBIAR ENTRE VISTAS (Login <-> Registro)
+    $('#btn-ir-registro').on('click', function(e) {
+        e.preventDefault();
+        $viewLogin.fadeOut(200, function() {
+            $viewRegistro.fadeIn(200);
+        });
+    });
+
+    $('#btn-ir-login').on('click', function(e) {
+        e.preventDefault();
+        $viewRegistro.fadeOut(200, function() {
+            $viewLogin.fadeIn(200);
+        });
+    });
+
+    // MANEJAR EL ENVÍO (SUBMIT) SIN RECARGAR
+    $('#form-login, #form-registro').on('submit', function(e) {
+        e.preventDefault(); // ¡ESTO EVITA LA RECARGA DE PÁGINA!
+        
+        // Ocultar el formulario actual
+        $(this).parent().fadeOut(200, function() {
+            // Mostrar mensaje de éxito
+            $viewExito.fadeIn(200);
+        });
+    });
+
+    // Función global para el Ojito (llamada desde el HTML onclick)
+    window.togglePass = function(idInput, btn) {
+        const input = document.getElementById(idInput);
+        if (input.type === "password") {
+            input.type = "text";
+            btn.style.color = "#fff"; // Indicar visualmente
+        } else {
+            input.type = "password";
+            btn.style.color = "#999";
+        }
+    };
+
+
+    // ------------------------------------------------------
+    // 4. MENÚ MÓVIL
+    // ------------------------------------------------------
+    const $iconoMenu = $('.navbar-menu-movil-icono');
+    const $menuMovil = $('.navbar-menu');
+
+    $iconoMenu.on('click', function() {
+        $(this).toggleClass('icono-activo');
+        $menuMovil.toggleClass('menu-abierto');
+        $body.toggleClass('no-scroll');
+    });
+    
+    // Cerrar menú al clicar un enlace
+    $('.navbar-enlace').on('click', function() {
+        if ($menuMovil.hasClass('menu-abierto')) {
+            $menuMovil.removeClass('menu-abierto');
+            $iconoMenu.removeClass('icono-activo');
+            $body.removeClass('no-scroll');
         }
     });
 
-    // 6. Lógica del "Ojito" para la contraseña
-    const $passToggle = $('#popup-pass-toggle');
-    const $passInput = $('#popup-pass');
 
-    if ($passToggle.length && $passInput.length) {
-        $passToggle.on('click', function() {
-        $(this).toggleClass('mostrando');
-        
-        const tipoActual = $passInput.attr('type');
-        
-        if (tipoActual === 'password') {
-            $passInput.attr('type', 'text');
-        } else {
-            $passInput.attr('type', 'password');
-        }
-        });
-    }
-
-    // --- Lógica del Menú Móvil ---
-    const $iconoMenu = $('.navbar-menu-movil-icono');
-    const $menuMovil = $('.navbar-menu'); 
-    const $enlacesMenu = $menuMovil.find('a');
-
-    if ($iconoMenu.length && $menuMovil.length) {
-        // Al hacer clic en el icono
-        $iconoMenu.on('click', function() {
-            // 'this' es el icono en el que se hizo clic
-            $(this).toggleClass('icono-activo');
-            
-            // Muestra/oculta el menú (añadiendo .menu-abierto a .navbar-menu)
-            $menuMovil.toggleClass('menu-abierto');
-            
-            // Bloquea/desbloquea el scroll del body
-            $('body').toggleClass('no-scroll');
-        });
-
-        // Opcional: Cerrar el menú si se hace clic en un enlace
-        $enlacesMenu.on('click', function() {
-            // Solo cerramos si está en modo "menu-abierto" (móvil)
-            if ($menuMovil.hasClass('menu-abierto')) {
-                $iconoMenu.removeClass('icono-activo');
-                $menuMovil.removeClass('menu-abierto');
-                $('body').removeClass('no-scroll');
-            }
-        });
-
-        // Cerrar al hacer clic en el overlay (fuera del contenido)
-        $(document).on('click', function(e) {
-            if ($menuMovil.hasClass('menu-abierto')) {
-                const isClickInsideMenu = $menuMovil[0].contains(e.target);
-                const isClickOnIcon = $iconoMenu[0].contains(e.target);
-
-                if (!isClickInsideMenu && !isClickOnIcon) {
-                    $iconoMenu.removeClass('icono-activo');
-                    $menuMovil.removeClass('menu-abierto');
-                    $('body').removeClass('no-scroll');
-                }
-            }
-        });
-    }
+    // ------------------------------------------------------
+    // 5. CURSOR PERSONALIZADO
+    // ------------------------------------------------------
+    const $cursor = $('.cursor-outline');
     
-    // --- Lógica del Cursor Personalizado ---
-    const $cursorOutline = $('.cursor-outline');
-
-    // --- Lógica de Inversión del Cursor ---
-    const $seccionOscura = $('#backstage');
-
-    if ($seccionOscura.length && $cursorOutline.length) {
-        // Cuando el ratón entra en la sección oscura
-        $seccionOscura.on('mouseenter', () => {
-            $cursorOutline.addClass('cursor-invertido');
-        });
-        
-        // Cuando el ratón sale de la sección oscura
-        $seccionOscura.on('mouseleave', () => {
-            $cursorOutline.removeClass('cursor-invertido');
-        });
-    }
-
-    const $hoverables = $('a, button, .radio-etiqueta, .navbar-logo, .navbar-menu-movil-icono');
-
-    if ($cursorOutline.length) {
-        $(window).on('mousemove', (e) => {
-            const { clientX: x, clientY: y } = e;
-            
-            $cursorOutline.css('transform', `translate(${x - $cursorOutline.outerWidth() / 2}px, ${y - $cursorOutline.outerHeight() / 2}px)`);
-        });
-
-        $hoverables.on('mouseenter', () => {
-            $cursorOutline.addClass('cursor-hover');
-        });
-        $hoverables.on('mouseleave', () => {
-            $cursorOutline.removeClass('cursor-hover');
-        });
-    }
-
-
-    // --- Lógica de Animaciones de Scroll (IntersectionObserver) --
-    const $animatedElements = $('.animate-on-scroll');
-
-    if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                const $target = $(entry.target);
-
-                if (entry.isIntersecting) {
-                    $target.addClass('is-visible');
-                    
-                    // Animar gráficos de barras cuando sean visibles
-                    const $bars = $target.find('.barra-valor');
-                    
-                    // .each() es el forEach de jQuery
-                    $bars.each(function() {
-                        const $bar = $(this);
-                        $bar.css('width', $bar.attr('data-width') || '0%');
-                    });
-                }
-                // Para que se anime CADA VEZ que entra en la vista
-                else {
-                    $target.removeClass('is-visible');
-                    const $bars = $target.find('.barra-valor');
-                    $bars.each(function() {
-                        $(this).css('width', '0%');
-                    });
-                }
+    if ($cursor.length) {
+        $window.on('mousemove', function(e) {
+            // Mover el cursor
+            $cursor.css({
+                top: e.clientY + 'px',
+                left: e.clientX + 'px'
             });
-        }, {
-            threshold: 0.1 
         });
 
-        $animatedElements.each(function() {
-            observer.observe(this);
+        // Efecto hover
+        $('a, button, input, .radio-etiqueta').on('mouseenter', function() {
+            $cursor.addClass('cursor-hover');
+        }).on('mouseleave', function() {
+            $cursor.removeClass('cursor-hover');
+        });
+
+        // Invertir color en zonas oscuras (ejemplo con id #backstage)
+        $('#backstage, .popup-contenedor').on('mouseenter', function() {
+            $cursor.addClass('cursor-invertido');
+        }).on('mouseleave', function() {
+            $cursor.removeClass('cursor-invertido');
         });
     }
 
-    // --- Lógica del Formulario de Suscripción ---
-    const $radioFisica = $('#sub_fisica');
-    const $radioDigital = $('#sub_digital');
-    const $detallesEnvio = $('#detalles-envio');
-    
-    // Chequeo de seguridad: solo ejecutar si los elementos existen
-    if ($radioFisica.length && $radioDigital.length && $detallesEnvio.length) {
-        
-        const $inputsEnvio = $detallesEnvio.find('input');
+    // Año footer
+    $('#ano-actual').text(new Date().getFullYear());
 
-        function actualizarVisibilidadFormulario() {
-            if ($radioFisica.is(':checked')) {
-                $detallesEnvio.show(); 
-                $inputsEnvio.prop('required', true);
-            } else {
-                $detallesEnvio.hide(); 
-                $inputsEnvio.prop('required', false);
-            }
+    // ------------------------------------------------------
+    // 6. BOTÓN SUSCRIBIRSE (ABRIR POPUP DIRECTAMENTE)
+    // ------------------------------------------------------
+    $('.accion-abrir-registro').on('click', function(e) {
+        e.preventDefault(); // Evita que recargue o baje la página
+
+        // 1. Si el menú móvil está abierto, lo cerramos visualmente
+        if ($('.navbar-menu').hasClass('menu-abierto')) {
+            $('.navbar-menu').removeClass('menu-abierto');
+            $('.navbar-menu-movil-icono').removeClass('icono-activo');
+            // No quitamos 'no-scroll' todavía porque el popup lo necesita
         }
 
-        $('#sub_fisica, #sub_digital').on('change', actualizarVisibilidadFormulario);
+        // 2. Abrimos el Popup
+        $('#popup-login').addClass('visible');
+        $('body').addClass('no-scroll');
 
-        actualizarVisibilidadFormulario();
-    }
-
-
-    // --- Lógica del Año Actual en el Footer ---
-    const $elementoAno = $('#ano-actual');
-    if ($elementoAno.length) {
-
-        $elementoAno.text(new Date().getFullYear());
-    }
+        // 3. Forzamos que se vea la vista de REGISTRO, no la de Login
+        $('#view-login').hide();
+        $('#view-exito').hide();
+        $('#view-registro').show();
+    });
 
 });
-
