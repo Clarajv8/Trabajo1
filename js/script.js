@@ -247,4 +247,26 @@ $(function() {
     }
 
 
+        // --- 6. BACKSTAGE: GALERÍA CON TAMAÑOS ALEATORIOS ---
+
+    const $backstageItems = $('.backstage-item');
+
+    if ($backstageItems.length) {
+        const clasesTamaño = [
+            'backstage-item--tall',
+            'backstage-item--wide',
+            'backstage-item--big',
+            '' // algunos quedan "normales"
+        ];
+
+        $backstageItems.each(function () {
+            const randomIndex = Math.floor(Math.random() * clasesTamaño.length);
+            const clase = clasesTamaño[randomIndex];
+            if (clase) {
+                $(this).addClass(clase);
+            }
+        });
+    }
+
+
 });
