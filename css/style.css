@@ -9,6 +9,10 @@
     cursor: none;
 }
 
+img {
+    width: 100%;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--color-fondo);
@@ -51,11 +55,16 @@ a { text-decoration: none; color: inherit; }
 }
 
 .navbar-logo {
-    font-size: 30vw;
-    font-weight: 900;
-    color: var(--color-primario);
-    line-height: 1;
-    transition: font-size 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-img {
+    width: 80vw;         
+    height: auto;
+    transition: width 0.5s ease-in-out;
+    display: block;
 }
 
 .navbar-menu { display: none; }
@@ -76,8 +85,8 @@ a { text-decoration: none; color: inherit; }
     justify-content: space-between; 
 }
 
-.header-principal.scrolled .navbar-logo {
-    font-size: 2rem; 
+.header-principal.scrolled .logo-img {
+    width: 2.5rem;
 }
 
 .header-principal.scrolled .navbar-menu {
