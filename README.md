@@ -34,3 +34,6 @@ Que la chica de la portada no se mueva, si no que sea el titulo, y que ya desde 
 Popup para suscribirte a la reviste
 
 ABOUT ME: Los elementos se deben poder mover librmente, o que haga algún efecto chulo
+
+
+YA ESTÁ FUNCIONANDO BOOSTRAP!!
