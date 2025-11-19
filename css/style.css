@@ -2,1111 +2,241 @@
     --color-primario: #1a1a1a;
     --color-fondo: #fdfdfd;
     --color-fondo-secundario: #ffffff;
-    --color-texto: #333;
-    --color-texto-claro: #f0f0f0;
-    --color-acento: #3b82f6;
-    --ancho-maximo: 1200px;
-    --radio-borde: 8px;
-    --sombra-caja: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+/* --- CONFIGURACIÓN GLOBAL --- */
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     cursor: none;
-    scroll-behavior: smooth;
-    font-size: 16px;
 }
-
 
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--color-fondo);
-    color: var(--color-texto);
-    line-height: 1.6;
-    padding-top: 0; 
-    overflow-x: hidden; 
-    transition: padding-top 0.5s ease-in-out; 
+    overflow-x: hidden;
+    padding-top: 0;
+    transition: padding-top 0.5s ease-in-out;
 }
 
 body.scrolled {
-    padding-top: 100vh;
+    padding-top: 70px;
 }
 
 body.no-scroll {
     overflow: hidden;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
+a { text-decoration: none; color: inherit; }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
-/* --- Clases Utilitarias y Contenedores --- */
-.contenedor-principal {
-    max-width: var(--ancho-maximo);
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-.seccion-padding {
-    padding: 5rem 0;
-}
-
-.seccion-blanca {
-    background-color: var(--color-fondo-secundario);
-}
-
-.seccion-oscura {
-    background-color: var(--color-primario);
-    color: var(--color-texto-claro);
-}
-
-.seccion-oscura .seccion-titulo {
-    color: var(--color-texto-claro);
-}
-
-.seccion-oscura .seccion-descripcion {
-    color: #ccc;
-}
-
-.seccion-encabezado {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 3rem auto;
-    padding: 0 1rem;
-}
-
-.seccion-titulo {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--color-primario);
-    margin-bottom: 1rem;
-}
-
-.seccion-descripcion {
-    font-size: 1.125rem;
-    color: #555;
-}
-
-/* --- Header y Navegación --- */
+/* --- HEADER "ABC" (ANIMACIÓN) --- */
 .header-principal {
-   position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: fixed;
+    top: 0; left: 0; width: 100%;
     z-index: 100;
-    height: 100vh;
+    height: 100vh; 
     background-color: var(--color-fondo);
-    backdrop-filter: none;
-    box-shadow: none;
     transition: all 0.5s ease-in-out;
-}
-
-.header-principal.scrolled {
-    height: 70px;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.header-principal.scrolled .navbar {
-    justify-content: space-between;
-}
-
-.header-principal.scrolled .navbar-logo {
-    font-size: 1.75rem; 
-}
-
-.header-principal.scrolled .navbar-menu {
     display: flex;
+    align-items: center;
 }
 
-.navbar {
+.navbar-custom {
     display: flex;
     justify-content: center; 
     align-items: center;
+    width: 100%;
     height: 100%;
     transition: justify-content 0.5s ease-in-out;
+    position: relative;
+    padding: 0 2rem; 
 }
 
 .navbar-logo {
     font-size: 30vw;
     font-weight: 900;
     color: var(--color-primario);
+    line-height: 1;
     transition: font-size 0.5s ease-in-out;
 }
 
-.navbar-menu {
-    display: none;
+.navbar-menu { display: none; }
+
+/* --- ESTADO SCROLLED (BARRA PEQUEÑA) --- */
+.header-principal.scrolled {
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.header-principal.scrolled .navbar-custom {
+    justify-content: space-between; 
+}
+
+.header-principal.scrolled .navbar-logo {
+    font-size: 2rem; 
+}
+
+.header-principal.scrolled .navbar-menu {
+    display: flex;
     gap: 1.5rem;
     align-items: center;
-}
-
-.navbar-menu::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7); /* Oscuro */
-    backdrop-filter: blur(8px); /* Borroso */
-    z-index: -1;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
-.navbar-menu.menu-abierto::before {
-    opacity: 1;
-    visibility: visible;
 }
 
 .navbar-enlace {
-    color: #444;
     font-weight: 500;
-    transition: color 0.3s;
-    position: relative;
-    padding: 0.25rem 0;
-}
-
-.navbar-enlace::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--color-primario);
-    transition: width 0.3s ease-out;
-}
-
-.navbar-enlace:hover {
-    color: var(--color-primario);
-}
-
-.navbar-enlace:hover::after {
-    width: 100%;
-}
-
-.navbar-boton {
-    color: var(--color-primario);
-    padding: 1rem 2rem;
-    font-size: 1.25rem;
-    font-weight: 500;
-}
-
-
-
-.navbar-menu-movil-icono {
-    display: none; /* Oculto en escritorio */
-    width: 28px;
-    height: 22px;
-    flex-direction: column;
-    justify-content: space-between;
-    z-index: 1001; /* Por encima del menú overlay */
-    position: relative;
-    
-    background: none;
-    border: none;
-}
-
-.navbar-menu-movil-icono span {
-    width: 100%;
-    height: 3px;
-    background-color: var(--color-primario);
-    border-radius: 2px;
-    transition: all 0.3s ease-in-out;
-    transform-origin: center;
-}
-
-/* --- AÑADIDO: Animación del Icono a 'X' --- */
-.navbar-menu-movil-icono.icono-activo span:nth-child(1) {
-    transform: translateY(9.5px) rotate(45deg);
-}
-.navbar-menu-movil-icono.icono-activo span:nth-child(2) {
-    opacity: 0;
-}
-.navbar-menu-movil-icono.icono-activo span:nth-child(3) {
-    transform: translateY(-9.5px) rotate(-45deg);
-}
-
-/* Estilos de los wrappers del menú móvil --- */
-.menu-movil-links {
-    display: contents; 
-}
-
-.menu-movil-redes {
-    display: none;
-}
-
-
-/* --- Sección Hero --- */
-.seccion-hero {
-    height: calc(100vh - 70px); /* Restar altura del header */
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-    padding: 1rem;
-}
-
-.hero-imagen-fondo {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background-image: url('https://placehold.co/1920x1080/f0f0f0/cccccc?text=Moda+Sostenible');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.8;
-}
-
-.hero-contenido {
-    background-color: rgba(255, 255, 255, 0.5);
-    backdrop-filter: blur(5px);
-    padding: 2.5rem;
-    border-radius: var(--radio-borde);
-    max-width: 90%;
-}
-
-.hero-titulo {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    font-weight: 700;
-    color: var(--color-primario);
-    line-height: 1.1;
-}
-
-.hero-subtitulo {
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    font-weight: 300;
     color: #333;
-    margin-bottom: 1rem;
-}
-
-.hero-descripcion {
-    font-size: 1.125rem;
-    color: #444;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* --- Sección Tendencias --- */
-.grid-tendencias {
-    display: grid;
-    /* Columnas responsivas */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.tarjeta-tendencia {
-    background-color: var(--color-fondo-secundario);
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-caja);
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.tarjeta-tendencia:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0,0,0,0.08);
-}
-
-.tarjeta-imagen {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-}
-
-.tarjeta-contenido {
-    padding: 1.5rem;
-}
-
-.tarjeta-titulo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-}
-
-.tarjeta-enlace {
-    font-weight: 600;
-    color: var(--color-acento);
-    transition: color 0.3s;
-}
-
-.tarjeta-enlace:hover {
-    color: #1d4ed8;
-}
-
-/* --- Sección Diseñadores --- */
-.perfil-diseñador {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 4rem;
-    max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.perfil-diseñador:last-child {
-    margin-bottom: 0;
-}
-
-.perfil-imagen {
-    width: 100%;
-    max-width: 350px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-caja);
-}
-
-.perfil-info {
-    flex: 1;
-}
-
-.perfil-nombre {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-.perfil-etiqueta {
-    display: inline-block;
-    background-color: #e0e7ff;
-    color: #4f46e5;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-}
-
-.etiqueta-boho {
-    background-color:#fef3c7 ;
-    color: #b45309;
-}
-
-/* --- Sección Datos (Gráficos) --- */
-.contenedor-datos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 2rem;
-    background-color: var(--color-fondo-secundario);
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-caja);
-}
-
-.grafico-titulo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.barra-grafico {
-    margin-bottom: 1.5rem;
-}
-
-.barra-grafico span {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-}
-
-.barra-fondo {
-    background-color: #e5e7eb;
-    border-radius: 9999px;
-    overflow: hidden;
-    height: 2.25rem;
-}
-
-.barra-valor {
-    height: 100%;
-    background-color: var(--color-acento);
-    border-radius: 9999px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 0.75rem;
-    color: white;
-    font-weight: 500;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    transition: width 1.5s ease-out; /* Animación */
-    width: 0; /* Ancho inicial para JS */
-}
-
-/* Modificadores de color para las barras */
-.barra-valor.color-rojo { background-color: #ef4444; }
-.barra-valor.color-amarillo { background-color: #f59e0b; color: #1a1a1a; }
-.barra-valor.color-verde { background-color: #22c55e; }
-
-/* --- Sección Backstage --- */
-.grid-videos {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
-}
-
-.tarjeta-video {
-    display: block;
-}
-
-.video-miniatura {
     position: relative;
-    border-radius: var(--radio-borde);
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.video-miniatura img {
-    width: 100%;
-    transition: transform 0.3s ease;
-}
-
-.tarjeta-video:hover .video-miniatura img {
-    transform: scale(1.05);
-}
-
-.video-play-icono {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    opacity: 0.8;
-    transition: opacity 0.3s;
-}
-
-.video-play-icono svg {
-    width: 4rem;
-    height: 4rem;
-}
-
-.tarjeta-video:hover .video-play-icono {
-    opacity: 1;
-}
-
-.video-titulo {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-top: 1rem;
-    color: var(--color-texto-claro);
-}
-
-.video-descripcion {
-    color: #ccc;
-}
-
-/* --- Sección Suscribirse (Formulario) --- */
-.formulario-suscripcion {
-    max-width: 600px;
-    background-color: var(--color-fondo);
-    padding: 2.5rem;
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-caja);
-}
-
-.form-grupo {
-    margin-bottom: 1.5rem;
-}
-
-.form-label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.form-input {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ccc;
-    border-radius: var(--radio-borde);
-    font-size: 1rem;
-    font-family: 'Inter', sans-serif;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-input:focus {
-    outline: none;
-    border-color: var(--color-acento);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-.form-grupo-radio {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.radio-input {
-    /* Ocultar el input real */
-    display: none;
-}
-
-.radio-etiqueta {
-    flex: 1;
-    text-align: center;
-    padding: 1rem;
-    border: 2px solid #ccc;
-    border-radius: var(--radio-borde);
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.radio-titulo {
-    display: block;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--color-primario);
-}
-
-.radio-precio {
-    display: block;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* Estilo cuando el radio está seleccionado */
-.radio-input:checked + .radio-etiqueta {
-    border-color: var(--color-acento);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.4);
-    background-color: #f0f6ff;
-}
-
-.form-grupo-envio {
-    display: none; /* Oculto por defecto */
-    margin-top: 1.5rem;
-    border-top: 1px solid #e0e0e0;
-    padding-top: 1.5rem;
-}
-
-.form-subtitulo-envio {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-}
-
-.form-grupo-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-}
-
-.boton-submit {
-    width: 100%;
-    background-color: var(--color-primario);
-    color: #fff;
-    padding: 1rem;
-    border: none;
-    border-radius: var(--radio-borde);
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-}
-
-.boton-submit:hover {
-    background-color: #444;
-    transform: translateY(-2px);
-}
-
-/* --- Footer --- */
-.footer-principal {
-    background-color: #f1f1f1;
-    border-top: 1px solid #e0e0e0;
-    padding: 3rem 0;
-    text-align: center;
-    color: #555;
-}
-
-.footer-principal .contenedor-principal {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.footer-redes {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: 0.5rem;
-}
-
-.footer-redes a {
-    font-weight: 500;
     transition: color 0.3s;
 }
-
-.footer-redes a:hover {
-    color: var(--color-primario);
-}
-
-/* --- ESTILOS DEL POPUP DE INICIO DE SESIÓN --- */
-
-.popup-overlay {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  z-index: 2000; 
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.popup-overlay.visible {
-  opacity: 1;
-  visibility: visible;
-}
-
-.popup-contenedor {
-  background-color: var(--color-primario, #1a1a1a);
-  color: var(--color-texto-claro, #f0f0f0);
-  
-  padding: 2.5rem 2rem;
-  border-radius: var(--radio-borde, 8px);
-  width: 100%;
-  max-width: 400px; 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  
-  position: relative; 
-  text-align: center;
-
-  transform: translateY(-20px) scale(0.95);
-  transition: transform 0.3s ease;
-}
-
-.popup-overlay.visible .popup-contenedor {
-  transform: translateY(0) scale(1);
-}
-
-.popup-cerrar {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  background: none;
-  border: none;
-  color: #888;
-  font-size: 2rem;
-  line-height: 1;
-  font-weight: 300;
-  padding: 0.25rem;
-  transition: color 0.3s;
-}
-
-.popup-cerrar:hover {
-  color: #fff;
-}
-
-.popup-titulo {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  color: #fff;
-}
-
-/* Formulario */
-.popup-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.popup-form-grupo {
-  margin-bottom: 1.25rem;
-  text-align: left;
-}
-
-.popup-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  color: #ccc;
-}
-
-.popup-input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  background-color: #333; /* Fondo del input */
-  border: 1px solid #555;
-  color: #fff;
-  border-radius: 6px; /* Esquinas ligeramente redondeadas */
-  font-size: 1rem;
-  font-family: 'Inter', sans-serif;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.popup-input:focus {
-  outline: none;
-  border-color: var(--color-acento, #3b82f6);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
-/* Wrapper para el input de contraseña y el ojo */
-.popup-grupo-pass {
-  position: relative;
-}
-
-.popup-input[type="password"] {
-  /* Espacio para el icono del ojo */
-  padding-right: 3rem;
-}
-
-.popup-pass-toggle {
-  position: absolute;
-  right: 0.5rem;
-  top: 50%;
-  transform: translateY(-50%);
-  height: calc(100% - 4px);
-  width: 2.5rem;
-  background: none;
-  border: none;
-  color: #999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s;
-}
-
-.popup-pass-toggle:hover {
-  color: #fff;
-}
-
-.popup-pass-toggle svg {
-  width: 1.25rem;
-  height: 1.25rem;
-}
-
-/* Lógica para mostrar/ocultar los iconos de ojo */
-.popup-pass-toggle .icono-ojo-tachado {
-  display: none;
-}
-.popup-pass-toggle.mostrando .icono-ojo-tachado {
-  display: block;
-}
-.popup-pass-toggle.mostrando .icono-ojo {
-  display: none;
-}
+.navbar-enlace:hover { color: #000; }
 
 
-/* Botón de Iniciar Sesión */
-.popup-submit {
-  width: 100%;
-  background-color: var(--color-acento, #3b82f6);
-  color: #fff;
-  padding: 0.8rem 1rem;
-  border: none;
-  border-radius: 6px;
-  font-size: 1rem;
-  font-weight: 700;
-  transition: background-color 0.3s, transform 0.3s;
-  margin-top: 0.5rem;
-}
-
-.popup-submit:hover {
-  background-color: #1d4ed8; 
-  transform: translateY(-2px);
-}
-
-/* Enlaces inferiores */
-.popup-enlaces {
-  margin-top: 1.5rem;
-  font-size: 0.9rem;
-  color: #aaa;
-}
-
-.popup-enlaces a {
-  color: #fff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.popup-enlaces a:hover {
-  color: var(--color-acento, #3b82f6);
-  text-decoration: underline;
-}
-
-/* --- Estilos del Cursor Personalizado --- */
-
-.cursor-outline {
-    width: 50px;
-    height: 50px;
-    border: 2px solid rgba(26, 26, 26, 0.5);
-    border-radius: 50%;
-    position: fixed;
-    z-index: 9990;
-    pointer-events: none; /* Importante */
-    
-    top: 0;  /* Añade una posición inicial */
-    left: 0; /* Añade una posición inicial */
-    transform: translate(-50%, -50%); 
-    transition: top 0.2s ease-out, left 0.2s ease-out, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-}
-
-/* Estado hover del cursor */
-.cursor-hover {
-    width: 50px;
-    height: 50px;
-    background-color: rgba(26, 26, 26, 0.1);
-}
-
-.cursor-outline.cursor-invertido {
-    border-color: var(--color-fondo); 
-}
-
-.cursor-outline.cursor-hover.cursor-invertido {
-    background-color: rgba(255, 255, 255, 0.1); /* Blanco translúcido */
-    border: none;
-}
-
-
-/* --- Estilos para Animaciones de Scroll --- */
-/* Clases base para los elementos que se animarán */
-.animate-on-scroll {
-    opacity: 0;
-    transition: opacity 1s ease-out, transform 0.8s ease-out;
-}
-
-/* Tipos de animación */
-.fade-in {
-    opacity: 0;
-}
-
-.slide-in-up {
-    transform: translateY(40px);
-}
-
-/* Clase que se añade con JS cuando el elemento es visible */
-.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Clases de retraso */
-.delay-100 { transition-delay: 100ms; }
-.delay-200 { transition-delay: 200ms; }
-.delay-300 { transition-delay: 300ms; }
-
-
-
-
-/* --- Media Queries para Responsividad --- */
-
-/* Tablets y móviles grandes */
-@media (min-width: 768px) {
-    .perfil-diseñador {
-        flex-direction: row;
-        gap: 3rem;
-    }
-    .perfil-imagen {
-        width: 40%;
-        max-width: none;
-    }
-    .perfil-invertido {
-        flex-direction: row-reverse;
-    }
-    .contenedor-datos {
-        grid-template-columns: 1fr 1fr;
-    }
-    .grid-videos {
-        grid-template-columns: 1fr 1fr;
-    }
-    .form-grupo-radio {
-        flex-direction: row;
-    }
-    .form-grupo-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    .footer-principal .contenedor-principal {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .footer-redes {
-        margin-top: 0;
-    }
-}
-
-/* Móviles pequeños */
-/* --- MENÚ MÓVIL DE DISEÑO EDITORIAL --- */
+/* --- MENÚ MÓVIL ARTÍSTICO --- */
+.navbar-menu-movil-icono { display: none; }
 @media (max-width: 768px) {
-
-    /* 1. El contenedor del menú (Fondo) */
-    .navbar-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(255, 255, 255, 0.98); /* Casi opaco */
-        backdrop-filter: blur(10px); /* Efecto vidrio */
-        z-index: 1000;
-        
+    .header-principal.scrolled .navbar-menu-movil-icono {
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        /* Estado inicial: Invisible y desplazado */
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
+        width: 30px; height: 20px;
+        flex-direction: column; justify-content: space-between;
+        background: none; border: none; z-index: 1060; 
+    }
+    
+    .navbar-menu-movil-icono span {
+        width: 100%; height: 3px; background: #333; transition: 0.3s;
+    }
+    
+    .navbar-menu-movil-icono.icono-activo span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(2) { opacity: 0; }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+    .header-principal.scrolled .navbar-menu {
+        display: flex; 
+        position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: rgba(255,255,255,0.98);
+        flex-direction: column; justify-content: center; align-items: center;
+        opacity: 0; visibility: hidden;
+        transition: 0.4s;
+        z-index: 1050;
+    }
+    
+    .header-principal.scrolled .navbar-menu.menu-abierto {
+        opacity: 1; visibility: visible;
     }
 
-    /* 2. Estado Abierto */
-    .navbar-menu.menu-abierto {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    /* 3. Contenedor de los enlaces */
     .menu-movil-links {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 1.5rem;
-        counter-reset: menu-contador; /* Iniciar contador CSS */
+        display: flex; flex-direction: column; gap: 2rem; align-items: center;
+        counter-reset: menu-counter;
     }
 
-    /* 4. Estilo de los Enlaces (Tipografía Gigante) */
     .navbar-enlace {
-        font-size: 2rem;
-        font-weight: 800; /* Muy negrita */
-        color: var(--color-fondo-secundario);
-        text-transform: uppercase;
-        letter-spacing: -1px;
-        position: relative;
-        display: block;
-        opacity: 0; /* Oculto para la animación */
-        transform: translateY(30px); /* Desplazado hacia abajo */
-        transition: opacity 0.5s ease, transform 0.5s ease, color 0.3s;
+        font-size: 2rem; font-weight: 800; text-transform: uppercase;
+        opacity: 0; transform: translateY(20px); transition: 0.5s;
     }
-
-    /* Botón Suscribirse (Diferente) */
-    .navbar-boton {
-        margin-top: 2rem;
-        font-size: 1.2rem;
-        padding: 1rem 2.5rem;
-        background: var(--color-primario);
-        color: #fff !important;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.5s ease, transform 0.5s ease, background 0.3s;
-    }
-
-    /* 5. Animación en Cascada (Stagger) al abrir */
-    /* Cuando el menú tiene la clase .menu-abierto, los hijos se animan */
-    .navbar-menu.menu-abierto .navbar-enlace,
-    .navbar-menu.menu-abierto .navbar-boton,
-    .navbar-menu.menu-abierto .menu-movil-redes {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* Retrasos (Delays) para que aparezcan uno tras otro */
+    
+    .navbar-menu.menu-abierto .navbar-enlace { opacity: 1; transform: translateY(0); }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(1) { transition-delay: 0.1s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(2) { transition-delay: 0.2s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(3) { transition-delay: 0.3s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(4) { transition-delay: 0.4s; }
-    .navbar-menu.menu-abierto .navbar-boton { transition-delay: 0.5s; }
-    .navbar-menu.menu-abierto .menu-movil-redes { transition-delay: 0.6s; }
+    .navbar-menu.menu-abierto .accion-abrir-registro { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
 
-    /* 6. Numeración decorativa (Estilo Revista) */
     .navbar-enlace::before {
-        counter-increment: menu-contador;
-        content: "0" counter(menu-contador); /* Pone 01, 02... */
-        position: absolute;
-        left: -40px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1rem;
-        font-weight: 400;
-        color: #999;
-        font-family: monospace; /* Fuente técnica */
-        opacity: 0;
-        transition: opacity 0.3s 0.5s; /* Aparece lento */
-    }
-
-    .navbar-menu.menu-abierto .navbar-enlace::before {
-        opacity: 1;
-    }
-
-    /* Hover effect en móvil (o desktop pequeño) */
-    .navbar-enlace:hover {
-        color: transparent;
-        -webkit-text-stroke: 1px var(--color-primario); /* Efecto contorno */
-    }
-
-    /* 7. Redes Sociales en el menú */
-    .menu-movil-redes {
-        display: flex;
-        gap: 2rem;
-        margin-top: 3rem;
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .menu-movil-redes a {
-        font-size: 1rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        position: relative;
+        counter-increment: menu-counter;
+        content: "0" counter(menu-counter);
+        font-size: 0.9rem; color: #aaa; position: absolute; left: -30px; top: 50%; transform: translateY(-50%);
     }
     
-    /* Línea decorativa bajo redes */
-    .menu-movil-redes a::after {
-        content: '';
-        position: absolute;
-        bottom: -5px; left: 0; width: 0; height: 1px;
-        background: var(--color-primario);
-        transition: width 0.3s;
-    }
-    .menu-movil-redes a:hover::after { width: 100%; }
-
-    /* 8. Icono Hamburguesa (Ajustes de visibilidad) */
-    .header-principal.scrolled .navbar-menu-movil-icono {
-        display: flex;
-    }
-    
-    /* Asegurar que el icono esté por encima del menú blanco */
-    .navbar-menu-movil-icono {
-        z-index: 1001; 
-    }
-    
-    /* Ocultar cursor personalizado en móvil */
     .cursor-outline { display: none; }
+}
+/* --- SOLUCIÓN UNIVERSAL PARA DISPOSITIVOS TÁCTILES --- */
+@media (hover: none) and (pointer: coarse) {
+    
+    .cursor-outline {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+    }
+
+    * {
+        cursor: auto !important;
+    }
+
+    .navbar-enlace:hover,
+    .btn:hover,
+    .card:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
 }
 
 
-/* --- Ocultar la "manita" en enlaces y botones --- */
-a,
-button,
-.radio-etiqueta,
-.navbar-logo,
-.navbar-menu-movil-icono {
-    cursor: none;
+
+.cursor-outline {
+    width: 40px; height: 40px; border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%); transition: width 0.2s, border-color 0.2s;
+}
+.cursor-hover { width: 60px; height: 60px; background: rgba(0,0,0,0.05); border-color: transparent; }
+.cursor-invertido { border-color: rgba(255,255,255,0.5); }
+
+a, button, input, .btn { cursor: none; }
+
+
+.input-editorial {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    background-color: #333 !important; 
+    border: 1px solid #555 !important; 
+    color: #fff !important; 
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+
+.input-editorial:focus {
+    outline: none;
+    border-color: var(--color-acento, #3b82f6) !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3) !important;
+}
+
+.input-editorial:-webkit-autofill,
+.input-editorial:-webkit-autofill:hover, 
+.input-editorial:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.password-wrapper {
+    position: relative; 
+}
+
+.password-wrapper input {
+    padding-right: 3rem;
+}
+
+.btn-ojo-custom {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    z-index: 10;
+}
+
+.btn-ojo-custom:hover {
+    color: #fff;
+}
+
+.btn-ojo-custom svg {
+    width: 20px;
+    height: 20px;
 }

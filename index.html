@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ABC - Revista de Moda Sostenible</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    
     <div class="cursor-outline"></div>
 
     <header class="header-principal">
-      <nav class="navbar contenedor-principal">
+      <nav class="navbar-custom container">
         <a href="#" class="navbar-logo">ABC</a>
         
         <div class="navbar-menu">
@@ -22,120 +23,98 @@
             <a href="#diseñadores" class="navbar-enlace">Diseñadores</a>
             <a href="#datos" class="navbar-enlace">Datos</a>
             <a href="#backstage" class="navbar-enlace">Backstage</a>
-            <a href="#" class="navbar-boton accion-abrir-registro">Suscribirse</a>
+            <a href="#" class="btn btn-dark rounded-pill px-4 accion-abrir-registro">Suscribirse</a>
           </div>
-
           <div class="menu-movil-redes">
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-            <a href="#">Pinterest</a>
+            <a href="#">Instagram</a><a href="#">Twitter</a><a href="#">Pinterest</a>
           </div>
         </div>
           
         <button class="navbar-menu-movil-icono" aria-label="Abrir menú">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
       </nav>
     </header>
 
     <main>
-      <div style="height: 150vh; background: #f4f4f4; padding-top: 110vh; text-align: center;">
-          <h1 class="seccion-titulo">Bienvenido a ABC</h1>
-          <p class="seccion-descripcion">Sigue bajando para ver el resto de la revista.</p>
-          
-          <div id="backstage" style="background: #1a1a1a; color: white; padding: 4rem; margin-top: 2rem;">
-            <h2>Sección Backstage (Prueba cursor)</h2>
-            <p>Aquí el cursor debería invertirse.</p>
+      <div class="d-flex flex-column justify-content-center align-items-center bg-light text-center" style="height: 100vh; padding-top: 70px;">
+          <div class="container">
+            <h1 class="display-1 fw-bold">Bienvenido a ABC</h1>
+            <p class="lead text-muted">La nueva era de la moda sostenible.</p>
           </div>
       </div>
+
+      <section id="tendencias" class="py-5">
+         </section>
+
+      <section id="backstage" class="bg-dark text-white py-5 my-5" style="min-height: 300px;">
+         <div class="container text-center py-5"><h2>Backstage</h2></div>
+      </section>
     </main>
 
-    <footer class="footer-principal">
-      <div class="contenedor-principal">
-        <p>&copy; <span id="ano-actual"></span> ABC. Todos los derechos reservados.</p>
-        <div class="footer-redes">
-          <a href="#">Instagram</a>
-          <a href="#">YouTube</a>
-          <a href="#">Twitter</a>
-          <a href="#">TikTok</a>
-        </div>
+    <footer class="footer-principal bg-light py-5 border-top">
+      <div class="container text-center">
+        <p>&copy; <span id="ano-actual"></span> ABC.</p>
       </div>
     </footer>
 
-    <div class="popup-overlay" id="popup-login">
-  <div class="popup-contenedor">
-    
-    <button class="popup-cerrar" aria-label="Cerrar popup">&times;</button>
-    
-    <div id="view-login">
-      <h2 class="popup-titulo">Inicia Sesión</h2>
-      <form class="popup-form" id="form-login">
-        <div class="popup-form-grupo">
-          <label class="popup-label">Correo Electrónico</label>
-          <input type="email" class="popup-input" placeholder="tu@correo.com" required>
-        </div>
-        <div class="popup-form-grupo">
-          <label class="popup-label">Contraseña</label>
-          <div class="popup-grupo-pass">
-            <input type="password" id="input-pass-login" class="popup-input" placeholder="••••••••" required>
-            <button type="button" class="popup-pass-toggle" onclick="togglePass('input-pass-login', this)">
-              <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
-            </button>
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-dark text-white border-0 shadow-lg">
+          
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title fw-bold">Bienvenido a ABC</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body p-4">
+            <div id="view-login">
+                <h3 class="text-center mb-4 fw-bold">Inicia Sesión</h3>
+                <form id="form-login">
+                    <div class="mb-3"><label class="form-label text-light small text-uppercase fw-bold">Correo</label><input type="email" class="input-editorial" required></div>
+                    <div class="mb-3"><label class="form-label text-light small text-uppercase fw-bold">Contraseña</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="input-editorial" id="input-pass-login" required>
+                            <button type="button" class="btn-ojo-custom" onclick="togglePass('input-pass-login', this)">
+                                <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-4"><button type="submit" class="btn btn-primary fw-bold py-2">Entrar</button></div>
+                </form>
+                <div class="text-center mt-3"><p class="small text-white-50">¿No tienes cuenta? <a href="#" id="btn-ir-registro" class="text-info text-decoration-none fw-bold">Suscríbete</a></p></div>
+            </div>
+
+            <div id="view-registro" style="display: none;">
+                <h3 class="text-center mb-4 fw-bold">Suscríbete</h3>
+                <form id="form-registro">
+                    <div class="mb-3"><label class="form-label text-light small text-uppercase fw-bold">Nombre</label><input type="text" class="input-editorial" required></div>
+                    <div class="mb-3"><label class="form-label text-light small text-uppercase fw-bold">Correo</label><input type="email" class="input-editorial" required></div>
+                    <div class="mb-3"><label class="form-label text-light small text-uppercase fw-bold">Crear Contraseña</label>
+                        <div class="password-wrapper">
+                            <input type="password" class="input-editorial" id="input-pass-registro" required>
+                            <button type="button" class="btn-ojo-custom" onclick="togglePass('input-pass-registro', this)">
+                                <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2 mt-4"><button type="submit" class="btn btn-primary fw-bold py-2">Registrarse</button></div>
+                </form>
+                <div class="text-center mt-3"><p class="small text-white-50">¿Ya tienes cuenta? <a href="#" id="btn-ir-login" class="text-info text-decoration-none fw-bold">Inicia Sesión</a></p></div>
+            </div>
+
+            <div id="view-exito" style="display: none;" class="text-center py-5">
+                <h2 class="fw-bold mb-3 display-5">¡Bienvenido!</h2>
+                <button class="btn btn-success w-100 py-2 fw-bold" data-bs-dismiss="modal">Continuar</button>
+            </div>
+
           </div>
         </div>
-        <button type="submit" class="popup-submit">Entrar</button>
-        <div class="popup-enlaces">
-          <p>¿No tienes cuenta? <a href="#" id="btn-ir-registro"><strong>Suscríbete</strong></a></p>
-        </div>
-      </form>
-    </div>
-
-    <div id="view-registro" style="display: none;">
-      <h2 class="popup-titulo">Suscríbete</h2>
-      <form class="popup-form" id="form-registro">
-        
-        <div class="popup-form-grupo">
-            <label class="popup-label">Nombre Completo</label>
-            <input type="text" class="popup-input" placeholder="Tu nombre" required>
-        </div>
-        
-        <div class="popup-form-grupo">
-          <label class="popup-label">Correo Electrónico</label>
-          <input type="email" class="popup-input" placeholder="tu@correo.com" required>
-        </div>
-        
-        <div class="popup-form-grupo">
-          <label class="popup-label">Crear Contraseña</label>
-          <div class="popup-grupo-pass">
-            <input type="password" id="input-pass-registro" class="popup-input" placeholder="••••••••" required>
-            
-            <button type="button" class="popup-pass-toggle" onclick="togglePass('input-pass-registro', this)">
-              <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
-            </button>
-          </div>
-        </div>
-
-        <button type="submit" class="popup-submit">Registrarse</button>
-        
-        <div class="popup-enlaces">
-          <p>¿Ya tienes cuenta? <a href="#" id="btn-ir-login"><strong>Inicia Sesión</strong></a></p>
-        </div>
-      </form>
-    </div>
-
-    <div id="view-exito" style="display: none; text-align: center; padding: 2rem 0;">
-        <h2 class="popup-titulo" style="font-size: 2.5rem; margin-bottom: 1rem;">¡Bienvenido!</h2>
-        <p style="color: #ccc; margin-bottom: 2rem;">Has iniciado sesión correctamente.</p>
-        <button class="popup-submit" id="btn-cerrar-final">Continuar</button>
-    </div>
-
-    </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
 
   </body>
