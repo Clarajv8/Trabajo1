@@ -69,6 +69,12 @@ a { text-decoration: none; color: inherit; }
 
 .navbar-menu { display: none; }
 
+.menu-movil-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
 .menu-movil-redes {
     display: none;
 }
@@ -647,3 +653,4 @@ a, button, input, .btn { cursor: none; }
         max-width: 12vw;  /* mobilefirst */
     }
 }
+
