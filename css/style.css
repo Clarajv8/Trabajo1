@@ -148,6 +148,175 @@ a { text-decoration: none; color: inherit; }
     
     .cursor-outline { display: none; }
 }
+
+/* --- SECCIÓN ABOUT ME --- */
+
+.about-me-section {
+    min-height: 100vh;
+    width: 100vw;
+    height: calc(100vh - 4.375rem);
+    padding: 6vh 6vw;
+    background-color: var(--color-fondo-secundario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.about-me-inner {
+    width: 100%;
+    max-width: 70rem;
+    margin-inline: auto;
+}
+
+.about-me-area {
+    position: relative;
+    height: calc(100vh - 12vh); /* restamos padding top + bottom (6vh + 6vh) */
+    width: calc(100vw - 12vw);
+    border-radius: 1.2rem;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.03),
+        rgba(0, 0, 0, 0.06)
+    );
+    overflow: hidden;
+}
+
+/* Texto flotando dentro del área */
+.about-me-text {
+    position: absolute;
+    top: 12vh;
+    left: 8vw;
+    max-width: 22rem;
+}
+
+.about-me-title {
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+}
+
+.about-me-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Tarjetas como antes */
+.about-card {
+    position: absolute;
+    width: 10rem;
+    height: 12rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.18);
+    user-select: none;
+    touch-action: none;
+    cursor: grab;
+}
+
+/* Área donde se pueden mover las tarjetas */
+.about-me-area {
+    position: relative;
+    flex: 1;
+    min-height: 50vh;
+    margin-top: 4vh;
+    border-radius: 1.2rem;
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.03),
+        rgba(0, 0, 0, 0.06)
+    );
+    overflow: hidden;
+}
+
+/* Colores distintos para cada tarjeta (luego tú las puedes cambiar) */
+.about-card:nth-child(1) {
+    background: #f97316; /* naranja */
+}
+.about-card:nth-child(2) {
+    background: #22c55e; /* verde */
+}
+.about-card:nth-child(3) {
+    background: #3b82f6; /* azul */
+}
+.about-card:nth-child(4) {
+    background: #e11d48; /* rosa/rojo */
+}
+.about-card:nth-child(5) {
+    background: #a855f7; /* violeta */
+}
+
+.about-card-label {
+    color: #fff;
+}
+
+/* Mientras se arrastra */
+.about-card:active {
+    cursor: grabbing;
+}
+
+/* --- OVERLAY PANTALLA COMPLETA ABOUT ME --- */
+
+.about-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.about-overlay.is-visible {
+    display: flex;
+}
+
+.about-overlay-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-overlay-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+/* Botón de cierre (X) */
+.about-overlay-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.about-overlay-close:hover {
+    opacity: 0.8;
+}
+
+
 /* --- SOLUCIÓN UNIVERSAL PARA DISPOSITIVOS TÁCTILES --- */
 @media (hover: none) and (pointer: coarse) {
     

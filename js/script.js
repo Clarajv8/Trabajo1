@@ -114,4 +114,137 @@ $(function() {
     }
     
     $('#ano-actual').text(new Date().getFullYear());
+
+            // --- 5. ABOUT ME: TARJETAS ARRASTRABLES Y OVERLAY ---
+
+    const $aboutArea = $('#about-me-area');
+    const $aboutCards = $('.about-card');
+    const $aboutOverlay = $('#about-overlay');
+    const $aboutOverlayImg = $('#about-overlay-img');
+
+    if ($aboutArea.length && $aboutCards.length) {
+
+        // Posicionar de forma aleatoria dentro del área
+        function posicionarAleatorio($card) {
+            const areaRect = $aboutArea[0].getBoundingClientRect();
+            const cardRect = $card[0].getBoundingClientRect();
+
+            const maxLeft = areaRect.width - cardRect.width;
+            const maxTop = areaRect.height - cardRect.height;
+
+            const left = Math.max(0, Math.random() * maxLeft);
+            const top = Math.max(0, Math.random() * maxTop);
+
+            $card.css({
+                left: left + 'px',
+                top: top + 'px'
+            });
+        }
+
+        $aboutCards.each(function () {
+            posicionarAleatorio($(this));
+        });
+
+        let isDragging = false;
+        let activeCard = null;
+        let offsetX = 0;
+        let offsetY = 0;
+
+        function getClientPos(e) {
+            if (e.type && e.type.startsWith('touch')) {
+                const touch = e.originalEvent.touches[0] || e.originalEvent.changedTouches[0];
+                return { x: touch.clientX, y: touch.clientY };
+            }
+            return { x: e.clientX, y: e.clientY };
+        }
+
+        function startDrag(e) {
+            const $target = $(e.currentTarget);
+            activeCard = $target;
+            isDragging = false;
+
+            const cardRect = $target[0].getBoundingClientRect();
+            const pos = getClientPos(e);
+
+            offsetX = pos.x - cardRect.left;
+            offsetY = pos.y - cardRect.top;
+
+            $(document)
+                .on('mousemove.aboutDrag touchmove.aboutDrag', onDrag)
+                .on('mouseup.aboutDrag touchend.aboutDrag touchcancel.aboutDrag', endDrag);
+        }
+
+        function onDrag(e) {
+            if (!activeCard) return;
+
+            const areaRect = $aboutArea[0].getBoundingClientRect();
+            const cardRect = activeCard[0].getBoundingClientRect();
+            const pos = getClientPos(e);
+
+            let left = pos.x - offsetX - areaRect.left;
+            let top = pos.y - offsetY - areaRect.top;
+
+            const maxLeft = areaRect.width - cardRect.width;
+            const maxTop = areaRect.height - cardRect.height;
+
+            left = Math.min(Math.max(0, left), maxLeft);
+            top = Math.min(Math.max(0, top), maxTop);
+
+            activeCard.css({
+                left: left + 'px',
+                top: top + 'px'
+            });
+
+            isDragging = true;
+        }
+
+        function endDrag(e) {
+            $(document).off('.aboutDrag');
+
+            if (!activeCard) return;
+
+            const $clickedCard = activeCard;
+            const fueArrastre = isDragging;
+
+            activeCard = null;
+            isDragging = false;
+
+            // si solo fue clic, abrimos overlay
+            if (!fueArrastre) {
+                abrirOverlay($clickedCard);
+            }
+        }
+
+        function abrirOverlay($card) {
+            const imgSrc = $card.data('image');
+
+            if (imgSrc) {
+                $aboutOverlayImg.attr('src', imgSrc);
+            } else {
+                $aboutOverlayImg.attr('src', '');
+            }
+
+            $aboutOverlay.addClass('is-visible');
+            $body.addClass('no-scroll');
+        }
+
+        function cerrarOverlay() {
+            $aboutOverlay.removeClass('is-visible');
+            $aboutOverlayImg.attr('src', '');
+            $body.removeClass('no-scroll');
+        }
+
+        $aboutCards.on('mousedown touchstart', startDrag);
+
+        $aboutOverlay.on('click', function (e) {
+            if (
+                $(e.target).is('.about-overlay') ||
+                $(e.target).is('.about-overlay-close')
+            ) {
+                cerrarOverlay();
+            }
+        });
+    }
+
+
 });
