@@ -71,7 +71,7 @@ a { text-decoration: none; color: inherit; }
 
 .menu-movil-links {
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
 }
 
@@ -258,7 +258,24 @@ a { text-decoration: none; color: inherit; }
     user-select: none;
     touch-action: none;
     cursor: grab;
+
+    /* NUEVO: imagen de fondo bien colocada */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-size: cover;        /* ahora intenta meter la imagen entera */
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
+
+/* Para que el texto se lea siempre bien encima de la foto */
+.about-card-label {
+    color: #fff;
+    text-shadow: 0 0.1rem 0.35rem rgba(0,0,0,0.4);
+}
+
 
 /* Área donde se pueden mover las tarjetas */
 .about-me-area {
@@ -275,25 +292,8 @@ a { text-decoration: none; color: inherit; }
     overflow: hidden;
 }
 
-/* Colores distintos para cada tarjeta (luego tú las puedes cambiar) */
-.about-card:nth-child(1) {
-    background: #f97316; /* naranja */
-}
-.about-card:nth-child(2) {
-    background: #22c55e; /* verde */
-}
-.about-card:nth-child(3) {
-    background: #3b82f6; /* azul */
-}
-.about-card:nth-child(4) {
-    background: #e11d48; /* rosa/rojo */
-}
-.about-card:nth-child(5) {
-    background: #a855f7; /* violeta */
-}
-
 .about-card-label {
-    color: #fff;
+    color: #ffffff;
 }
 
 /* Mientras se arrastra */
@@ -627,8 +627,6 @@ a, button, input, .btn { cursor: none; }
     max-width: 35vw;     /* por defecto ocupan ~35% del viewport en móvil */
     aspect-ratio: 1 / 1;
     border-radius: 1rem;
-    overflow: hidden;
-    background: #ddd;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -636,7 +634,7 @@ a, button, input, .btn { cursor: none; }
 }
 
 .footer-img-box img {
-    width: 100%;
+    width: 120%;
     height: 100%;
     object-fit: cover;
 }

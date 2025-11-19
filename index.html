@@ -17,6 +17,7 @@
       <nav class="navbar-custom container">
         <a href="#" class="navbar-logo"> <img src="media/img/logo CBA.png" alt="logo CBA" class="logo-img"> </a>
         
+        <!-- MENÚ -->
         <div class="navbar-menu">
           <div class="menu-movil-links">
             <a href="tendencias.html" class="navbar-enlace">Tendencias</a>
@@ -37,81 +38,111 @@
     </header>
 
     <main>
+
+      <!-- INTRO -->
       <div class="d-flex flex-column justify-content-center align-items-center bg-light text-center" style="height: 100vh; padding-top: 70px;">
           <div class="container">
             <h1 class="display-1 fw-bold">Bienvenido a CBA</h1>
             <p class="lead text-muted">La nueva era de la moda sostenible.</p>
           </div>
       </div>
-
-      <section id="tendencias" class="py-5">
-         </section>
       
-            <section id="about-me" class="about-me-section">
+      <!-- ABOUT ME -->
+      <section id="about-me" class="about-me-section">
         <div class="about-me-inner">
 
           <div class="about-me-area" id="about-me-area">
             
             <div class="about-me-text">
-              <h2 class="about-me-title">About me</h2>
+              <h2 class="about-me-title">CBA</h2>
               <p class="about-me-subtitle">
-                Un espacio visual para jugar con imágenes, recuerdos y referencias de estilo.
+                  ¿Qué hacemos?¿Quienes somos?
               </p>
             </div>
 
-            <!-- Cada una de estas cajitas es arrastrable -->
-            <div class="about-card" data-image="">
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_1"
+                style="background-image: url('media/img/about\ me\ -\ 1.png');">
               <span class="about-card-label">Look 01</span>
             </div>
-            <div class="about-card" data-image="">
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_2"
+                style="background-image: url('media/img/about\ me\ -\ 2.png');">
               <span class="about-card-label">Look 02</span>
             </div>
-            <div class="about-card" data-image="">
-              <span class="about-card-label">Moodboard</span>
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_3"
+                style="background-image: url('media/img/about\ me\ -\ 3.png');">
+              <span class="about-card-label">Look 03</span>
             </div>
-            <div class="about-card" data-image="">
-              <span class="about-card-label">Detalles</span>
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_4"
+                style="background-image: url('media/img/about\ me\ -\ 4.png');">
+              <span class="about-card-label">Look 04</span>
             </div>
-            <div class="about-card" data-image="">
-              <span class="about-card-label">Backstage</span>
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_5"
+                style="background-image: url('media/img/about\ me\ -\ 6.png');">
+              <span class="about-card-label">Look 05</span>
+            </div>
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_6"
+                style="background-image: url('RUTA_IMAGEN_6');">
+              <span class="about-card-label">Look 06</span>
+            </div>
+
+            <div class="about-card"
+                data-image="RUTA_IMAGEN_7"
+                style="background-image: url('RUTA_IMAGEN_7');">
+              <span class="about-card-label">Look 07</span>
             </div>
           </div>
         </div>
-
+      
+        <!-- ABOUT ME - CLICK -->
         <div class="about-overlay" id="about-overlay" aria-hidden="true">
           <button type="button" class="about-overlay-close" aria-label="Cerrar">
             &times;
           </button>
           <div class="about-overlay-content">
-            <!-- Aquí puedes cambiar el img por el que quieras -->
             <img id="about-overlay-img" class="about-overlay-img" src="" alt="About me image">
           </div>
         </div>
-
       </section>
 
+<!-- BACKSTAGE -->
       <section id="backstage" class="bg-dark text-white py-5 my-5 backstage-section" style="min-height: 300px;">
         <div class="container text-center mb-4">
           <h2 class="backstage-title">Backstage</h2>
           <p class="backstage-subtitle">
-            Fragmentos crudos de desfiles, fitting, pruebas de luz y pequeños secretos de producción.
+            Fragmentos de otras personas que nos aportan y enseñan a su manera.
           </p>
         </div>
 
         <div class="backstage-gallery">
-          <!-- Cada .backstage-item es un bloque clicable (enlace a YouTube, etc.) -->
 
           <a href="#" class="backstage-item" target="_blank" rel="noopener">
             <div class="backstage-media">
-              <iframe 
-                  src="https://youtu.be/qN8AJHx1344?si=0TVpqsFqafINtbNf"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen>
-              </iframe>
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/qN8AJHx1344?si=-hRtepwROjtnrFji" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 01</h3>
-              <p class="backstage-caption-text">Pruebas de maquillaje antes del primer pase.</p>
+              <h3 class="backstage-caption-title">Look 01</h3>
+              <p class="backstage-caption-text">...</p>
+            </div>
+          </a>
+
+          <a href="#" class="backstage-item" target="_blank" rel="noopener">
+            <div class="backstage-media">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/7LM26mEPDDc?si=XAVnJk546HZhbWCC" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="backstage-caption">
+              <h3 class="backstage-caption-title">Nuestra basura: el camino a un consumo responsable</h3>
+              <p class="backstage-caption-text"> Edelmira Altube | TEDxMarDelPlata</p>
             </div>
           </a>
 
@@ -120,8 +151,8 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 02</h3>
-              <p class="backstage-caption-text">Ajustes finales de las prendas en el fitting.</p>
+              <h3 class="backstage-caption-title">Look 03</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
 
@@ -130,8 +161,8 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 03</h3>
-              <p class="backstage-caption-text">Jugando con luces y sombras en el set.</p>
+              <h3 class="backstage-caption-title">Look 04</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
 
@@ -140,8 +171,8 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 04</h3>
-              <p class="backstage-caption-text">Detalles de textura y movimiento en pasarela.</p>
+              <h3 class="backstage-caption-title">Look 05</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
 
@@ -150,8 +181,8 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 05</h3>
-              <p class="backstage-caption-text">El equipo preparando el siguiente shooting.</p>
+              <h3 class="backstage-caption-title">Look 06</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
 
@@ -160,8 +191,8 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 05</h3>
-              <p class="backstage-caption-text">El equipo preparando el siguiente shooting.</p>
+              <h3 class="backstage-caption-title">Look 07</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
 
@@ -170,54 +201,41 @@
               <!-- Video / foto -->
             </div>
             <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 05</h3>
-              <p class="backstage-caption-text">El equipo preparando el siguiente shooting.</p>
-            </div>
-          </a>
-
-          <a href="#" class="backstage-item" target="_blank" rel="noopener">
-            <div class="backstage-media">
-              <!-- Video / foto -->
-            </div>
-            <div class="backstage-caption">
-              <h3 class="backstage-caption-title">Backstage 05</h3>
-              <p class="backstage-caption-text">El equipo preparando el siguiente shooting.</p>
+              <h3 class="backstage-caption-title">Look 08</h3>
+              <p class="backstage-caption-text">...</p>
             </div>
           </a>
           
         </div>
       </section>
 
-
-
     </main>
 
-    <footer class="footer-principal bg-light py-5 border-top" id="footer">
+    <footer class="footer-principal py-5 border-top" id="footer">
       <div class="container">
 
-        <!-- FILA DE 3 DIVS -->
+        <!-- REDES -->
         <div class="row justify-content-center mb-4">
           <div class="col-12 col-md-4 d-flex justify-content-center mb-3 mb-md-0">
             <div class="footer-img-box">
-              <!-- AQUÍ PONES TU IMG -->
-              <!-- <img src="img/loquesea1.jpg"> -->
+              <img src="media/img/footer-1.png" alt="zapatos1">
             </div>
           </div>
 
           <div class="col-12 col-md-4 d-flex justify-content-center mb-3 mb-md-0">
             <div class="footer-img-box">
-              <!-- <img src="img/loquesea2.jpg"> -->
+              <img src="media/img/footer-2.png" alt="zapatos2">
             </div>
           </div>
 
           <div class="col-12 col-md-4 d-flex justify-content-center">
             <div class="footer-img-box">
-              <!-- <img src="img/loquesea3.jpg"> -->
+              <img src="media/img/footer-3.png" alt="zapatos3">
             </div>
           </div>
         </div>
 
-        <!-- TEXTO ORIGINAL DEL FOOTER -->
+        <!-- INFO -->
         <div class="text-center mt-4">
           <p>&copy; <span id="ano-actual"></span> CBA.</p>
         </div>
