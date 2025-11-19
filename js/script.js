@@ -26,7 +26,7 @@ $(function() {
         console.error("❌ Error: Falta el div #modalLogin o la librería Bootstrap.");
     }
 
-    // --- 2. HEADER ABC (SCROLL) ---
+    // --- 2. HEADER CBA (SCROLL) ---
     $window.on('scroll', function() {
         if ($window.scrollTop() > 50) {
             $header.addClass('scrolled');
