@@ -227,6 +227,24 @@ main:has(.hero-collage-section) {
     font-size: 1rem; 
 }
 
+/* CINTA ABOUT-CARD */
+.about-card::before {
+    content: "";
+    position: absolute;
+    width: 90px;
+    height: 28px;
+    background-color: rgba(255,255,255,0.85);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    backdrop-filter: blur(2px);
+
+    top: -16px;             
+    left: 50%;
+    transform: translateX(-50%) rotate(-6deg);
+
+    z-index: 2;
+    pointer-events: none;
+}
+
 .about-card {
     position: absolute; 
     width: 10rem; height: 12rem; 
