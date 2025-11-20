@@ -3,43 +3,39 @@ $(function() {
     const $body = $('body');
     const $header = $('.header-principal');
     
-    let usuarioLogueado = false; 
-    
+    // 1. INICIALIZACIÓN Y ESTADO
     let loginModal = null;
+    
+    // LEER ESTADO DE MEMORIA
+    let usuarioLogueado = sessionStorage.getItem('usuario_logueado') === 'true';
 
-    // --- 1. INICIALIZACIÓN INMEDIATA CON MEMORIA ---
+    // Si ya estaba logueado, actualizar botón inmediatamente
+    if (usuarioLogueado) {
+        $('.accion-abrir-registro').text("BIENVENIDO");
+    }
+
     const modalElement = document.getElementById('modalLogin');
     
     if (modalElement && typeof bootstrap !== 'undefined') {
         try {
             loginModal = new bootstrap.Modal(modalElement);
-            console.log("✅ Modal inicializado.");
-        
-            if (!sessionStorage.getItem('popup_visto')) {
-                
-                console.log("🆕 Primera visita: Programando popup...");
-                
+            
+            // AUTO POPUP SOLO SI: No se ha visto Y no está logueado
+            if (!sessionStorage.getItem('popup_visto') && !usuarioLogueado) {
                 setTimeout(function() {
-                    if (!usuarioLogueado) {
-                        console.log("🚀 Lanzando popup automático.");
+                    if (!usuarioLogueado) { // Doble check
                         loginModal.show();
-                        
                         sessionStorage.setItem('popup_visto', 'true');
                     }
-                }, 2000); 
-
-            } else {
-                console.log("👀 El usuario ya vio el popup en esta sesión. No lo mostramos.");
+                }, 2000);
             }
 
         } catch (e) {
-            console.error("❌ Error al crear instancia de Bootstrap:", e);
+            console.error("Error bootstrap modal:", e);
         }
-    } else {
-        console.log("ℹ️ No hay modal de login en esta página.");
     }
 
-    // --- 2. HEADER CBA ---
+    // 2. HEADER SCROLL
     if ($body.hasClass('page-datos')) {
         $header.addClass('scrolled');
         $body.addClass('scrolled');
@@ -55,16 +51,16 @@ $(function() {
         });
     }
 
-    // --- 3. LÓGICA INTERNA DEL POPUP ---
+    // 3. LÓGICA MODAL
     const $viewLogin = $('#view-login');
     const $viewRegistro = $('#view-registro');
     const $viewExito = $('#view-exito');
     const $botonesSuscripcion = $('.accion-abrir-registro, #btn-ir-registro');
 
-    // 3.1. AL HACER CLICK EN EL BOTÓN DEL MENÚ
     $botonesSuscripcion.on('click', function(e) {
         e.preventDefault();
         
+        // Cerrar menú móvil
         if ($('.navbar-menu').hasClass('menu-abierto')) {
             $('.navbar-menu').removeClass('menu-abierto');
             $('.navbar-menu-movil-icono').removeClass('icono-activo');
@@ -73,68 +69,53 @@ $(function() {
 
         if (loginModal) {
             loginModal.show();
-            sessionStorage.setItem('popup_visto', 'true');
+            sessionStorage.setItem('popup_visto', 'true'); // Marcar como visto al abrir manual
 
             if (usuarioLogueado) {
-                $viewLogin.hide();
-                $viewRegistro.hide();
-                $viewExito.show();
+                $viewLogin.hide(); $viewRegistro.hide(); $viewExito.show();
             } else {
-                $viewLogin.hide();
-                $viewExito.hide();
-                $viewRegistro.show();
+                $viewLogin.hide(); $viewExito.hide(); $viewRegistro.show();
             }
         }
     });
 
-    // 3.2. NAVEGACIÓN ENTRE LOGIN Y REGISTRO
     $('#btn-ir-login').on('click', function(e) {
-        e.preventDefault();
-        $viewRegistro.hide();
-        $viewLogin.fadeIn(200);
+        e.preventDefault(); $viewRegistro.hide(); $viewLogin.fadeIn(200);
     });
     
     $('#btn-ir-registro').on('click', function(e) {
-         e.preventDefault();
-         $viewLogin.hide();
-         $viewRegistro.fadeIn(200);
+         e.preventDefault(); $viewLogin.hide(); $viewRegistro.fadeIn(200);
     });
 
-    // 3.3. AL ENVIAR FORMULARIO
     $('#form-login, #form-registro').on('submit', function(e) {
         e.preventDefault();
         
-        usuarioLogueado = true; 
-        $('.accion-abrir-registro').text("BIENVENIDO");
-        
+        // GUARDAR ESTADO EN MEMORIA
+        usuarioLogueado = true;
+        sessionStorage.setItem('usuario_logueado', 'true');
         sessionStorage.setItem('popup_visto', 'true');
+        
+        $('.accion-abrir-registro').text("BIENVENIDO");
 
-        $viewLogin.hide();
-        $viewRegistro.hide();
-        $viewExito.fadeIn(200);
+        $viewLogin.hide(); $viewRegistro.hide(); $viewExito.fadeIn(200);
     });
 
-    // 3.4. AL CERRAR EL MODAL
     if (modalElement) {
         modalElement.addEventListener('hidden.bs.modal', function () {
             if (!usuarioLogueado) {
-                $viewRegistro.hide();
-                $viewExito.hide();
-                $viewLogin.show();
+                $viewRegistro.hide(); $viewExito.hide(); $viewLogin.show();
                 $('form').trigger("reset");
             }
         });
     }
 
-    // --- 4. OTRAS FUNCIONES ---
+    // 4. UTILIDADES
     window.togglePass = function(idInput, btn) {
         const input = document.getElementById(idInput);
         if (input.type === "password") {
-            input.type = "text";
-            $(btn).css('color', '#000000'); 
+            input.type = "text"; $(btn).css('color', '#000000'); 
         } else {
-            input.type = "password";
-            $(btn).css('color', '#999999'); 
+            input.type = "password"; $(btn).css('color', '#999999'); 
         }
     };
 
@@ -159,7 +140,7 @@ $(function() {
     
     $('#ano-actual').text(new Date().getFullYear());
 
-    // --- 5. ABOUT ME ---
+    // 5. ABOUT ME
     const $aboutArea = $('#about-me-area');
     const $aboutCards = $('.about-card');
     const $aboutOverlay = $('#about-overlay');
@@ -250,7 +231,7 @@ $(function() {
         });
     }
 
-    // --- 6. BACKSTAGE ---
+    // 6. BACKSTAGE
     const $backstageItems = $('.backstage-item');
     if ($backstageItems.length) {
         const clasesTamaño = ['backstage-item--tall', 'backstage-item--wide', 'backstage-item--big', ''];
@@ -261,8 +242,7 @@ $(function() {
         });
     }
 
-    // --- 7. DRAG & DROP DATOS  ---
-    
+    // 7. DRAG & DROP DATOS
     if ($('.draggable-zone').length && $window.width() > 768) {
         
         let activeDragItem = null;
@@ -275,7 +255,6 @@ $(function() {
             activeDragItem = $(this);
             
             const position = activeDragItem.position();
-            
             offset.x = e.pageX - position.left;
             offset.y = e.pageY - position.top;
             
@@ -296,7 +275,7 @@ $(function() {
 
             const $container = $('.draggable-zone');
             const containerWidth = $container.width();
-            const containerHeight = $container.height(); 
+            const containerHeight = $container.height();
             
             const itemWidth = activeDragItem.outerWidth();
             const itemHeight = activeDragItem.outerHeight();
@@ -304,10 +283,13 @@ $(function() {
             let newLeft = e.pageX - offset.x;
             let newTop = e.pageY - offset.y;
 
+            // Límites
             if (newLeft < 0) newLeft = 0;
             if (newLeft + itemWidth > containerWidth) newLeft = containerWidth - itemWidth;
             if (newTop < 0) newTop = 0;
             if (newTop + itemHeight > containerHeight) newTop = containerHeight - itemHeight;
+
+            // Colisiones
             if (!activeDragItem.hasClass('post-it')) {
                 let $obstacle = null;
                 if (activeDragItem.attr('id') === 'item-ticket') $obstacle = $paper;

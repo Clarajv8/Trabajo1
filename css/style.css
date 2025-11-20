@@ -277,6 +277,7 @@ main:has(.hero-collage-section) {
 /* =========================================
    6. SISTEMA DE TICKETS Y MODALES (COMPARTIDO)
    ========================================= */
+   
 .modal-receipt, .long-receipt {
     background-color: var(--color-ticket-bg) !important;
     font-family: 'VT323', monospace; color: var(--color-ticket-text);
