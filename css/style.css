@@ -234,14 +234,26 @@ main:has(.hero-collage-section) {
 .about-overlay.is-visible { display: flex; }
 
 .about-overlay-close {
-    position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
-    font-size: 2rem; line-height: 1; color: #ffffff; cursor: pointer; padding: 0.5rem;
+    position: absolute; 
+    top: 6em; 
+    left: 2rem; 
+    background: none; 
+    border: none;
+    line-height: 1; 
+    cursor: pointer; 
+    padding: 0.5rem;
+    width: 4em;
 }
+
+.about-overlay-close img{
+    object-fit: contain;
+}
+
 .about-overlay-close:hover { opacity: 0.8; }
 
 .about-overlay-content {
     max-width: 80vw;
-    max-height: 80vh;
+    height: 100vh;
     display: flex;
     gap: 2rem;
     align-items: stretch;
@@ -283,7 +295,6 @@ main:has(.hero-collage-section) {
 .about-overlay-img {
     width: 100%;
     height: 100%;
-    max-height: 70vh;
     object-fit: cover;
     border-radius: 1rem;
 }
@@ -599,10 +610,6 @@ main:has(.hero-collage-section) {
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-@media (max-width: 768px) {
-
-}
-
 
 /* ============================================================
    9. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
@@ -682,10 +689,6 @@ main:has(.hero-collage-section) {
 
     .about-overlay-text p {
         font-size: 0.9rem;
-    }
-
-    .about-overlay-img {
-        max-height: 40vh;
     }
 }
 

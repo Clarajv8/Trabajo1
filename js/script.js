@@ -224,11 +224,10 @@ $(function() {
         }
 
         $aboutCards.on('mousedown touchstart', startDrag);
-        $aboutOverlay.on('click', function (e) {
-            if ($(e.target).is('.about-overlay') || $(e.target).is('.about-overlay-close')) {
-                cerrarOverlay();
-            }
+        $aboutOverlay.on('click', function () {
+            cerrarOverlay();
         });
+
     }
 
     // 6. BACKSTAGE
