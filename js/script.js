@@ -260,4 +260,102 @@ $(function() {
             if (clase) { $(this).addClass(clase); }
         });
     }
+
+    // --- 7. DRAG & DROP DATOS  ---
+    
+    if ($('.draggable-zone').length && $window.width() > 768) {
+        
+        let activeDragItem = null;
+        let offset = { x: 0, y: 0 };
+        
+        const $ticket = $('#item-ticket');
+        const $paper = $('#item-paper');
+
+        $('.drag-item').on('mousedown', function(e) {
+            activeDragItem = $(this);
+            
+            const position = activeDragItem.position();
+            
+            offset.x = e.pageX - position.left;
+            offset.y = e.pageY - position.top;
+            
+            if (!activeDragItem.hasClass('post-it')) {
+                $('.drag-item').not('.post-it').css('z-index', 5);
+                activeDragItem.css('z-index', 10);
+            } 
+            
+            activeDragItem.addClass('is-dragging');
+            
+            $(document).on('mousemove.deskDrag', moveItem);
+            $(document).on('mouseup.deskDrag', stopItem);
+        });
+
+        function moveItem(e) {
+            if (!activeDragItem) return;
+            e.preventDefault(); 
+
+            const $container = $('.draggable-zone');
+            const containerWidth = $container.width();
+            const containerHeight = $container.height(); 
+            
+            const itemWidth = activeDragItem.outerWidth();
+            const itemHeight = activeDragItem.outerHeight();
+
+            let newLeft = e.pageX - offset.x;
+            let newTop = e.pageY - offset.y;
+
+            if (newLeft < 0) newLeft = 0;
+            if (newLeft + itemWidth > containerWidth) newLeft = containerWidth - itemWidth;
+            if (newTop < 0) newTop = 0;
+            if (newTop + itemHeight > containerHeight) newTop = containerHeight - itemHeight;
+            if (!activeDragItem.hasClass('post-it')) {
+                let $obstacle = null;
+                if (activeDragItem.attr('id') === 'item-ticket') $obstacle = $paper;
+                else if (activeDragItem.attr('id') === 'item-paper') $obstacle = $ticket;
+
+                if ($obstacle) {
+                    const proposedRect = {
+                        left: newLeft,
+                        right: newLeft + itemWidth,
+                        top: newTop,
+                        bottom: newTop + itemHeight
+                    };
+
+                    const obstaclePos = $obstacle.position();
+                    const obstacleRect = {
+                        left: obstaclePos.left,
+                        right: obstaclePos.left + $obstacle.outerWidth(),
+                        top: obstaclePos.top,
+                        bottom: obstaclePos.top + $obstacle.outerHeight()
+                    };
+
+                    if (checkCollision(proposedRect, obstacleRect)) {
+                        return; 
+                    }
+                }
+            }
+
+            activeDragItem.css({
+                left: newLeft + 'px',
+                top: newTop + 'px',
+                right: 'auto'
+            });
+        }
+
+        function stopItem() {
+            if (activeDragItem) {
+                activeDragItem.removeClass('is-dragging');
+                activeDragItem = null;
+            }
+            $(document).off('.deskDrag');
+        }
+
+        function checkCollision(rect1, rect2) {
+            const margin = 5; 
+            return (rect1.left < rect2.right - margin &&
+                    rect1.right > rect2.left + margin &&
+                    rect1.top < rect2.bottom - margin &&
+                    rect1.bottom > rect2.top + margin);
+        }
+    }
 });

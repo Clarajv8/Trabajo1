@@ -40,107 +40,104 @@
 
     <main class="legal-desk-container">
         
-        <div class="container">
-            <div class="row align-items-start justify-content-center g-5">
-                
-                <div class="col-md-5 col-lg-4 order-2 order-md-1">
-                    <div class="receipt-stack">
-                        <div class="long-receipt">
-                            <div class="receipt-jagged-top"></div>
-                            
-                            <div class="receipt-content">
-                                <h3 class="text-center">AUDITORÍA TÉCNICA</h3>
-                                <div class="receipt-meta text-center mb-3">
-                                    <span>FECHA: HOY</span> | <span>HORA: AHORA</span>
-                                </div>
-                                
-                                <div class="dashed-line"></div>
-                                
-                                <div class="receipt-item">
-                                    <span>COOKIES_NECESARIAS</span>
-                                    <span>TRUE</span>
-                                </div>
-                                <div class="receipt-item">
-                                    <span>TRACKING_TERCEROS</span>
-                                    <span>FALSE</span>
-                                </div>
-                                <div class="receipt-item">
-                                    <span>ALMACENAMIENTO</span>
-                                    <span>LOCAL</span>
-                                </div>
-                                <div class="receipt-item">
-                                    <span>CIFRADO_SSL</span>
-                                    <span>256bit</span>
-                                </div>
-                                <div class="receipt-item">
-                                    <span>ESTADO_SERVIDOR</span>
-                                    <span>OK</span>
-                                </div>
-
-                                <div class="dashed-line"></div>
-                                
-                                <p class="small justify-text mt-2" style="text-transform: uppercase;">
-                                    <strong>POLÍTICA DE COOKIES:</strong><br> 
-                                    Usamos las justas para que la web no explote. Si sigues navegando, asumimos que te parece bien y que te gusta la moda tanto como a nosotros.
-                                </p>
-                                
-                                <div class="receipt-divider my-2">*******************</div>
-                                <p class="text-center small">GRACIAS POR TU VISITA</p>
-
-                                <div class="barcode-strip">
-                                    CBA-LEGAL-DATA
-                                </div>
-
-                                <div class="barcode-text">
-                                    CBA-LEGAL-DATA
-                                </div>
-
-                                <p class="text-center mt-1 text-muted small">#REF-9921</p>
-                                <p class="text-center mt-1 text-muted">#REF-9921-LEGAL</p>
+        <div class="draggable-zone" id="desk-area">
+            
+            <div class="drag-item" id="item-ticket">
+                <div class="receipt-stack">
+                    <div class="long-receipt">
+                        <div class="receipt-jagged-top"></div>
+                        
+                        <div class="receipt-content">
+                            <h3 class="text-center">AUDITORÍA TÉCNICA</h3>
+                            <div class="receipt-meta text-center mb-3">
+                                <span>FECHA: HOY</span> | <span>HORA: AHORA</span>
                             </div>
                             
-                            <div class="receipt-jagged-bottom"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-7 col-lg-6 order-1 order-md-2">
-                    <div class="paper-sheet">
-                        <div class="paper-clip"></div>
-                        
-                        <div class="stamp-box">BORING LEGAL STUFF</div>
-
-                        <h1 class="typewriter-title">TÉRMINOS Y CONDICIONES</h1>
-                        <p class="doc-id">REF: LEGAL_DOC_2025_V2.pdf</p>
-                        
-                        <div class="typewriter-body">
-                            <p><strong>1. OBJETO DEL SITIO WEB</strong><br>
-                            CBA es una publicación digital de moda sostenible. Todo el contenido es propiedad intelectual de sus autores. El uso de texto e imágenes sin permiso resultará en mal karma y acciones legales pertinentes.</p>
-
-                            <p><strong>2. PROTECCIÓN DE DATOS (RGPD)</strong><br>
-                            De conformidad con el Reglamento (UE) 2016/679, te informamos que tus datos (si te suscribes) se guardan bajo llave. No los vendemos a terceros ni a empresas de fast fashion. Odio el spam tanto como tú.</p>
-
-                            <p><strong>3. PROPIEDAD INTELECTUAL</strong><br>
-                            Todo el código, diseño "collage" y curaduría es obra de CBA. Se permite compartir con atribución. Si copias, por lo menos hazlo con estilo.</p>
-
-                            <p><strong>4. LEGISLACIÓN</strong><br>
-                            Estas condiciones se rigen por la ley española. Para cualquier conflicto, nos vemos en los juzgados de Madrid (o tomando un café para arreglarlo antes, que es más barato).</p>
+                            <div class="dashed-line"></div>
                             
-                            <div class="signature-area mt-4">
-                                <p>Firmado digitalmente:</p>
-                                <span class="handwritten-signature">La Dirección</span>
+                            <div class="receipt-item">
+                                <span>COOKIES_NECESARIAS</span>
+                                <span>TRUE</span>
                             </div>
-                        </div>
-                    </div>
+                            <div class="receipt-item">
+                                <span>TRACKING_TERCEROS</span>
+                                <span>FALSE</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>ALMACENAMIENTO</span>
+                                <span>LOCAL</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>CIFRADO_SSL</span>
+                                <span>256bit</span>
+                            </div>
+                            <div class="receipt-item">
+                                <span>ESTADO_SERVIDOR</span>
+                                <span>OK</span>
+                            </div>
 
-                    <div class="post-it">
-                        <p class="handwritten-note">No olvidar actualizar el ISSN antes de fin de año!!</p>
+                            <div class="dashed-line"></div>
+                            
+                            <p class="small justify-text mt-2" style="text-transform: uppercase;">
+                                <strong>POLÍTICA DE COOKIES:</strong><br> 
+                                Usamos las justas para que la web no explote. Si sigues navegando, asumimos que te parece bien y que te gusta la moda tanto como a nosotros.
+                            </p>
+                            
+                            <div class="receipt-divider my-2">*******************</div>
+                            <p class="text-center small">GRACIAS POR TU VISITA</p>
+
+                            <div class="barcode-strip">
+                                CBA-LEGAL-DATA
+                            </div>
+
+                            <div class="barcode-text">
+                                CBA-LEGAL-DATA
+                            </div>
+
+                            <p class="text-center mt-1 text-muted small">#REF-9921</p>
+                            <p class="text-center mt-1 text-muted">#REF-9921-LEGAL</p>
+                        </div>
+                        
+                        <div class="receipt-jagged-bottom"></div>
                     </div>
                 </div>
-
             </div>
-        </div>
 
+            <div class="drag-item" id="item-paper">
+                <div class="paper-sheet">
+                    <div class="paper-clip"></div>
+                    
+                    <div class="stamp-box">BORING LEGAL STUFF</div>
+
+                    <h1 class="typewriter-title">TÉRMINOS Y CONDICIONES</h1>
+                    <p class="doc-id">REF: LEGAL_DOC_2025_V2.pdf</p>
+                    
+                    <div class="typewriter-body">
+                        <p><strong>1. OBJETO DEL SITIO WEB</strong><br>
+                        CBA es una publicación digital de moda sostenible. Todo el contenido es propiedad intelectual de sus autores. El uso de texto e imágenes sin permiso resultará en mal karma y acciones legales pertinentes.</p>
+
+                        <p><strong>2. PROTECCIÓN DE DATOS (RGPD)</strong><br>
+                        De conformidad con el Reglamento (UE) 2016/679, te informamos que tus datos (si te suscribes) se guardan bajo llave. No los vendemos a terceros ni a empresas de fast fashion. Odio el spam tanto como tú.</p>
+
+                        <p><strong>3. PROPIEDAD INTELECTUAL</strong><br>
+                        Todo el código, diseño "collage" y curaduría es obra de CBA. Se permite compartir con atribución. Si copias, por lo menos hazlo con estilo.</p>
+
+                        <p><strong>4. LEGISLACIÓN</strong><br>
+                        Estas condiciones se rigen por la ley española. Para cualquier conflicto, nos vemos en los juzgados de Madrid (o tomando un café para arreglarlo antes, que es más barato).</p>
+                        
+                        <div class="signature-area mt-4">
+                            <p>Firmado digitalmente:</p>
+                            <span class="handwritten-signature">La Dirección</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="drag-item post-it" id="item-postit">
+                <p class="handwritten-note">No olvidar actualizar el ISSN antes de fin de año!!</p>
+            </div>
+
+        </div>
     </main>
 
     <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">

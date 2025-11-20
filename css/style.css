@@ -195,7 +195,7 @@ main:has(.hero-collage-section) {
     min-height: 100vh; max-width: 100vw; height: calc(100vh - 4.375rem);
     padding: 3vh 3vw; background-color: var(--color-fondo-secundario);
     display: flex; align-items: center; justify-content: center; box-sizing: border-box;
-    position: relative; z-index: 1; /* Para quedar debajo del Ticker */
+    position: relative; z-index: 1; 
 }
 .about-me-inner { width: 100%; margin-inline: auto; }
 
@@ -290,7 +290,7 @@ main:has(.hero-collage-section) {
     margin: 20px; font-size: 1.2rem;
 }
 .long-receipt {
-    width: 100%; padding: 2rem 1.5rem; 
+    width: 100%; padding: 2.5rem 2rem; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 .modal-receipt::after, .receipt-jagged-bottom {
@@ -298,8 +298,8 @@ main:has(.hero-collage-section) {
     background-image: linear-gradient(135deg, var(--color-ticket-bg) 5px, transparent 5px), linear-gradient(225deg, var(--color-ticket-bg) 5px, transparent 5px);
     background-position: top left; background-size: 15px 15px; background-repeat: repeat-x;
 }
-.receipt-jagged-bottom { bottom: -10px; height: 10px; background-size: 20px 20px; } /* Ajuste para página datos */
-.receipt-jagged-top { /* Solo para página datos */
+.receipt-jagged-bottom { bottom: -10px; height: 10px; background-size: 20px 20px; }
+.receipt-jagged-top { 
     position: absolute; top: -10px; left: 0; width: 100%; height: 10px;
     background-image: linear-gradient(135deg, transparent 50%, #fffdf0 50%), linear-gradient(225deg, transparent 50%, #fffdf0 50%);
     background-size: 20px 20px;
@@ -310,6 +310,9 @@ main:has(.hero-collage-section) {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(2px); z-index: 10;
     background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
     background-size: 4px 4px; border-left: 2px solid rgba(255,255,255,0.4); border-right: 2px solid rgba(255,255,255,0.4);
+}
+.receipt-content {
+    font-size: 1.4rem; 
 }
 .modal-ticket-theme .modal-header {
     background-color: transparent !important; border-bottom: 1px dashed rgba(0,0,0,0.2) !important;
@@ -348,7 +351,7 @@ main:has(.hero-collage-section) {
 .receipt-item { display: flex; justify-content: space-between; font-size: 1.3rem; margin-bottom: 0.5rem; border-bottom: 1px dashed #ddd; }
 .dashed-line { border-bottom: 2px dashed #333; margin: 1rem 0; opacity: 0.3; }
 .barcode-strip {
-    font-family: 'Libre Barcode 39', cursive; font-size: 4rem; 
+    font-family: 'Libre Barcode 39', cursive; font-size: 5rem; 
     width: 100%; overflow: hidden; white-space: nowrap; line-height: 0.8;
     text-align: center; margin-top: 1rem; display: block;
 }
@@ -364,21 +367,55 @@ main:has(.hero-collage-section) {
 /* =========================================
    7. PÁGINA DATOS LEGALES (ESCRITORIO)
    ========================================= */
+
 .page-datos {
     background-color: #e3e0d8;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    min-height: 100vh; overflow-x: hidden; width: 100%; position: relative;
+    min-height: 100vh; 
+    height: auto; 
+    width: 100%;
+    overflow-x: hidden; 
+    overflow-y: auto !important; 
+    position: relative; 
 }
+
 .legal-desk-container {
-    padding-top: 120px; padding-bottom: 50px; min-height: 100vh; overflow-x: hidden;
+    min-height: 100vh;
+    height: auto; 
+    width: 100%;
+    padding-top: 0;
+    overflow: visible;
+    padding-bottom: 100px;
 }
+
+.draggable-zone {
+    position: relative;
+    width: 100%;
+    height: 100%; 
+    min-height: 1200px; 
+    margin-top: 80px;
+}
+
+#item-ticket {
+    top: 50px; left: 5%; width: 420px; z-index: 5;
+}
+
+#item-paper {
+    top: 20px; right: 5%; width: 600px; z-index: 4; transform: rotate(1deg);
+}
+
+#item-postit {
+    top: 600px; right: 20%; left: auto; bottom: auto;
+    width: 240px !important; height: 240px !important;
+    z-index: 1000 !important; cursor: grab;
+}
+
 .paper-sheet {
     background-color: #fdfbf7; padding: 3rem; position: relative;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.05), 10px 10px 25px rgba(0,0,0,0.1);
     font-family: 'Courier Prime', monospace; color: #222;
-    transform: rotate(1deg); transition: transform 0.3s;
+    transition: transform 0.1s;
 }
-.paper-sheet:hover { transform: rotate(0deg) scale(1.01); z-index: 5; }
 .paper-clip {
     position: absolute; top: -15px; left: 20px; width: 40px; height: 80px;
     border: 4px solid #555; border-radius: 20px; border-bottom: none; z-index: 2;
@@ -387,10 +424,10 @@ main:has(.hero-collage-section) {
     content: ''; position: absolute; top: 15px; right: -4px; width: 40px; height: 60px;
     border: 4px solid #555; border-radius: 20px; border-top: none; z-index: -1;
 }
-.typewriter-title { font-weight: bold; font-size: 1.8rem; text-decoration: underline; margin-bottom: 0.2rem; }
-.doc-id { font-size: 0.8rem; color: #888; margin-bottom: 2rem; }
+.typewriter-title { font-weight: bold; font-size: 2.2rem; text-decoration: underline; margin-bottom: 0.2rem; }
+.doc-id { font-size: 0.8rem; color: #888; margin-bottom: 1.5rem; }
 .stamp-box {
-    position: absolute; top: -1rem; right: 0rem; border: 3px solid #d00; color: #d00;
+    position: absolute; top: 1rem; right: 1rem; border: 3px solid #d00; color: #d00;
     font-weight: bold; padding: 0.2rem 1rem; opacity: 0.6; transform: rotate(-15deg);
 }
 .handwritten-signature {
@@ -398,19 +435,78 @@ main:has(.hero-collage-section) {
 }
 .post-it {
     background-color: #ffeb3b; width: 180px; height: 180px; padding: 1.5rem;
-    position: absolute; bottom: 30px; right: 20px;
     box-shadow: 2px 4px 12px rgba(0,0,0,0.3); transform: rotate(-6deg);
     display: flex; align-items: center; justify-content: center; text-align: center;
-    z-index: 10; transition: transform 0.3s ease;
+    transition: transform 0.1s;
 }
-.post-it:hover { transform: scale(1.1) rotate(0deg); cursor: pointer; }
-.handwritten-note { font-family: 'Permanent Marker', cursive; font-size: 1rem; color: #333; line-height: 1.2; transform: rotate(-2deg); }
-.receipt-stack { transform: rotate(-2deg); transition: transform 0.3s; }
-.receipt-stack:hover { transform: rotate(0deg) scale(1.02); }
+.post-it:active, .paper-sheet:active, .receipt-stack:active {
+    cursor: grabbing;
+}
+.handwritten-note { font-family: 'Permanent Marker', cursive; font-size: 1.4rem; color: #333; line-height: 1.2; transform: rotate(-2deg); }
+.receipt-stack { transition: transform 0.1s; }
+
+.drag-item.is-dragging {
+    z-index: 500; 
+    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    transform: scale(1.02) !important;
+}
+
+/* =========================================
+   8. DATOS INTERACTIVOS (DRAG & DROP)
+   ========================================= */
+
+.draggable-zone {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden; 
+}
+.drag-item {
+    position: absolute; 
+    cursor: grab;
+    transition: transform 0.1s, box-shadow 0.2s; 
+    user-select: none; 
+    touch-action: none;
+}
+
+.drag-item:active {
+    cursor: grabbing;
+    transform: scale(1.02); 
+}
+#item-ticket {
+    top: 50px;
+    left: 5%;
+    width: 420px;
+    z-index: 5;
+    transform: rotate(-2deg); 
+    transition: transform 0.2s, top 0.1s, left 0.1s;
+}
+
+#item-paper {
+    top: 50px;
+    right: 10%;
+    width: 500px; 
+}
+#item-postit {
+    top: 400px; 
+    right: 15%;
+    left: auto; 
+    bottom: auto;
+    z-index: 1000 !important; 
+}
+
+.drag-item.is-dragging {
+    z-index: 500; 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+
+}
 
 
 /* ============================================================
-   8. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
+   9. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
    ============================================================ */
 @media (max-width: 768px) {
     .header-principal.scrolled .navbar-menu-movil-icono {
@@ -471,6 +567,9 @@ main:has(.hero-collage-section) {
     .post-it { position: relative; bottom: auto; right: auto; left: auto; top: auto;display: flex; margin: 0 auto; margin-top: -40px; margin-bottom: 30px; transform: rotate(-3deg); max-width: 80%; }
     .paper-sheet { transform: none; }
     .stamp-box { top: -1rem; right: 0rem; }
+        .draggable-zone { display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
+    .drag-item { position: relative;  top: auto !important; left: auto !important; right: auto !important; margin-bottom: 2rem; width: 90% !important;  }
+    #item-postit { width: 180px !important;  transform: rotate(-3deg); }
 }
 
 @media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
