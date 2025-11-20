@@ -9,7 +9,9 @@
     --color-ticket-text: #333;
 }
 
-/* --- CONFIGURACIÓN GLOBAL --- */
+/* =========================================
+   1. CONFIGURACIÓN GLOBAL Y CURSOR
+   ========================================= */
 * { cursor: none; }
 
 img { width: 100%; display: block; }
@@ -26,8 +28,6 @@ body.scrolled { padding-top: 70px; }
 body.no-scroll { overflow: hidden; }
 a { text-decoration: none; color: inherit; }
 
-
-/* --- CURSOR --- */
 .cursor-outline {
     width: 40px; height: 40px; border: 2px solid rgba(0,0,0,0.3);
     border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
@@ -36,11 +36,12 @@ a { text-decoration: none; color: inherit; }
 .cursor-hover { width: 60px; height: 60px; background: rgba(0,0,0,0.05); border-color: transparent; }
 .cursor-invertido { border-color: rgba(255,255,255,0.5); }
 
-/* Elementos sin cursor */
 a, button, input, .btn { cursor: none; }
 
 
-/* --- HEADER "CBA" --- */
+/* =========================================
+   2. HEADER "CBA"
+   ========================================= */
 .header-principal {
     position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
     height: 100vh; background-color: var(--color-fondo);
@@ -60,8 +61,6 @@ a, button, input, .btn { cursor: none; }
 .menu-movil-links { display: flex; gap: 2rem; align-items: center; }
 .menu-movil-redes { display: none; }
 
-
-/* --- HEADER SCROLLED --- */
 .header-principal.scrolled {
     height: 70px; background-color: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -72,150 +71,125 @@ a, button, input, .btn { cursor: none; }
 
 .navbar-enlace { font-weight: 500; color: #333; position: relative; transition: color 0.3s; }
 .navbar-enlace:hover { color: #000; }
+.navbar-menu-movil-icono { display: none; }
 
-/* --- HERO COLLAGE: NUEVO ESTILO --- */
 
+/* =========================================
+   3. HERO SECTION (COLLAGE & TICKER)
+   ========================================= */
 .hero-collage-section {
     position: relative;
     height: 100vh;
     width: 100%;
     background-color: #1a1a1a; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     padding-bottom: 5vh; 
+    overflow: visible !important; 
+    z-index: 10; 
 }
 
 .wall-texture {
     position: absolute; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
-    opacity: 0.4;
-    pointer-events: none;
+    opacity: 0.4; pointer-events: none;
 }
 
-/* --- 1. TICKER SUPERIOR (CINTA AMARILLA) --- */
-.ticker-bottom-wrapper {
-    position: absolute;
-    bottom: 20px; 
-    left: -5%;
-    width: 110%;
-    background: #eab308; 
-    padding: 0.6rem 0;
-    z-index: 40; 
-    transform: rotate(2deg); 
-    box-shadow: 0 -5px 10px rgba(0,0,0,0.2);
-    border-top: 2px dashed #000;
-    border-bottom: 2px dashed #000;
-    overflow: hidden;
-    pointer-events: none; 
-}
-
-.ticker-content {
-    white-space: nowrap;
-    font-family: 'VT323', monospace;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #000;
-    animation: tickerMove 20s linear infinite;
-}
-@keyframes tickerMove { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-
-/* --- 2. EL CARTEL (POSTER CONTAINER) --- */
 .poster-container {
     position: relative;
-    width: 85vw;
-    height: 70vh; 
+    width: 85vw; height: 70vh; 
     background: #fff;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     transform: rotate(-1deg);
-    padding: 15px;
-    z-index: 10;
+    padding: 15px; z-index: 10;
     margin-top: 8vh;
 }
 
 .poster-inner, .carousel-inner, .carousel-item {
     width: 100%; height: 100%;
-    position: relative;
-    overflow: hidden;
+    position: relative; overflow: hidden;
 }
 
 .poster-img {
     width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center top;
+    background-size: cover; background-position: center top;
     filter: grayscale(100%) contrast(1.2); 
     transition: filter 0.5s;
 }
-
 .poster-container:hover .poster-img { filter: grayscale(0%) contrast(1); }
 
 .tape-corner {
     position: absolute; width: 120px; height: 35px;
-    background: rgba(255,255,255,0.85);
-    z-index: 20;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    backdrop-filter: blur(2px);
+    background: rgba(255,255,255,0.85); z-index: 20;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); backdrop-filter: blur(2px);
 }
 .tape-tl { top: -15px; left: -30px; transform: rotate(-45deg); }
 .tape-tr { top: -15px; right: -30px; transform: rotate(45deg); }
 .tape-bl { bottom: -15px; left: -30px; transform: rotate(45deg); }
 .tape-br { bottom: -15px; right: -30px; transform: rotate(-45deg); }
 
-
-/* --- TIPOGRAFÍA ENCIMA DEL CARTEL --- */
 .poster-content {
-    position: absolute;
-    bottom: 10%; left: 5%;
-    z-index: 15;
-    text-align: left;
+    position: absolute; bottom: 10%; left: 5%;
+    z-index: 15; text-align: left;
 }
 
 .poster-title {
-    font-family: 'Anton', sans-serif;
-    font-size: 8rem;
-    line-height: 0.85;
-    color: #fff;
-    text-transform: uppercase;
-    text-shadow: 4px 4px 0 #000;
-    margin-bottom: 1.5rem;
-    mix-blend-mode: difference;
+    font-family: 'Anton', sans-serif; font-size: 8rem;
+    line-height: 0.85; color: #fff;
+    text-transform: uppercase; text-shadow: 4px 4px 0 #000;
+    margin-bottom: 1.5rem; mix-blend-mode: difference;
 }
 
-/* --- 4. BOTÓN "RECORTE" (Cutout) --- */
 .btn-cutout {
     display: inline-block;
-    background-color: #fff;
-    color: #000;
-    font-family: 'Courier Prime', monospace;
-    font-weight: bold;
-    font-size: 1.2rem;
-    padding: 0.8rem 1.5rem;
-    text-decoration: none;
-    border: 2px solid #000;
-    clip-path: polygon(
-        0% 5%, 5% 0%, 95% 0%, 100% 5%, 
-        100% 95%, 95% 100%, 5% 100%, 0% 95%
-    );
-    transform: rotate(-2deg);
-    transition: transform 0.2s, background 0.2s;
+    background-color: #fff; color: #000;
+    font-family: 'Courier Prime', monospace; font-weight: bold;
+    font-size: 1.2rem; padding: 0.8rem 1.5rem;
+    text-decoration: none; border: 2px solid #000;
+    clip-path: polygon(0% 5%, 5% 0%, 95% 0%, 100% 5%, 100% 95%, 95% 100%, 5% 100%, 0% 95%);
+    transform: rotate(-2deg); transition: transform 0.2s, background 0.2s;
     box-shadow: 5px 5px 0 #000;
 }
-
 .btn-cutout:hover {
     transform: rotate(0deg) scale(1.05);
-    background-color: #000;
-    color: #fff;
+    background-color: #000; color: #fff;
     box-shadow: 2px 2px 0 #fff;
 }
 
+.ticker-bottom-wrapper {
+    position: absolute; bottom: -35px; left: -5%; width: 110%;
+    background: #eab308; padding: 0.6rem 0;
+    z-index: 99; transform: rotate(2deg); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+    border-top: 2px dashed #000; border-bottom: 2px dashed #000;
+    pointer-events: none; 
+}
 
-/* --- SECCIÓN ABOUT ME --- */
+.ticker-track {
+    display: flex; width: max-content; 
+    animation: tickerMove 25s linear infinite; 
+}
+
+.ticker-chunk {
+    white-space: nowrap;
+    font-family: 'VT323', monospace; font-size: 2.5rem;
+    font-weight: bold; color: #000;
+    line-height: 1; padding-right: 0; 
+}
+
+@keyframes tickerMove { 
+    0% { transform: translateX(0); } 
+    100% { transform: translateX(-50%); } 
+}
+
+
+/* =========================================
+   4. SECCIÓN ABOUT ME
+   ========================================= */
 .about-me-section {
     min-height: 100vh; max-width: 100vw; height: calc(100vh - 4.375rem);
     padding: 3vh 3vw; background-color: var(--color-fondo-secundario);
     display: flex; align-items: center; justify-content: center; box-sizing: border-box;
+    position: relative; z-index: 1; /* Para quedar debajo del Ticker */
 }
 .about-me-inner { width: 100%; margin-inline: auto; }
 
@@ -239,8 +213,6 @@ a, button, input, .btn { cursor: none; }
 }
 .about-card:active { cursor: grabbing; }
 .about-card-label { color: #fff; text-shadow: 0 0.1rem 0.35rem rgba(0,0,0,0.4); }
-
-/* Overlay About Me */
 .about-overlay {
     position: fixed; inset: 0; width: 100vw; height: 100vh;
     background-color: rgba(0,0,0,0.92); display: none;
@@ -256,7 +228,9 @@ a, button, input, .btn { cursor: none; }
 .about-overlay-close:hover { opacity: 0.8; }
 
 
-/* --- BACKSTAGE --- */
+/* =========================================
+   5. BACKSTAGE & FOOTER
+   ========================================= */
 .backstage-section { padding-inline: 0; }
 .backstage-title { text-transform: uppercase; letter-spacing: 0.14em; font-size: 1.4rem; font-weight: 800; }
 .backstage-subtitle { font-size: 0.95rem; max-width: 30rem; margin-inline: auto; color: rgba(255,255,255,0.7); }
@@ -287,41 +261,43 @@ a, button, input, .btn { cursor: none; }
 .backstage-item--tall { grid-row: span 2; }
 .backstage-item--wide { grid-column: span 2; }
 .backstage-item--big { grid-column: span 2; grid-row: span 2; }
-
-
-/* --- FOOTER --- */
 .footer-img-box {
     width: 100%; max-width: 35vw; aspect-ratio: 1/1; border-radius: 1rem;
     display: flex; align-items: center; justify-content: center; transition: transform 0.25s ease;
 }
 .footer-img-box img { width: 120%; height: 100%; object-fit: cover; }
 
-/* --- MEDIA QUERIES (MÓVIL / TABLET) --- */
-.navbar-menu-movil-icono { display: none; }
 
-
-/* ============================================================
-   ESTILO TICKET DE COMPRA (RECEIPT) - CÓDIGO LIMPIO
-   ============================================================ */
-.modal-receipt {
+/* =========================================
+   6. SISTEMA DE TICKETS Y MODALES (COMPARTIDO)
+   ========================================= */
+.modal-receipt, .long-receipt {
     background-color: var(--color-ticket-bg) !important;
     font-family: 'VT323', monospace; color: var(--color-ticket-text);
-    border-radius: 0 !important; border: none !important;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
-    position: relative; margin: 20px; font-size: 1.2rem; overflow: visible !important;
-    /* Dientes arriba */
+    position: relative; overflow: visible !important;
     background-image: linear-gradient(135deg, transparent 5px, var(--color-ticket-bg) 5px), linear-gradient(225deg, transparent 5px, var(--color-ticket-bg) 5px);
     background-position: top left; background-size: 15px 15px; background-repeat: repeat-x;
 }
-
-/* Dientes abajo */
-.modal-receipt::after {
+.modal-receipt {
+    border-radius: 0 !important; border: none !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
+    margin: 20px; font-size: 1.2rem;
+}
+.long-receipt {
+    width: 100%; padding: 2rem 1.5rem; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+.modal-receipt::after, .receipt-jagged-bottom {
     content: ""; position: absolute; bottom: -15px; left: 0; width: 100%; height: 15px;
     background-image: linear-gradient(135deg, var(--color-ticket-bg) 5px, transparent 5px), linear-gradient(225deg, var(--color-ticket-bg) 5px, transparent 5px);
     background-position: top left; background-size: 15px 15px; background-repeat: repeat-x;
 }
-
-/* Tape */
+.receipt-jagged-bottom { bottom: -10px; height: 10px; background-size: 20px 20px; } /* Ajuste para página datos */
+.receipt-jagged-top { /* Solo para página datos */
+    position: absolute; top: -10px; left: 0; width: 100%; height: 10px;
+    background-image: linear-gradient(135deg, transparent 50%, #fffdf0 50%), linear-gradient(225deg, transparent 50%, #fffdf0 50%);
+    background-size: 20px 20px;
+}
 .receipt-tape {
     width: 100px; height: 35px; background-color: rgba(255,255,255,0.5);
     position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-2deg);
@@ -329,8 +305,6 @@ a, button, input, .btn { cursor: none; }
     background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
     background-size: 4px 4px; border-left: 2px solid rgba(255,255,255,0.4); border-right: 2px solid rgba(255,255,255,0.4);
 }
-
-/* Estilos internos del ticket */
 .modal-ticket-theme .modal-header {
     background-color: transparent !important; border-bottom: 1px dashed rgba(0,0,0,0.2) !important;
     color: var(--color-ticket-text) !important; padding-bottom: 1rem; position: relative;
@@ -342,7 +316,6 @@ a, button, input, .btn { cursor: none; }
 .modal-ticket-theme .btn-close { filter: invert(1); opacity: 0.6; }
 .modal-ticket-theme .btn-close:hover { opacity: 1; }
 
-/* Inputs Ticket */
 .input-ticket {
     background-color: transparent !important; border: none !important;
     border-bottom: 2px dashed #333 !important; border-radius: 0 !important;
@@ -353,7 +326,6 @@ a, button, input, .btn { cursor: none; }
 .input-ticket::placeholder { color: #999; text-transform: uppercase; }
 .password-wrapper { position: relative; } 
 
-/* Botones Ticket */
 .btn-ticket {
     background-color: #000 !important; color: #fff !important; border-radius: 0 !important;
     font-family: 'VT323', monospace; font-size: 1.5rem; text-transform: uppercase;
@@ -366,49 +338,41 @@ a, button, input, .btn { cursor: none; }
     background: none; border: none; color: #999999; padding: 0.5rem;
 }
 
-/* Extras Ticket */
 .receipt-divider { text-align: center; overflow: hidden; white-space: nowrap; color: #999; letter-spacing: 4px; }
-.barcode { font-size: 2rem; letter-spacing: 4px; transform: scaleY(1.5); opacity: 0.8; }
+.receipt-item { display: flex; justify-content: space-between; font-size: 1.3rem; margin-bottom: 0.5rem; border-bottom: 1px dashed #ddd; }
+.dashed-line { border-bottom: 2px dashed #333; margin: 1rem 0; opacity: 0.3; }
+.barcode-strip {
+    font-family: 'Libre Barcode 39', cursive; font-size: 4rem; 
+    width: 100%; overflow: hidden; white-space: nowrap; line-height: 0.8;
+    text-align: center; margin-top: 1rem; display: block;
+}
+.barcode-text {
+    font-family: 'VT323', monospace; font-size: 1.2rem; letter-spacing: 4px;
+    text-align: center; margin-top: 0; line-height: 1;
+}
+.barcode { font-size: 2rem; letter-spacing: 4px; transform: scaleY(1.5); opacity: 0.8; } /* Fallback antiguo */
+
 .modal-dialog { max-height: 90vh; }
 
-/* =========== */
-
-/* --- PÁGINA DE DATOS LEGALES (ESTILO ESCRITORIO) --- */
 
 /* =========================================
-   ESTILOS PÁGINA DATOS (SOLO PAPELES Y FONDO)
+   7. PÁGINA DATOS LEGALES (ESCRITORIO)
    ========================================= */
-
-/* 1. Configuración Base */
 .page-datos {
     background-color: #e3e0d8;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-    min-height: 100vh;
-    overflow-x: hidden; /* Evita scroll horizontal */
-    width: 100%;
-    position: relative;
+    min-height: 100vh; overflow-x: hidden; width: 100%; position: relative;
 }
-
 .legal-desk-container {
-    padding-top: 120px; /* Espacio para que el header no tape los papeles */
-    padding-bottom: 50px;
-    min-height: 100vh;
-    overflow-x: hidden;
+    padding-top: 120px; padding-bottom: 50px; min-height: 100vh; overflow-x: hidden;
 }
-
-/* 2. FOLIO */
 .paper-sheet {
-    background-color: #fdfbf7;
-    padding: 3rem;
-    position: relative;
+    background-color: #fdfbf7; padding: 3rem; position: relative;
     box-shadow: 1px 1px 2px rgba(0,0,0,0.05), 10px 10px 25px rgba(0,0,0,0.1);
-    font-family: 'Courier Prime', monospace;
-    color: #222;
-    transform: rotate(1deg);
-    transition: transform 0.3s;
+    font-family: 'Courier Prime', monospace; color: #222;
+    transform: rotate(1deg); transition: transform 0.3s;
 }
 .paper-sheet:hover { transform: rotate(0deg) scale(1.01); z-index: 5; }
-
 .paper-clip {
     position: absolute; top: -15px; left: 20px; width: 40px; height: 80px;
     border: 4px solid #555; border-radius: 20px; border-bottom: none; z-index: 2;
@@ -426,95 +390,37 @@ a, button, input, .btn { cursor: none; }
 .handwritten-signature {
     font-family: 'Permanent Marker', cursive; font-size: 1.5rem; color: #000099; transform: rotate(-5deg); display: inline-block;
 }
-
-/* 3. POST-IT */
 .post-it {
-    background-color: #ffeb3b;
-    width: 180px; height: 180px; padding: 1.5rem;
+    background-color: #ffeb3b; width: 180px; height: 180px; padding: 1.5rem;
     position: absolute; bottom: 30px; right: 20px;
-    box-shadow: 2px 4px 12px rgba(0,0,0,0.3);
-    transform: rotate(-6deg);
+    box-shadow: 2px 4px 12px rgba(0,0,0,0.3); transform: rotate(-6deg);
     display: flex; align-items: center; justify-content: center; text-align: center;
     z-index: 10; transition: transform 0.3s ease;
 }
 .post-it:hover { transform: scale(1.1) rotate(0deg); cursor: pointer; }
 .handwritten-note { font-family: 'Permanent Marker', cursive; font-size: 1rem; color: #333; line-height: 1.2; transform: rotate(-2deg); }
-
-/* 4. TICKET */
 .receipt-stack { transform: rotate(-2deg); transition: transform 0.3s; }
 .receipt-stack:hover { transform: rotate(0deg) scale(1.02); }
-.long-receipt {
-    width: 100%; background: #fffdf0; font-family: 'VT323', monospace; color: #333;
-    position: relative; padding: 2rem 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-.receipt-jagged-top {
-    position: absolute; top: -10px; left: 0; width: 100%; height: 10px;
-    background-image: linear-gradient(135deg, transparent 50%, #fffdf0 50%), linear-gradient(225deg, transparent 50%, #fffdf0 50%);
-    background-size: 20px 20px;
-}
-.receipt-jagged-bottom {
-    position: absolute; bottom: -10px; left: 0; width: 100%; height: 10px;
-    background-image: linear-gradient(45deg, transparent 50%, #fffdf0 50%), linear-gradient(-45deg, transparent 50%, #fffdf0 50%);
-    background-size: 20px 20px;
-}
-.receipt-item { display: flex; justify-content: space-between; font-size: 1.3rem; margin-bottom: 0.5rem; border-bottom: 1px dashed #ddd; }
-.dashed-line { border-bottom: 2px dashed #333; margin: 1rem 0; opacity: 0.3; }
-/* --- CÓDIGO DE BARRAS RESPONSIVE --- */
-
-.barcode-strip {
-    font-family: 'Libre Barcode 39', cursive; 
-    font-size: 4rem; 
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    line-height: 0.8;
-    text-align: center;
-    margin-top: 1rem;
-    display: block;
-}
-
-.barcode-text {
-    font-family: 'VT323', monospace; 
-    font-size: 1.2rem; 
-    letter-spacing: 4px;
-    text-align: center;
-    margin-top: 0;
-    line-height: 1;
-}
 
 
+/* ============================================================
+   8. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
+   ============================================================ */
 @media (max-width: 768px) {
+    /* --- HEADER MOVIL --- */
     .header-principal.scrolled .navbar-menu-movil-icono {
-        display: flex;
-        width: 35px;  
-        height: 26px; 
-        flex-direction: column; 
-        justify-content: space-between; 
-        background: none; 
-        border: none; 
-        z-index: 1060;
-        padding: 0; 
+        display: flex; width: 35px; height: 26px; 
+        flex-direction: column; justify-content: space-between; 
+        background: none; border: none; z-index: 1060; padding: 0; 
     }
     .navbar-menu-movil-icono span {
-        width: 100%; 
-        height: 3px;
-        background: #333; 
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-        transform-origin: center; 
-        position: relative;
+        width: 100%; height: 3px; background: #333; border-radius: 2px;
+        transition: all 0.3s ease-in-out; transform-origin: center; position: relative;
     }
-    .navbar-menu-movil-icono.icono-activo span:nth-child(1) {
-        transform: translateY(11.5px) rotate(45deg);
-    }
-    .navbar-menu-movil-icono.icono-activo span:nth-child(2) {
-        opacity: 0;
-        transform: scale(0); 
-    }
-
-    .navbar-menu-movil-icono.icono-activo span:nth-child(3) {
-        transform: translateY(-11.5px) rotate(-45deg);
-    }
+    /* Animación Hamburguesa */
+    .navbar-menu-movil-icono.icono-activo span:nth-child(1) { transform: translateY(11.5px) rotate(45deg); }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(2) { opacity: 0; transform: scale(0); }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(3) { transform: translateY(-11.5px) rotate(-45deg); }
 
     .header-principal.scrolled .navbar-menu {
         display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
@@ -524,120 +430,66 @@ a, button, input, .btn { cursor: none; }
     .header-principal.scrolled .navbar-menu.menu-abierto { opacity: 1; visibility: visible; }
 
     .menu-movil-links { display: flex; flex-direction: column; gap: 2rem; align-items: center; counter-reset: menu-counter; }
-    
     .menu-movil-redes {
         display: flex; gap: 1.2rem; margin-top: 3rem; font-size: 0.8rem;
         text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.8;
     }
-    .menu-movil-redes a { font-weight: 500; }
-    .menu-movil-redes a:hover { opacity: 1; }
-
     .navbar-enlace { font-size: 2rem; font-weight: 800; text-transform: uppercase; opacity: 0; transform: translateY(20px); transition: 0.5s; }
     .navbar-menu.menu-abierto .navbar-enlace { opacity: 1; transform: translateY(0); }
+    /* Stagger delay menú */
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(1) { transition-delay: 0.1s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(2) { transition-delay: 0.2s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(3) { transition-delay: 0.3s; }
     .navbar-menu.menu-abierto .navbar-enlace:nth-child(4) { transition-delay: 0.4s; }
     .navbar-menu.menu-abierto .accion-abrir-registro { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
-
+    
     .navbar-enlace::before {
         counter-increment: menu-counter; content: "0" counter(menu-counter);
         font-size: 0.9rem; color: #aaa; position: absolute; left: -30px; top: 50%; transform: translateY(-50%);
     }
 
+    /* --- HERO & POSTER --- */
+    .poster-container { width: 90vw; height: 60vh; transform: rotate(0deg); padding: 10px; }
+    .poster-title { font-size: 4rem; }
+    .btn-cutout { font-size: 1rem; padding: 0.5rem 1rem; }
+    .tape-corner { width: 80px; height: 25px; }
+    .torn-paper-overlay { height: 60px; } 
+    
+    /* --- SECCIONES GENERALES --- */
+    .cursor-outline { display: none; }
     .backstage-gallery { grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); grid-auto-rows: 10rem; padding-inline: 4vw; }
     .backstage-item, .backstage-item--tall, .backstage-item--wide, .backstage-item--big { grid-column: span 1; grid-row: span 1; }
-    .cursor-outline { display: none; }
 
-    .barcode-strip {
-        font-size: 3rem; 
-    }
-    
-    .barcode-text {
-        font-size: 1rem;
-        letter-spacing: 2px;
-    }
-      .post-it {
+    /* --- MODAL & TICKET --- */
+    .modal-dialog { margin: 0.5rem auto; max-width: 95vw; }
+    .modal-receipt { margin: 0 !important; width: 100% !important; font-size: 0.95rem; background-size: 10px 10px; }
+    .modal-receipt::after { bottom: -10px; height: 10px; background-size: 10px 10px; }
+    .modal-body { padding: 1.2rem !important; }
+    .modal-content { max-height: 90vh; overflow-y: auto; }
+    .modal-ticket-theme .modal-title { font-size: 1.4rem; margin-top: 1rem; }
+    .input-ticket { font-size: 1.1rem; height: auto; padding-bottom: 0.2rem !important; }
+    .form-label { font-size: 0.75rem !important; margin-bottom: 0.1rem; }
+    .mb-3 { margin-bottom: 0.8rem !important; }
+    .btn-ticket { font-size: 1.2rem; padding: 0.3rem 0; }
+    .receipt-tape { transform: translateX(-50%) rotate(-2deg) scale(0.7); top: -12px; }
+    .barcode-strip { font-size: 3rem; }
+    .barcode-text { font-size: 1rem; letter-spacing: 2px; }
+    .barcode { font-size: 1.5rem; letter-spacing: 2px; }
+
+    /* --- PÁGINA DATOS (MOVIL) --- */
+    .post-it {
         position: relative; bottom: auto; right: auto; left: auto; top: auto;
         display: flex; margin: 0 auto; margin-top: -40px; margin-bottom: 30px;
         transform: rotate(-3deg); max-width: 80%; 
     }
     .paper-sheet { transform: none; }
-    .modal-dialog {
-        margin: 0.5rem auto; 
-        max-width: 95vw; 
-    }
-    .modal-receipt {
-        margin: 0 !important; 
-        width: 100% !important;
-        font-size: 0.95rem; 
-    }
-    .modal-body {
-        padding: 1.2rem !important; 
-    }
-    .modal-content {
-        max-height: 90vh;
-        overflow-y: auto; 
-    }
-    .modal-ticket-theme .modal-title {
-        font-size: 1.4rem; 
-        margin-top: 1rem;
-    }
-    .input-ticket {
-        font-size: 1.1rem;
-        height: auto;
-        padding-bottom: 0.2rem !important;
-    }
-    .form-label {
-        font-size: 0.75rem !important; 
-        margin-bottom: 0.1rem;
-    }
-    .mb-3 {
-        margin-bottom: 0.8rem !important; 
-    }
-    .btn-ticket {
-        font-size: 1.2rem; 
-        padding: 0.3rem 0;
-    }
-    .receipt-tape {
-        transform: translateX(-50%) rotate(-2deg) scale(0.7); 
-        top: -12px;
-    }
-    .modal-receipt, .modal-receipt::after {
-        background-size: 10px 10px; 
-    }
-    .modal-receipt {
-        background-image: linear-gradient(135deg, transparent 5px, var(--color-ticket-bg) 5px), linear-gradient(225deg, transparent 5px, var(--color-ticket-bg) 5px);
-    }
-    .modal-receipt::after {
-        bottom: -10px; 
-        height: 10px;
-        background-image: linear-gradient(135deg, var(--color-ticket-bg) 5px, transparent 5px), linear-gradient(225deg, var(--color-ticket-bg) 5px, transparent 5px);
-    }
-    .barcode {
-        font-size: 1.5rem; 
-        letter-spacing: 2px;
-    }
-    .poster-container {
-        width: 90vw;
-        height: 60vh; 
-        transform: rotate(0deg); 
-        padding: 10px;
-    }
-    .poster-title { font-size: 4rem; }
-    
-    .btn-cutout {
-        font-size: 1rem;
-        padding: 0.5rem 1rem;
-    }
-    .tape-corner { width: 80px; height: 25px; }
-    .torn-paper-overlay { height: 60px; } 
+    .stamp-box { top: -1rem; right: 0rem; }
 }
-  
+
+/* --- DISPOSITIVOS TÁCTILES / EXTRA --- */
 @media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
 @media (min-width: 48rem) { .footer-img-box { max-width: 12vw; } }
 
-/* --- PARCHES Y SEGURIDAD TÁCTIL --- */
 @media (hover: none) and (pointer: coarse) {
     .cursor-outline { display: none !important; visibility: hidden !important; opacity: 0 !important; }
     * { cursor: auto !important; }
@@ -651,4 +503,3 @@ a, button, input, .btn { cursor: none; }
 @media (min-width: 769px) {
     .menu-movil-redes { display: none !important; }
 }
-
