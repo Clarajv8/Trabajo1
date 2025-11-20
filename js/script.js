@@ -13,16 +13,16 @@ $(function() {
             loginModal = new bootstrap.Modal(modalElement);
             console.log("✅ Modal inicializado correctamente.");
 
-            // ... tu código del timeout ...
+           console.log("⏳ Iniciando cuenta atrás de 1 segundos...");
+            setTimeout(function() {
+                console.log("🚀 Ejecutando loginModal.show()...");
+                loginModal.show();
+            }, 1000);
 
         } catch (e) {
             console.error("❌ Error al crear instancia de Bootstrap:", e);
         }
     } else {
-        // BORRA O COMENTA ESTAS LÍNEAS DE ABAJO:
-        // console.error("❌ Error: Falta el div #modalLogin o la librería Bootstrap.");
-        
-        // EN SU LUGAR, PUEDES PONER ESTO (OPCIONAL):
         console.log("ℹ️ No hay modal de login en esta página.");
     }
 
