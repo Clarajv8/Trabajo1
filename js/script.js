@@ -339,4 +339,91 @@ $(function() {
                     rect1.bottom > rect2.top + margin);
         }
     }
+
+        // 8. CARRUSEL DISEÑADORES
+    const $designerTrack = $('.designer-track');
+
+    if ($designerTrack.length) {
+        const $designerCards = $designerTrack.find('.designer-card');
+        const $btnPrev = $('.designer-arrow--prev');
+        const $btnNext = $('.designer-arrow--next');
+        const $nameEl = $('.designer-name');
+        const $textEl = $('.designer-text');
+
+        // Cuántas tarjetas visibles (leído desde CSS :root)
+        const rootStyles = getComputedStyle(document.documentElement);
+        const VISIBLE = parseInt(
+            rootStyles.getPropertyValue('--visible-cards')
+        ) || 5;
+
+        let baseIndex = 0; // índice de la card más a la izquierda
+
+        function clampBaseIndex() {
+            const maxBase = Math.max(0, $designerCards.length - VISIBLE);
+            if (baseIndex < 0) baseIndex = maxBase;
+            if (baseIndex > maxBase) baseIndex = 0;
+        }
+
+        function updateCarousel() {
+            clampBaseIndex();
+
+            const cardWidthPercent = 100 / VISIBLE;
+            const translateX = -(baseIndex * cardWidthPercent);
+
+            $designerTrack.css('transform', `translateX(${translateX}%)`);
+
+            const centerOffset = Math.floor(VISIBLE / 2);
+            const centerIndex = baseIndex + centerOffset;
+
+            $designerCards.removeClass('is-center');
+
+            const $centerCard = $designerCards.eq(centerIndex);
+            if ($centerCard.length) {
+                $centerCard.addClass('is-center');
+                $nameEl.text($centerCard.data('name') || '');
+                $textEl.text($centerCard.data('description') || '');
+            } else {
+                $nameEl.text('');
+                $textEl.text('');
+            }
+        }
+
+        function goNext() {
+            baseIndex += 1;
+            updateCarousel();
+        }
+
+        function goPrev() {
+            baseIndex -= 1;
+            updateCarousel();
+        }
+
+        // Auto-play (5 segundos)
+        const AUTO_DELAY = 5000;
+        let timer = setInterval(goNext, AUTO_DELAY);
+
+        function resetAutoplay() {
+            clearInterval(timer);
+            timer = setInterval(goNext, AUTO_DELAY);
+        }
+
+        $btnNext.on('click', function () {
+            goNext();
+            resetAutoplay();
+        });
+
+        $btnPrev.on('click', function () {
+            goPrev();
+            resetAutoplay();
+        });
+
+        // Inicializar al cargar
+        updateCarousel();
+
+        // Recalcular un poco después de redimensionar
+        $(window).on('resize', function () {
+            setTimeout(updateCarousel, 300);
+        });
+    }
+
 });

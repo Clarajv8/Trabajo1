@@ -49,3 +49,6 @@ CUMPLICO:
 - Que al deslizar hacia abajo, se vea bien el INTRO
 - Mejorar el cursor; desaparece si la pantalla es pequeña ya que lo detecta como un movil (mediaquery) pero si estamos en ordenador nos desaparece también y es imposible navegar de esta forma
 - Estaría guay que se pudisesn mover a voluntad los elementos del DATOS.htm
+
+
+¡Sigo sin conseguir que las teles del "Backstage" ocupen todo lo que puedan de su espacio!!!!, les he quitado el gap pero a no ser que haya el numero exacto de las que hacen falta, me deja siempre un espacio :'(

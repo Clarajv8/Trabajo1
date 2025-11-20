@@ -4,14 +4,18 @@
     --color-primario: #1a1a1a;
     --color-fondo: #fdfdfd;
     --color-fondo-secundario: #ffffff;
-    --color-acento: #3b82f6; 
+
+    /* ticket */
     --color-ticket-bg: #fffdf0;
     --color-ticket-text: #333;
+
+    /* diseñadores */
+    --visible-cards: 5;
+    --card-gap: 1.5rem;
+    --designer-card-height: 320px;
 }
 
-/* =========================================
-   1. CONFIGURACIÓN GLOBAL Y CURSOR
-   ========================================= */
+/* 1. CONFIGURACIÓN GLOBAL Y CURSOR*/
 * { cursor: none; }
 
 img { width: 100%; display: block; }
@@ -29,28 +33,47 @@ body.no-scroll { overflow: hidden; }
 a { text-decoration: none; color: inherit; }
 
 .cursor-outline {
-    width: 40px; height: 40px; border: 2px solid rgba(0,0,0,0.3);
-    border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999;
-    transform: translate(-50%, -50%); transition: width 0.2s, border-color 0.2s;
+    width: 40px; 
+    height: 40px; 
+    border: 2px solid rgba(0,0,0,0.3);
+    border-radius: 50%; 
+    position: fixed; 
+    pointer-events: none; 
+    z-index: 9999;
+    transform: translate(-50%, -50%); 
+    transition: width 0.2s, border-color 0.2s;
 }
-.cursor-hover { width: 60px; height: 60px; background: rgba(0,0,0,0.05); border-color: transparent; }
+.cursor-hover { 
+    width: 60px; 
+    height: 60px; 
+    background: rgba(0,0,0,0.05); 
+    border-color: transparent; 
+}
 .cursor-invertido { border-color: rgba(255,255,255,0.5); }
 
 a, button, input, .btn { cursor: none; }
 
 
-/* =========================================
-   2. HEADER "CBA"
-   ========================================= */
+/* HEADER "CBA" */
 .header-principal {
-    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-    height: 100vh; background-color: var(--color-fondo);
-    transition: all 0.5s ease-in-out; display: flex; align-items: center;
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; 
+    z-index: 100;
+    height: 100vh; 
+    background-color: var(--color-fondo);
+    transition: all 0.5s ease-in-out; 
+    display: flex; 
+    align-items: center;
 }
 
 .navbar-custom {
-    display: flex; justify-content: center; align-items: center;
-    width: 100%; height: 100%; transition: justify-content 0.5s ease-in-out;
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 100%; 
+    height: 100%; 
+    transition: justify-content 0.5s ease-in-out;
     position: relative; 
 }
 
@@ -62,8 +85,10 @@ a, button, input, .btn { cursor: none; }
 .menu-movil-redes { display: none; }
 
 .header-principal.scrolled {
-    height: 70px; background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    height: 70px; 
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 .header-principal.scrolled .navbar-custom { justify-content: space-between; }
 .header-principal.scrolled .logo-img { width: 6rem; }
@@ -74,21 +99,23 @@ a, button, input, .btn { cursor: none; }
 .navbar-menu-movil-icono { display: none; }
 
 
-/* =========================================
-   3. HERO SECTION
-   ========================================= */
+
 main {
     padding-top: 120px; 
 }
 main:has(.hero-collage-section) {
     padding-top: 0 !important;
 }
+
+/*  HERO SECTION*/
    .hero-collage-section {
     position: relative;
     height: 150vh;
     width: 100%;
     background-color: #1a1a1a; 
-    display: flex; align-items: center; justify-content: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
     padding-bottom: 5vh; 
     overflow: visible !important; 
     z-index: 10; 
@@ -102,31 +129,41 @@ main:has(.hero-collage-section) {
 
 .poster-container {
     position: relative;
-    width: 80vw; height: 100vh; 
+    width: 80vw; 
+    height: 100vh; 
     background: #fff;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     transform: rotate(-1deg);
-    padding: 15px; z-index: 10;
+    padding: 15px; 
+    z-index: 10;
     margin-top: 25vh;
 }
 
 .poster-inner, .carousel-inner, .carousel-item {
-    width: 100%; height: 100%;
-    position: relative; overflow: hidden;
+    width: 100%; 
+    height: 100%;
+    position: relative; 
+    overflow: hidden;
 }
 
 .poster-img {
     width: 100%; height: 100%;
-    background-size: cover; background-position: center top;
+    background-size: cover; 
+    background-position: center top;
     filter: grayscale(100%) contrast(1.2); 
     transition: filter 0.5s;
 }
 .poster-container:hover .poster-img { filter: grayscale(0%) contrast(1); }
 
+/* Celito */
 .tape-corner {
-    position: absolute; width: 120px; height: 35px;
-    background: rgba(255,255,255,0.85); z-index: 20;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); backdrop-filter: blur(2px);
+    position: absolute; 
+    width: 120px; 
+    height: 35px;
+    background: rgba(255,255,255,0.85); 
+    z-index: 20;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+    backdrop-filter: blur(2px);
 }
 .tape-tl { top: -15px; left: -30px; transform: rotate(-45deg); }
 .tape-tr { top: -15px; right: -30px; transform: rotate(45deg); }
@@ -134,8 +171,11 @@ main:has(.hero-collage-section) {
 .tape-br { bottom: -15px; right: -30px; transform: rotate(-45deg); }
 
 .poster-content {
-    position: absolute; bottom: 10%; left: 5%;
-    z-index: 15; text-align: left;
+    position: absolute; 
+    bottom: 10%; 
+    left: 5%;
+    z-index: 15; 
+    text-align: left;
 }
 
 .poster-title {
@@ -144,7 +184,8 @@ main:has(.hero-collage-section) {
     color: #fff;
     text-transform: uppercase; 
     text-shadow: 1px 1px 0 #000;
-    margin-bottom: 1.5rem; mix-blend-mode: difference;
+    margin-bottom: 1.5rem; 
+    mix-blend-mode: difference;
 }
 
 .btn-cutout {
@@ -374,7 +415,6 @@ main:has(.hero-collage-section) {
     grid-template-columns: repeat(auto-fit, minmax(min(14rem, 40vw), 1fr));
     grid-auto-rows: 12rem; 
     grid-auto-flow: dense; 
-    gap: 1.5rem;
 }
 
 /*CUERPO DE LA TELE */
@@ -787,6 +827,140 @@ main:has(.hero-collage-section) {
 }
 
 
+/* =========================================
+   CARRUSEL DISEÑADORES (NUEVA PÁGINA)
+   ========================================= */
+
+.designer-page {
+    min-height: 100vh;
+    padding: 3rem 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cuerda / tendedero superior */
+.clothesline {
+    width: 100%;
+    max-width: 1100px;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.clothesline img {
+    width: 100%;
+    max-height: 120px;
+    object-fit: contain;
+}
+
+/* Sección carrusel */
+.designer-carousel-section {
+    width: 100%;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Flechas laterales (hueco preparado para tus imágenes) */
+.designer-arrow {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tamaño parecido al botón de cerrar suscripción */
+.designer-arrow-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.designer-arrow-img:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+/* Ventana del carrusel */
+.designer-track-wrapper {
+    overflow: hidden;
+    flex: 1;
+}
+
+/* Pista con todas las tarjetas */
+.designer-track {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: var(--card-gap);
+    transition: transform 0.5s ease;
+}
+
+/* Cada tarjeta de diseñador */
+.designer-card {
+    flex: 0 0 calc(
+        (100% - (var(--card-gap) * (var(--visible-cards) - 1))) / var(--visible-cards)
+    );
+    position: relative;
+    height: var(--designer-card-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 14px;
+    background: #111;
+    transform: scale(0.9);
+    opacity: 0.6;
+    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+}
+
+.designer-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Tarjeta central (marcada por JS con .is-center) */
+.designer-card.is-center {
+    transform: scale(1.12);
+    opacity: 1;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+
+/* Texto de descripción bajo el carrusel */
+.designer-description-wrapper {
+    margin-top: 2.5rem;
+    max-width: 700px;
+    text-align: center;
+    min-height: 4.5rem; /* evita saltos cuando cambia el texto */
+}
+
+.designer-name {
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin: 0 0 0.5rem;
+}
+
+.designer-text {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+}
+
+
+
+
 /* ============================================================
    9. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
    ============================================================ */
@@ -865,6 +1039,30 @@ main:has(.hero-collage-section) {
 
     .about-overlay-text p {
         font-size: 0.9rem;
+    }
+
+/* carrusel diseñadores */
+    :root {
+        --designer-card-height: 240px;
+        --visible-cards: 3;
+    }
+    .designer-page {
+        padding: 2rem 4vw;
+    }
+    .designer-carousel-section {
+        gap: 0.5rem;
+    }
+    .designer-arrow-img {
+        width: 38px;
+        height: 38px;
+    }
+    .designer-card {
+        flex: 0 0 calc(
+            (100% - (var(--card-gap) * (var(--visible-cards) - 1))) / var(--visible-cards)
+        );
+    }
+    .designer-name {
+        font-size: 1.3rem;
     }
 }
 
