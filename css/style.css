@@ -159,95 +159,9 @@ a, button, input, .btn { cursor: none; }
     display: flex; align-items: center; justify-content: center; transition: transform 0.25s ease;
 }
 .footer-img-box img { width: 120%; height: 100%; object-fit: cover; }
-@media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
-@media (min-width: 48rem) { .footer-img-box { max-width: 12vw; } }
-
 
 /* --- MEDIA QUERIES (MÓVIL / TABLET) --- */
 .navbar-menu-movil-icono { display: none; }
-
-@media (max-width: 768px) {
-    .header-principal.scrolled .navbar-menu-movil-icono {
-        display: flex;
-        width: 35px;  
-        height: 26px; 
-        flex-direction: column; 
-        justify-content: space-between; 
-        background: none; 
-        border: none; 
-        z-index: 1060;
-        padding: 0; 
-    }
-    .navbar-menu-movil-icono span {
-        width: 100%; 
-        height: 3px;
-        background: #333; 
-        border-radius: 2px;
-        transition: all 0.3s ease-in-out;
-        transform-origin: center; 
-        position: relative;
-    }
-    .navbar-menu-movil-icono.icono-activo span:nth-child(1) {
-        transform: translateY(11.5px) rotate(45deg);
-    }
-    .navbar-menu-movil-icono.icono-activo span:nth-child(2) {
-        opacity: 0;
-        transform: scale(0); 
-    }
-
-    .navbar-menu-movil-icono.icono-activo span:nth-child(3) {
-        transform: translateY(-11.5px) rotate(-45deg);
-    }
-
-    .header-principal.scrolled .navbar-menu {
-        display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-        background: rgba(255,255,255,0.98); flex-direction: column; justify-content: center; align-items: center;
-        opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1050;
-    }
-    .header-principal.scrolled .navbar-menu.menu-abierto { opacity: 1; visibility: visible; }
-
-    .menu-movil-links { display: flex; flex-direction: column; gap: 2rem; align-items: center; counter-reset: menu-counter; }
-    
-    .menu-movil-redes {
-        display: flex; gap: 1.2rem; margin-top: 3rem; font-size: 0.8rem;
-        text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.8;
-    }
-    .menu-movil-redes a { font-weight: 500; }
-    .menu-movil-redes a:hover { opacity: 1; }
-
-    .navbar-enlace { font-size: 2rem; font-weight: 800; text-transform: uppercase; opacity: 0; transform: translateY(20px); transition: 0.5s; }
-    .navbar-menu.menu-abierto .navbar-enlace { opacity: 1; transform: translateY(0); }
-    .navbar-menu.menu-abierto .navbar-enlace:nth-child(1) { transition-delay: 0.1s; }
-    .navbar-menu.menu-abierto .navbar-enlace:nth-child(2) { transition-delay: 0.2s; }
-    .navbar-menu.menu-abierto .navbar-enlace:nth-child(3) { transition-delay: 0.3s; }
-    .navbar-menu.menu-abierto .navbar-enlace:nth-child(4) { transition-delay: 0.4s; }
-    .navbar-menu.menu-abierto .accion-abrir-registro { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
-
-    .navbar-enlace::before {
-        counter-increment: menu-counter; content: "0" counter(menu-counter);
-        font-size: 0.9rem; color: #aaa; position: absolute; left: -30px; top: 50%; transform: translateY(-50%);
-    }
-
-    .backstage-gallery { grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); grid-auto-rows: 10rem; padding-inline: 4vw; }
-    .backstage-item, .backstage-item--tall, .backstage-item--wide, .backstage-item--big { grid-column: span 1; grid-row: span 1; }
-    .cursor-outline { display: none; }
-}
-
-
-/* --- PARCHES Y SEGURIDAD TÁCTIL --- */
-@media (hover: none) and (pointer: coarse) {
-    .cursor-outline { display: none !important; visibility: hidden !important; opacity: 0 !important; }
-    * { cursor: auto !important; }
-    .navbar-enlace:hover, .btn:hover, .card:hover { transform: none !important; box-shadow: none !important; }
-    .about-me-section { padding: 4vh 4vw; }
-    .about-me-area { height: calc(100vh - 8vh); width: calc(100vw - 8vw); }
-    .about-me-text { top: 8vh; left: 6vw; max-width: 70%; }
-    .about-card { width: 7rem; height: 8rem; padding: 0.75rem; border-radius: 0.8rem; font-size: 0.75rem; box-shadow: 0 0.5rem 1.4rem rgba(0,0,0,0.18); }
-}
-
-@media (min-width: 769px) {
-    .menu-movil-redes { display: none !important; }
-}
 
 
 /* ============================================================
@@ -432,8 +346,73 @@ a, button, input, .btn { cursor: none; }
     line-height: 1;
 }
 
-/* AJUSTE PARA MÓVIL (Mágia responsive) */
+
 @media (max-width: 768px) {
+    .header-principal.scrolled .navbar-menu-movil-icono {
+        display: flex;
+        width: 35px;  
+        height: 26px; 
+        flex-direction: column; 
+        justify-content: space-between; 
+        background: none; 
+        border: none; 
+        z-index: 1060;
+        padding: 0; 
+    }
+    .navbar-menu-movil-icono span {
+        width: 100%; 
+        height: 3px;
+        background: #333; 
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+        transform-origin: center; 
+        position: relative;
+    }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(1) {
+        transform: translateY(11.5px) rotate(45deg);
+    }
+    .navbar-menu-movil-icono.icono-activo span:nth-child(2) {
+        opacity: 0;
+        transform: scale(0); 
+    }
+
+    .navbar-menu-movil-icono.icono-activo span:nth-child(3) {
+        transform: translateY(-11.5px) rotate(-45deg);
+    }
+
+    .header-principal.scrolled .navbar-menu {
+        display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
+        background: rgba(255,255,255,0.98); flex-direction: column; justify-content: center; align-items: center;
+        opacity: 0; visibility: hidden; transition: 0.4s; z-index: 1050;
+    }
+    .header-principal.scrolled .navbar-menu.menu-abierto { opacity: 1; visibility: visible; }
+
+    .menu-movil-links { display: flex; flex-direction: column; gap: 2rem; align-items: center; counter-reset: menu-counter; }
+    
+    .menu-movil-redes {
+        display: flex; gap: 1.2rem; margin-top: 3rem; font-size: 0.8rem;
+        text-transform: uppercase; letter-spacing: 0.12em; opacity: 0.8;
+    }
+    .menu-movil-redes a { font-weight: 500; }
+    .menu-movil-redes a:hover { opacity: 1; }
+
+    .navbar-enlace { font-size: 2rem; font-weight: 800; text-transform: uppercase; opacity: 0; transform: translateY(20px); transition: 0.5s; }
+    .navbar-menu.menu-abierto .navbar-enlace { opacity: 1; transform: translateY(0); }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(1) { transition-delay: 0.1s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(2) { transition-delay: 0.2s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(3) { transition-delay: 0.3s; }
+    .navbar-menu.menu-abierto .navbar-enlace:nth-child(4) { transition-delay: 0.4s; }
+    .navbar-menu.menu-abierto .accion-abrir-registro { transition-delay: 0.5s; opacity: 1; transform: translateY(0); }
+
+    .navbar-enlace::before {
+        counter-increment: menu-counter; content: "0" counter(menu-counter);
+        font-size: 0.9rem; color: #aaa; position: absolute; left: -30px; top: 50%; transform: translateY(-50%);
+    }
+
+    .backstage-gallery { grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); grid-auto-rows: 10rem; padding-inline: 4vw; }
+    .backstage-item, .backstage-item--tall, .backstage-item--wide, .backstage-item--big { grid-column: span 1; grid-row: span 1; }
+    .cursor-outline { display: none; }
+
     .barcode-strip {
         font-size: 3rem; 
     }
@@ -442,14 +421,28 @@ a, button, input, .btn { cursor: none; }
         font-size: 1rem;
         letter-spacing: 2px;
     }
-}
-
-/* MEDIA QUERY PARA MÓVIL */
-@media (max-width: 768px) {
-    .post-it {
+      .post-it {
         position: relative; bottom: auto; right: auto; left: auto; top: auto;
         display: flex; margin: 0 auto; margin-top: -40px; margin-bottom: 30px;
         transform: rotate(-3deg); max-width: 80%; 
     }
     .paper-sheet { transform: none; }
 }
+@media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
+@media (min-width: 48rem) { .footer-img-box { max-width: 12vw; } }
+
+/* --- PARCHES Y SEGURIDAD TÁCTIL --- */
+@media (hover: none) and (pointer: coarse) {
+    .cursor-outline { display: none !important; visibility: hidden !important; opacity: 0 !important; }
+    * { cursor: auto !important; }
+    .navbar-enlace:hover, .btn:hover, .card:hover { transform: none !important; box-shadow: none !important; }
+    .about-me-section { padding: 4vh 4vw; }
+    .about-me-area { height: calc(100vh - 8vh); width: calc(100vw - 8vw); }
+    .about-me-text { top: 8vh; left: 6vw; max-width: 70%; }
+    .about-card { width: 7rem; height: 8rem; padding: 0.75rem; border-radius: 0.8rem; font-size: 0.75rem; box-shadow: 0 0.5rem 1.4rem rgba(0,0,0,0.18); }
+}
+
+@media (min-width: 769px) {
+    .menu-movil-redes { display: none !important; }
+}
+
