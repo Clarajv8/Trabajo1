@@ -40,7 +40,6 @@ YA ESTÁ FUNCIONANDO BOOSTRAP!!
 
 Qué hacer:
 - Que al deslizar hacia abajo, se vea bien el INTRO
-- La barra amarilla del HOLA se corta, debería ser bucle nunca quedarse sin texto..., quizá verse más grande incluso e ir ligeramente más rápido.
 - Mejorar la animación del POPUP
 - El menú, animación hover.
 - Mejorar el cursor; desaparece si la pantalla es pequeña ya que lo detecta como un movil (mediaquery) pero si estamos en ordenador nos desaparece también y es imposible navegar de esta forma
@@ -49,3 +48,4 @@ Qué hacer:
 
 CUMPLICO:
 - Conseguir que el POPUP solo aparezca una vez, actualmente aparece todo el rato cuando voy de Datos a INDEX y es molesto
+- La barra amarilla del HOLA se corta, debería ser bucle nunca quedarse sin texto..., quizá verse más grande incluso e ir ligeramente más rápido.
