@@ -207,7 +207,7 @@ main:has(.hero-collage-section) {
 
 .about-me-text { position: absolute; top: 12vh; left: 8vw; max-width: 22rem; }
 .about-me-title { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 0.12em; font-weight: 800; margin-bottom: 0.8rem; }
-.about-me-subtitle { font-size: 1rem; line-height: 1.6; color: #555; }
+.about-me-subtitle { font-size: 1rem; line-height: 1.6; color: #c9c9c9; }
 
 .about-card {
     position: absolute; width: 10rem; height: 12rem; border-radius: 1rem; padding: 1rem;
@@ -219,46 +219,144 @@ main:has(.hero-collage-section) {
 }
 .about-card:active { cursor: grabbing; }
 .about-card-label { color: #fff; text-shadow: 0 0.1rem 0.35rem rgba(0,0,0,0.4); }
+
 .about-overlay {
-    position: fixed; inset: 0; width: 100vw; height: 100vh;
-    background-color: rgba(0,0,0,0.92); display: none;
-    align-items: center; justify-content: center; z-index: 2000;
+    position: fixed; 
+    inset: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(0,0,0,0.92); 
+    display: none;
+    align-items: center; 
+    justify-content: center; 
+    z-index: 2000;
 }
 .about-overlay.is-visible { display: flex; }
-.about-overlay-content { max-width: 90vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
-.about-overlay-img { max-width: 100%; max-height: 100%; object-fit: cover; border-radius: 1rem; }
+
 .about-overlay-close {
     position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
     font-size: 2rem; line-height: 1; color: #ffffff; cursor: pointer; padding: 0.5rem;
 }
 .about-overlay-close:hover { opacity: 0.8; }
 
+.about-overlay-content {
+    max-width: 80vw;
+    max-height: 80vh;
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.about-overlay-text,
+.about-overlay-media {
+    flex: 1 1 0;
+}
+
+.about-overlay-text {
+    color: #f5f5f5;
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about-overlay-text h2 {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 1rem;
+}
+
+.about-overlay-text p {
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.85);
+}
+
+.about-overlay-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-overlay-img {
+    width: 100%;
+    height: 100%;
+    max-height: 70vh;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+
+
 
 /* =========================================
    5. BACKSTAGE & FOOTER
    ========================================= */
 .backstage-section { padding-inline: 0; }
-.backstage-title { text-transform: uppercase; letter-spacing: 0.14em; font-size: 1.4rem; font-weight: 800; }
-.backstage-subtitle { font-size: 0.95rem; max-width: 30rem; margin-inline: auto; color: rgba(255,255,255,0.7); }
+.backstage-title { 
+    text-transform: uppercase; 
+    letter-spacing: 0.14em; 
+    font-size: 1.4rem; 
+    font-weight: 800; 
+}
+.backstage-subtitle { 
+    font-size: 0.95rem; 
+    max-width: 30rem; 
+    margin-inline: auto; 
+    color: rgba(255,255,255,0.7); 
+}
 
 .backstage-gallery {
-    width: 100vw; max-width: 100vw; padding: 0 6vw 6vh; margin-inline: auto;
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(14rem, 40vw), 1fr));
-    grid-auto-rows: 12rem; grid-auto-flow: dense; gap: 1.5rem;
+    width: 100vw; 
+    max-width: 100vw; 
+    padding: 0 6vw 6vh; 
+    margin-inline: auto;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 40vw), 1fr));
+    grid-auto-rows: 12rem; 
+    grid-auto-flow: dense; 
+    gap: 1.5rem;
 }
-.backstage-item { position: relative; display: block; overflow: hidden; border-radius: 1rem; color: inherit; transform: translate3d(0,0,0); }
+
+.backstage-item { 
+    position: relative; 
+    display: block; 
+    overflow: hidden; 
+    border-radius: 1rem; 
+    color: inherit; 
+    transform: translate3d(0,0,0);
+}
+
 .backstage-media {
-    width: 100%; height: 100%; border-radius: 1rem; overflow: hidden;
+    width: 100%; 
+    height: 100%; 
+    border-radius: 1rem; 
+    overflow: hidden;
     background: radial-gradient(circle at 20% 20%, #f97316, #3b82f6);
-    display: flex; align-items: center; justify-content: center;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
 }
-.backstage-media img, .backstage-media iframe { width: 100%; height: 100%; object-fit: cover; border: 0; }
+
+.backstage-media img, .backstage-media iframe {
+     width: 100%; 
+     height: 100%; 
+     object-fit: cover; 
+     border: 0; 
+    }
 
 .backstage-caption {
-    position: absolute; inset: 0; padding: 1.2rem;
-    display: flex; flex-direction: column; justify-content: flex-end;
+    position: absolute; 
+    inset: 0; 
+    padding: 1.2rem;
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end;
     background: linear-gradient(to top, rgba(0,0,0,0.75), rgba(0,0,0,0.0));
-    opacity: 0; transform: translateY(10%); transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0; transform: translateY(10%); 
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .backstage-caption-title { font-size: 1rem; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
 .backstage-caption-text { font-size: 0.85rem; color: rgba(255,255,255,0.85); }
@@ -435,7 +533,7 @@ main:has(.hero-collage-section) {
     font-family: 'Permanent Marker', cursive; font-size: 1.5rem; color: #000099; transform: rotate(-5deg); display: inline-block;
 }
 .post-it {
-    background-color: #ffeb3b; width: 180px; height: 180px; padding: 1.5rem;
+    background-color: #ff7d86; width: 180px; height: 180px; padding: 1.5rem;
     box-shadow: 2px 4px 12px rgba(0,0,0,0.3); transform: rotate(-6deg);
     display: flex; align-items: center; justify-content: center; text-align: center;
     transition: transform 0.1s;
@@ -571,6 +669,24 @@ main:has(.hero-collage-section) {
         .draggable-zone { display: flex; flex-direction: column; align-items: center; padding-top: 20px; }
     .drag-item { position: relative;  top: auto !important; left: auto !important; right: auto !important; margin-bottom: 2rem; width: 90% !important;  }
     #item-postit { width: 180px !important;  transform: rotate(-3deg); }
+
+    .about-overlay-content {
+        flex-direction: column;
+        max-width: 90vw;
+        max-height: 90vh;
+    }
+
+    .about-overlay-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .about-overlay-text p {
+        font-size: 0.9rem;
+    }
+
+    .about-overlay-img {
+        max-height: 40vh;
+    }
 }
 
 @media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
