@@ -40,6 +40,7 @@ YA ESTÁ FUNCIONANDO BOOSTRAP!!
 
 Qué hacer:
 - Conseguir que el POPUP solo aparezca una vez, actualmente aparece todo el rato cuando voy de Datos a INDEX y es molesto
+- Que al deslizar hacia abajo, se vea bien el INTRO
 - Mejorar la animación del POPUP
 - El menú, animación hover.
 - Mejorar el cursor (desaparece si la pantalla es pequeña ya que lo detecta como un movil (mediaquery) pero si estamos en ordenador nos desaparece también y es imposible navegar de esta forma
