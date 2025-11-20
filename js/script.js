@@ -26,16 +26,24 @@ $(function() {
         console.error("❌ Error: Falta el div #modalLogin o la librería Bootstrap.");
     }
 
-    // --- 2. HEADER CBA (SCROLL) ---
-    $window.on('scroll', function() {
-        if ($window.scrollTop() > 50) {
-            $header.addClass('scrolled');
-            $body.addClass('scrolled');
-        } else {
-            $header.removeClass('scrolled');
-            $body.removeClass('scrolled');
-        }
-    });
+    // --- 2. HEADER CBA ---
+    if ($body.hasClass('page-datos')) {
+        // SI ES DATOS: Forzamos la clase 'scrolled' desde el inicio y para siempre
+        $header.addClass('scrolled');
+        $body.addClass('scrolled');
+        // No añadimos el listener de scroll para que no se quite nunca
+    } else {
+        // SI ES INDEX (o cualquier otra): Usamos la lógica normal de scroll
+        $window.on('scroll', function() {
+            if ($window.scrollTop() > 50) {
+                $header.addClass('scrolled');
+                $body.addClass('scrolled');
+            } else {
+                $header.removeClass('scrolled');
+                $body.removeClass('scrolled');
+            }
+        });
+    }
 
     // --- 3. LÓGICA INTERNA DEL POPUP ---
     const $viewLogin = $('#view-login');
@@ -246,7 +254,6 @@ $(function() {
         });
     }
 
-
         // --- 6. BACKSTAGE: GALERÍA CON TAMAÑOS ALEATORIOS ---
 
     const $backstageItems = $('.backstage-item');
@@ -267,6 +274,4 @@ $(function() {
             }
         });
     }
-
-
 });
