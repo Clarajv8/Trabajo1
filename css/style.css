@@ -75,11 +75,17 @@ a, button, input, .btn { cursor: none; }
 
 
 /* =========================================
-   3. HERO SECTION (COLLAGE & TICKER)
+   3. HERO SECTION
    ========================================= */
-.hero-collage-section {
+main {
+    padding-top: 120px; 
+}
+main:has(.hero-collage-section) {
+    padding-top: 0 !important;
+}
+   .hero-collage-section {
     position: relative;
-    height: 100vh;
+    height: 150vh;
     width: 100%;
     background-color: #1a1a1a; 
     display: flex; align-items: center; justify-content: center;
@@ -96,12 +102,12 @@ a, button, input, .btn { cursor: none; }
 
 .poster-container {
     position: relative;
-    width: 85vw; height: 70vh; 
+    width: 80vw; height: 100vh; 
     background: #fff;
     box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     transform: rotate(-1deg);
     padding: 15px; z-index: 10;
-    margin-top: 8vh;
+    margin-top: 25vh;
 }
 
 .poster-inner, .carousel-inner, .carousel-item {
