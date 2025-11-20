@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CBA - Datos Legales</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  
+  <body class="page-diseñadores">
+    
+    <div class="cursor-outline"></div>
+
+    <header class="header-principal">
+      <nav class="navbar-custom container">
+        <a href="index.html" class="navbar-logo"> <img src="media/img/logo CBA.png" alt="logo CBA" class="logo-img"> </a>
+        
+        <div class="navbar-menu">
+          <div class="menu-movil-links">
+            <a href="tendencias.html" class="navbar-enlace">Tendencias</a>
+            <a href="diseñadores.html" class="navbar-enlace">Diseñadores</a>
+            <a href="datos.html" class="navbar-enlace">Datos</a>
+            <a href="index.html#backstage" class="navbar-enlace">Backstage</a>
+            <a href="#" class="btn btn-dark rounded-pill px-4 accion-abrir-registro">Suscribirse</a>
+          </div>
+          <div class="menu-movil-redes">
+            <a href="#">Instagram</a><a href="#">Twitter</a><a href="#">Pinterest</a>
+          </div>
+        </div>
+          
+        <button class="navbar-menu-movil-icono" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="">
+        
+        
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer-principal py-5 border-top" id="footer">
+      <div class="container">
+
+        <!-- REDES -->
+        <div class="row justify-content-center mb-4">
+          <div class="col-12 col-md-4 d-flex justify-content-center mb-3 mb-md-0">
+            <div class="footer-img-box"> 
+              <a href="https://www.instagram.com/"><img src="media/img/footer-1.png" alt="zapatos1"></a>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 d-flex justify-content-center mb-3 mb-md-0">
+            <div class="footer-img-box">
+              <a href="https://www.youtube.com/?app=desktop&hl=es">
+                <img src="media/img/footer-2.png" alt="zapatos2">
+              </a>
+            </div>
+          </div>
+
+          <div class="col-12 col-md-4 d-flex justify-content-center">
+            <div class="footer-img-box"> 
+              <a href="https://www.tiktok.com/login?lang=es-419&redirect_url=https%3A%2F%2Fwww.tiktok.com%2Fupload%3Flang%3Des">
+                <img src="media/img/footer-3.png" alt="zapatos3">
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- INFO -->
+        <div class="text-center mt-4">
+          <p>&copy; <span id="ano-actual"></span> CBA.</p>
+        </div>
+
+      </div>
+    </footer>
+
+<!-- MODAL DE REGISTRO -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        
+        <div class="modal-content modal-receipt border-0">
+            
+            <div class="receipt-tape"></div>
+
+            <div class="modal-header border-0 pb-0">
+              <h5 class="modal-title fw-bold w-100 text-center mt-3">CBA STORE</h5>
+              <img src="media/img/boton 1.png" alt="cerrar" class="about-overlay-close-img" data-bs-dismiss="modal" aria-label="Cerrar"role="button">
+          </div>
+
+            <div class="modal-body p-4 pt-2">
+                
+                <div class="receipt-divider mb-4">
+                    <span>**********************************</span>
+                </div>
+
+                <div id="view-login">
+                    <h3 class="text-center mb-4">INICIA SESIÓN</h3>
+                    <form id="form-login">
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small fw-bold">Correo</label>
+                            <input type="email" class="form-control input-ticket" placeholder="usuario@cba.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small fw-bold">Contraseña</label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control input-ticket" id="input-pass-login" placeholder="********" required>
+                                <button type="button" class="btn-ojo-ticket" onclick="togglePass('input-pass-login', this)">
+                                    <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-dark btn-ticket">ENTRAR</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p class="small">¿NO TIENES CUENTA? <a href="#" id="btn-ir-registro" class="text-decoration-underline fw-bold">SUSCRÍBETE</a></p>
+                    </div>
+                </div>
+
+                <div id="view-registro" style="display: none;">
+                    <h3 class="text-center mb-4">SUSCRÍBETE</h3>
+                    <form id="form-registro">
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small fw-bold">Nombre</label>
+                            <input type="text" class="form-control input-ticket" placeholder="Tu Nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small fw-bold">Correo</label>
+                            <input type="email" class="form-control input-ticket" placeholder="usuario@cba.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label text-uppercase small fw-bold">Crear Contraseña</label>
+                            <div class="password-wrapper">
+                                <input type="password" class="form-control input-ticket" id="input-pass-registro" placeholder="********" required>
+                                <button type="button" class="btn-ojo-ticket" onclick="togglePass('input-pass-registro', this)">
+                                    <svg class="icono-ojo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" style="width:20px"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z"></path><path fill-rule="evenodd" d="M1.323 11.447C2.811 9.22 5.877 6.5 12 6.5s9.189 2.72 10.677 4.947a.75.75 0 010 .513C21.189 14.78 18.123 17.5 12 17.5s-9.189-2.72-10.677-4.947a.75.75 0 010-.513zM12 13.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" clip-rule="evenodd"></path></svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="d-grid gap-2 mt-4">
+                            <button type="submit" class="btn btn-dark btn-ticket">REGISTRARSE</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p class="small">¿YA TIENES CUENTA? <a href="#" id="btn-ir-login" class="text-decoration-underline fw-bold">INICIA SESIÓN</a></p>
+                    </div>
+                </div>
+
+                <div id="view-exito" style="display: none;" class="text-center py-4">
+                    <h2 class="fw-bold mb-3">¡BIENVENIDO!</h2>
+                    <p class="mb-4">TRANSACCIÓN APROBADA<br>#004921</p>
+                    
+                    <div class="barcode-strip">
+                        CBA-LEGAL-DATA
+                    </div>
+
+                    <button class="btn btn-dark btn-ticket w-100" data-bs-dismiss="modal">CONTINUAR</button>
+                </div>
+
+                <div class="receipt-divider mt-4 mb-2">
+                    <span>**********************************</span>
+                </div>
+                <div class="text-center small text-muted text-uppercase">
+                    Gracias por tu visita<br>CBA - Moda Sostenible
+                </div>
+
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
