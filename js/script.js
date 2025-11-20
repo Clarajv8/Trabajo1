@@ -4,6 +4,7 @@ $(function() {
     const $header = $('.header-principal');
     
     let loginModal = null;
+    
 
     // --- 1. INICIALIZACIÓN INMEDIATA ---
     const modalElement = document.getElementById('modalLogin');

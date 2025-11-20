@@ -6,6 +6,8 @@
     <title>CBA - Revista de Moda Sostenible</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- En el head de index.html -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;800&family=Permanent+Marker&family=VT323&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -40,12 +42,56 @@
     <main>
 
       <!-- INTRO -->
-      <div class="d-flex flex-column justify-content-center align-items-center bg-light text-center" style="height: 100vh; padding-top: 70px;">
-          <div class="container">
-            <h1 class="display-1 fw-bold">Bienvenido a CBA</h1>
-            <p class="lead text-muted">La nueva era de la moda sostenible.</p>
+    <section id="hero-collage" class="hero-collage-section">
+      
+      <div class="wall-texture"></div>
+
+      <div class="poster-container">
+          
+          <div class="tape-corner tape-tl"></div>
+          <div class="tape-corner tape-tr"></div>
+          <div class="tape-corner tape-bl"></div>
+          <div class="tape-corner tape-br"></div>
+
+          <div id="carouselHero" class="carousel slide carousel-fade poster-inner" data-bs-ride="carousel" data-bs-interval="3500">
+            <div class="carousel-inner">
+              
+              <div class="carousel-item active">
+                <div class="poster-img" style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1920');"></div>
+                <div class="poster-content">
+                   <h2 class="poster-title">NUEVA<br>ERA</h2>
+                   <a href="#about-me" class="btn-cutout">LEER EL MANIFIESTO &rarr;</a>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="poster-img" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1920');"></div>
+                <div class="poster-content">
+                   <h2 class="poster-title">ZERO<br>WASTE</h2>
+                   <a href="diseñadores.html" class="btn-cutout">VER DISEÑADORES &rarr;</a>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <div class="poster-img" style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1920');"></div>
+                <div class="poster-content">
+                   <h2 class="poster-title">RAW<br>MATERIAL</h2>
+                   <a href="tendencias.html" class="btn-cutout">EXPLORAR TRENDS &rarr;</a>
+                </div>
+              </div>
+
+            </div>
           </div>
       </div>
+
+      <div class="ticker-bottom-wrapper">
+        <div class="ticker-content">
+             /// SUSTAINABLE FASHION /// NO PLASTIC /// ORGANIC COTTON /// HANDMADE IN SPAIN /// REBELIÓN TEXTIL /// 
+             /// SUSTAINABLE FASHION /// NO PLASTIC /// ORGANIC COTTON /// HANDMADE IN SPAIN /// REBELIÓN TEXTIL /// 
+        </div>
+      </div>
+
+    </section>
       
       <!-- ABOUT ME -->
       <section id="about-me" class="about-me-section">
