@@ -39,9 +39,13 @@ ABOUT ME: Los elementos se deben poder mover librmente, o que haga algún efecto
 YA ESTÁ FUNCIONANDO BOOSTRAP!!
 
 Qué hacer:
-- Conseguir que el POPUP solo aparezca una vez, actualmente aparece todo el rato cuando voy de Datos a INDEX y es molesto
 - Que al deslizar hacia abajo, se vea bien el INTRO
+- La barra amarilla del HOLA se corta, debería ser bucle nunca quedarse sin texto..., quizá verse más grande incluso e ir ligeramente más rápido.
 - Mejorar la animación del POPUP
 - El menú, animación hover.
-- Mejorar el cursor (desaparece si la pantalla es pequeña ya que lo detecta como un movil (mediaquery) pero si estamos en ordenador nos desaparece también y es imposible navegar de esta forma
+- Mejorar el cursor; desaparece si la pantalla es pequeña ya que lo detecta como un movil (mediaquery) pero si estamos en ordenador nos desaparece también y es imposible navegar de esta forma
 - Cursor; NO se pone blanco sobre negro como antes!
+- Estaría guay que se pudisesn mover a voluntad los elementos del DATOS.htm
+
+CUMPLICO:
+- Conseguir que el POPUP solo aparezca una vez, actualmente aparece todo el rato cuando voy de Datos a INDEX y es molesto
