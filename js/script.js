@@ -86,10 +86,10 @@ $(function() {
         const input = document.getElementById(idInput);
         if (input.type === "password") {
             input.type = "text";
-            $(btn).css('color', 'white');
+            $(btn).css('color', '#000000'); 
         } else {
             input.type = "password";
-            $(btn).css('color', '#999');
+            $(btn).css('color', '#999999'); 
         }
     };
 
