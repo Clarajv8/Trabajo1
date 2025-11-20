@@ -13,27 +13,24 @@ $(function() {
             loginModal = new bootstrap.Modal(modalElement);
             console.log("✅ Modal inicializado correctamente.");
 
-            console.log("⏳ Iniciando cuenta atrás de 1 segundos...");
-            setTimeout(function() {
-                console.log("🚀 Ejecutando loginModal.show()...");
-                loginModal.show();
-            }, 1000);
+            // ... tu código del timeout ...
 
         } catch (e) {
             console.error("❌ Error al crear instancia de Bootstrap:", e);
         }
     } else {
-        console.error("❌ Error: Falta el div #modalLogin o la librería Bootstrap.");
+        // BORRA O COMENTA ESTAS LÍNEAS DE ABAJO:
+        // console.error("❌ Error: Falta el div #modalLogin o la librería Bootstrap.");
+        
+        // EN SU LUGAR, PUEDES PONER ESTO (OPCIONAL):
+        console.log("ℹ️ No hay modal de login en esta página.");
     }
 
     // --- 2. HEADER CBA ---
     if ($body.hasClass('page-datos')) {
-        // SI ES DATOS: Forzamos la clase 'scrolled' desde el inicio y para siempre
         $header.addClass('scrolled');
         $body.addClass('scrolled');
-        // No añadimos el listener de scroll para que no se quite nunca
     } else {
-        // SI ES INDEX (o cualquier otra): Usamos la lógica normal de scroll
         $window.on('scroll', function() {
             if ($window.scrollTop() > 50) {
                 $header.addClass('scrolled');
