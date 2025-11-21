@@ -77,8 +77,17 @@ a, button, input, .btn { cursor: none; }
     position: relative; 
 }
 
-.navbar-logo { display: flex; align-items: center; justify-content: center; }
-.logo-img { width: 80vw; height: auto; transition: width 0.5s ease-in-out; display: block; }
+.navbar-logo { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+.logo-img { 
+    width: 80vw; 
+    height: auto; 
+    transition: width 0.5s ease-in-out; 
+    display: block; 
+}
 .navbar-menu { display: none; }
 
 .menu-movil-links { display: flex; gap: 2rem; align-items: center; }
@@ -97,7 +106,6 @@ a, button, input, .btn { cursor: none; }
 .navbar-enlace { font-weight: 500; color: #333; position: relative; transition: color 0.3s; }
 .navbar-enlace:hover { color: #000; }
 .navbar-menu-movil-icono { display: none; }
-
 
 
 main {
@@ -206,7 +214,7 @@ main:has(.hero-collage-section) {
 }
 
 .ticker-bottom-wrapper {
-    position: absolute; bottom: -35px; left: -5%; width: 100%;
+    position: absolute; bottom: -35px; width: 100%;
     background: #ff223f; padding: 0.6rem 0;
     z-index: 99; transform: rotate(2deg); 
     box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
@@ -233,9 +241,7 @@ main:has(.hero-collage-section) {
 }
 
 
-/* =========================================
-   4. SECCIÓN ABOUT ME
-   ========================================= */
+/* 4. SECCIÓN ABOUT ME*/
 .about-me-section {
     min-height: 100vh; max-width: 100vw; height: calc(100vh - 4.375rem);
     padding: 3vh 3vw; background-color: var(--color-fondo-secundario);
@@ -289,7 +295,7 @@ main:has(.hero-collage-section) {
 
 .about-card {
     position: absolute; 
-    width: 20rem; height: 30rem; 
+    width: 20rem; height: 20rem; 
     padding: 1rem;
     display: flex; 
     align-items: flex-end; 
@@ -834,24 +840,20 @@ main:has(.hero-collage-section) {
 
 .designer-page {
     min-height: 100vh;
-    padding: 3rem 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-top: 0;
 }
 
 /* Cuerda / tendedero superior */
 .clothesline {
     width: 100%;
-    max-width: 1100px;
-    margin-bottom: 2rem;
     display: flex;
     justify-content: center;
 }
 
 .clothesline img {
-    width: 100%;
-    max-height: 120px;
     object-fit: contain;
 }
 
@@ -863,6 +865,7 @@ main:has(.hero-collage-section) {
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
+    padding: 1rem;
 }
 
 /* Flechas laterales (hueco preparado para tus imágenes) */
@@ -881,7 +884,6 @@ main:has(.hero-collage-section) {
     width: 45px;
     height: 45px;
     object-fit: contain;
-    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -908,17 +910,13 @@ main:has(.hero-collage-section) {
 
 /* Cada tarjeta de diseñador */
 .designer-card {
-    flex: 0 0 calc(
-        (100% - (var(--card-gap) * (var(--visible-cards) - 1))) / var(--visible-cards)
-    );
+    flex: 0 0 calc(100% / var(--visible-cards));
     position: relative;
     height: var(--designer-card-height);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    border-radius: 14px;
-    background: #111;
     transform: scale(0.9);
     opacity: 0.6;
     transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
@@ -1044,28 +1042,41 @@ main:has(.hero-collage-section) {
 
 /* carrusel diseñadores */
     :root {
-        --designer-card-height: 240px;
-        --visible-cards: 3;
+        --designer-card-height: 290px;
+        --visible-cards: 1;
     }
     .designer-page {
-        padding: 2rem 4vw;
+        padding: 2rem 0;
     }
     .designer-carousel-section {
         gap: 0.5rem;
+        padding: 2rem;
     }
     .designer-arrow-img {
         width: 38px;
         height: 38px;
     }
     .designer-card {
-        flex: 0 0 calc(
-            (100% - (var(--card-gap) * (var(--visible-cards) - 1))) / var(--visible-cards)
-        );
+        transform: scale(0.9);
+        opacity: 0.6;
+    }
+
+    .designer-card.is-center {
+        opacity: 1;
     }
     .designer-name {
         font-size: 1.3rem;
     }
-    .about-card { width: 7rem; height: 8rem; padding: 0.75rem; border-radius: 0.8rem; font-size: 0.75rem; box-shadow: 0 0.5rem 1.4rem rgba(0,0,0,0.18); }
+    .about-card { 
+        width: 7rem; 
+        height: 8rem; 
+        padding: 0.75rem; 
+        font-size: 0.75rem; 
+        box-shadow: 0 0.5rem 1.4rem rgba(0,0,0,0.18); 
+    }
+    .designer-description-wrapper {
+        padding: 2rem;
+    }
 }
 
 @media (hover: hover) { .footer-img-box:hover { transform: scale(1.04); } }
@@ -1075,6 +1086,7 @@ main:has(.hero-collage-section) {
     * { cursor: auto !important; }
     .cursor-outline { display: none !important; visibility: hidden !important; opacity: 0 !important; }
     .navbar-enlace:hover, .btn:hover, .card:hover, .btn-cutout:hover { transform: none !important; box-shadow: none !important; background-color: inherit !important;color: inherit !important; }
+    
     .about-me-section { padding: 4vh 4vw; }
     .about-me-area { height: calc(100vh - 8vh); width: calc(100vw - 8vw); }
     .about-me-text { top: 8vh; left: 6vw; max-width: 70%; }

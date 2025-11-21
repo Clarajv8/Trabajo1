@@ -3,13 +3,13 @@ $(function() {
     const $body = $('body');
     const $header = $('.header-principal');
     
-    // 1. INICIALIZACIÓN Y ESTADO
+// 1. INICIALIZACIÓN Y ESTADO
     let loginModal = null;
     
     // LEER ESTADO DE MEMORIA
     let usuarioLogueado = sessionStorage.getItem('usuario_logueado') === 'true';
 
-    // Si ya estaba logueado, actualizar botón inmediatamente
+    // Si ya estaba logueado, actualizar botón directamente
     if (usuarioLogueado) {
         $('.accion-abrir-registro').text("BIENVENIDO");
     }
@@ -35,7 +35,7 @@ $(function() {
         }
     }
 
-    // 2. HEADER SCROLL
+// 2. HEADER SCROLL
     if ($body.is('.page-datos, .page-diseñadores')) {
         $header.addClass('scrolled');
         $body.addClass('scrolled');
@@ -51,7 +51,7 @@ $(function() {
         });
     }
 
-    // 3. LÓGICA MODAL
+// 3. LÓGICA MODAL
     const $viewLogin = $('#view-login');
     const $viewRegistro = $('#view-registro');
     const $viewExito = $('#view-exito');
@@ -90,7 +90,7 @@ $(function() {
     $('#form-login, #form-registro').on('submit', function(e) {
         e.preventDefault();
         
-        // GUARDAR ESTADO EN MEMORIA
+        // GUARDAR ESTADO EN MEMORIA 
         usuarioLogueado = true;
         sessionStorage.setItem('usuario_logueado', 'true');
         sessionStorage.setItem('popup_visto', 'true');
@@ -109,7 +109,7 @@ $(function() {
         });
     }
 
-    // 4. UTILIDADES
+// 4. UTILIDADES
     window.togglePass = function(idInput, btn) {
         const input = document.getElementById(idInput);
         if (input.type === "password") {
@@ -140,7 +140,7 @@ $(function() {
     
     $('#ano-actual').text(new Date().getFullYear());
 
-    // 5. ABOUT ME
+// 5. ABOUT ME
     const $aboutArea = $('#about-me-area');
     const $aboutCards = $('.about-card');
     const $aboutOverlay = $('#about-overlay');
@@ -230,7 +230,7 @@ $(function() {
 
     }
 
-    // 6. BACKSTAGE
+// 6. BACKSTAGE
     const $backstageItems = $('.backstage-item');
     if ($backstageItems.length) {
         const clasesTamaño = ['backstage-item--tall', 'backstage-item--wide', 'backstage-item--big', ''];
@@ -241,7 +241,7 @@ $(function() {
         });
     }
 
-    // 7. DRAG & DROP DATOS
+// 7. DRAG & DROP DATOS
     if ($('.draggable-zone').length && $window.width() > 768) {
         
         let activeDragItem = null;
@@ -340,7 +340,7 @@ $(function() {
         }
     }
 
-        // 8. CARRUSEL DISEÑADORES
+    // 8. CARRUSEL DISEÑADORES – TODAS LAS FOTOS PUEDEN SER CENTRALES
     const $designerTrack = $('.designer-track');
 
     if ($designerTrack.length) {
@@ -349,57 +349,53 @@ $(function() {
         const $btnNext = $('.designer-arrow--next');
         const $nameEl = $('.designer-name');
         const $textEl = $('.designer-text');
+        
 
-        // Cuántas tarjetas visibles (leído desde CSS :root)
+        // Número de tarjetas "pensadas" para caber en pantalla (igual que en el CSS)
         const rootStyles = getComputedStyle(document.documentElement);
         const VISIBLE = parseInt(
             rootStyles.getPropertyValue('--visible-cards')
         ) || 5;
 
-        let baseIndex = 0; // índice de la card más a la izquierda
+        const CARD_WIDTH = 100 / VISIBLE;  // por ejemplo 20% si son 5
+        const total = $designerCards.length;
 
-        function clampBaseIndex() {
-            const maxBase = Math.max(0, $designerCards.length - VISIBLE);
-            if (baseIndex < 0) baseIndex = maxBase;
-            if (baseIndex > maxBase) baseIndex = 0;
+        // Índice de la tarjeta que debe estar en el centro
+        let currentIndex = 0;
+
+        function wrapIndex(index) {
+            return (index + total) % total;
         }
 
         function updateCarousel() {
-            clampBaseIndex();
-
-            const cardWidthPercent = 100 / VISIBLE;
-            const translateX = -(baseIndex * cardWidthPercent);
+            // Calculamos cuánto hay que mover la tira para que
+            // el centro de la tarjeta [currentIndex] quede en el 50% de la pantalla
+            const translateX = 50 - (currentIndex + 0.5) * CARD_WIDTH;
 
             $designerTrack.css('transform', `translateX(${translateX}%)`);
 
-            const centerOffset = Math.floor(VISIBLE / 2);
-            const centerIndex = baseIndex + centerOffset;
-
+            // Actualizar quién es la "central"
             $designerCards.removeClass('is-center');
+            const $centerCard = $designerCards.eq(currentIndex);
+            $centerCard.addClass('is-center');
 
-            const $centerCard = $designerCards.eq(centerIndex);
-            if ($centerCard.length) {
-                $centerCard.addClass('is-center');
-                $nameEl.text($centerCard.data('name') || '');
-                $textEl.text($centerCard.data('description') || '');
-            } else {
-                $nameEl.text('');
-                $textEl.text('');
-            }
+            // Actualizar textos
+            $nameEl.text($centerCard.data('name') || '');
+            $textEl.text($centerCard.data('description') || '');
         }
 
         function goNext() {
-            baseIndex += 1;
+            currentIndex = wrapIndex(currentIndex + 1);
             updateCarousel();
         }
 
         function goPrev() {
-            baseIndex -= 1;
+            currentIndex = wrapIndex(currentIndex - 1);
             updateCarousel();
         }
 
-        // Auto-play (5 segundos)
-        const AUTO_DELAY = 5000;
+        // Auto–play
+        const AUTO_DELAY = 5000; // 5 segundos
         let timer = setInterval(goNext, AUTO_DELAY);
 
         function resetAutoplay() {
@@ -407,6 +403,7 @@ $(function() {
             timer = setInterval(goNext, AUTO_DELAY);
         }
 
+        // Flechas
         $btnNext.on('click', function () {
             goNext();
             resetAutoplay();
@@ -417,10 +414,10 @@ $(function() {
             resetAutoplay();
         });
 
-        // Inicializar al cargar
+        // Primera colocación
         updateCarousel();
 
-        // Recalcular un poco después de redimensionar
+        // Recalcular cuando cambie el tamaño (por si acaso)
         $(window).on('resize', function () {
             setTimeout(updateCarousel, 300);
         });
