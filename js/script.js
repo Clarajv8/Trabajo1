@@ -13,13 +13,10 @@ $(function() {
     const $body = $('body');
     const $header = $('.header-principal');
     
-// 1. INICIALIZACIÓN Y ESTADO
+
     let loginModal = null;
-    
-    // LEER ESTADO DE MEMORIA
     let usuarioLogueado = sessionStorage.getItem('usuario_logueado') === 'true';
 
-    // Si ya estaba logueado, actualizar botón directamente
     if (usuarioLogueado) {
         $('.accion-abrir-registro').text("BIENVENIDO");
     }
@@ -30,10 +27,9 @@ $(function() {
         try {
             loginModal = new bootstrap.Modal(modalElement);
             
-            // AUTO POPUP SOLO SI: No se ha visto Y no está logueado
             if (!sessionStorage.getItem('popup_visto') && !usuarioLogueado) {
                 setTimeout(function() {
-                    if (!usuarioLogueado) { // Doble check
+                    if (!usuarioLogueado) {
                         loginModal.show();
                         sessionStorage.setItem('popup_visto', 'true');
                     }
@@ -45,7 +41,6 @@ $(function() {
         }
     }
 
-// 2. HEADER SCROLL
     if ($body.is('.page-datos, .page-diseñadores')) {
         $header.addClass('scrolled');
         $body.addClass('scrolled');
@@ -61,7 +56,6 @@ $(function() {
         });
     }
 
-// 3. LÓGICA MODAL
     const $viewLogin = $('#view-login');
     const $viewRegistro = $('#view-registro');
     const $viewExito = $('#view-exito');
@@ -70,7 +64,6 @@ $(function() {
     $botonesSuscripcion.on('click', function(e) {
         e.preventDefault();
         
-        // Cerrar menú móvil
         if ($('.navbar-menu').hasClass('menu-abierto')) {
             $('.navbar-menu').removeClass('menu-abierto');
             $('.navbar-menu-movil-icono').removeClass('icono-activo');
@@ -79,7 +72,7 @@ $(function() {
 
         if (loginModal) {
             loginModal.show();
-            sessionStorage.setItem('popup_visto', 'true'); // Marcar como visto al abrir manual
+            sessionStorage.setItem('popup_visto', 'true'); 
 
             if (usuarioLogueado) {
                 $viewLogin.hide(); $viewRegistro.hide(); $viewExito.show();
@@ -99,8 +92,6 @@ $(function() {
 
     $('#form-login, #form-registro').on('submit', function(e) {
         e.preventDefault();
-        
-        // GUARDAR ESTADO EN MEMORIA 
         usuarioLogueado = true;
         sessionStorage.setItem('usuario_logueado', 'true');
         sessionStorage.setItem('popup_visto', 'true');
@@ -119,7 +110,6 @@ $(function() {
         });
     }
 
-// 4. UTILIDADES
     window.togglePass = function(idInput, btn) {
         const input = document.getElementById(idInput);
         if (input.type === "password") {
@@ -150,7 +140,6 @@ $(function() {
     
     $('#ano-actual').text(new Date().getFullYear());
 
-// 5. ABOUT ME
     const $aboutArea = $('#about-me-area');
     const $aboutCards = $('.about-card');
     const $aboutOverlay = $('#about-overlay');
@@ -226,7 +215,6 @@ $(function() {
 
         function cerrarOverlay() {
             $aboutOverlay.removeClass('is-visible');
-            // $aboutOverlayImg.attr('src', '');
             $body.removeClass('no-scroll');
         }
 
@@ -237,7 +225,6 @@ $(function() {
 
     }
 
-// 6. BACKSTAGE
     const $backstageItems = $('.backstage-item');
     if ($backstageItems.length) {
         const clasesTamaño = ['backstage-item--tall', 'backstage-item--wide', 'backstage-item--big', ''];
@@ -248,7 +235,6 @@ $(function() {
         });
     }
 
-// 7. DRAG & DROP DATOS
     if ($('.draggable-zone').length && $window.width() > 768) {
         
         let activeDragItem = null;
@@ -282,20 +268,16 @@ $(function() {
             const $container = $('.draggable-zone');
             const containerWidth = $container.width();
             const containerHeight = $container.height();
-            
             const itemWidth = activeDragItem.outerWidth();
             const itemHeight = activeDragItem.outerHeight();
 
             let newLeft = e.pageX - offset.x;
             let newTop = e.pageY - offset.y;
 
-            // Límites
             if (newLeft < 0) newLeft = 0;
             if (newLeft + itemWidth > containerWidth) newLeft = containerWidth - itemWidth;
             if (newTop < 0) newTop = 0;
             if (newTop + itemHeight > containerHeight) newTop = containerHeight - itemHeight;
-
-            // Colisiones
             if (!activeDragItem.hasClass('post-it')) {
                 let $obstacle = null;
                 if (activeDragItem.attr('id') === 'item-ticket') $obstacle = $paper;
@@ -347,62 +329,67 @@ $(function() {
         }
     }
 
-// 8. CARRUSEL DISEÑADORES – TODAS LAS FOTOS PUEDEN SER CENTRALES
-    const $designerTrack = $('.designer-track');
-
+const $designerTrack = $('.designer-track');
 
     if ($designerTrack.length) {
         const $designerCards = $designerTrack.find('.designer-card');
         const $btnPrev = $('.designer-arrow--prev');
         const $btnNext = $('.designer-arrow--next');
+        
+        const $infoContent = $('#info-designer-content');
         const $nameEl = $('.designer-name');
         const $textEl = $('.designer-text');
         
         const rootStyles = getComputedStyle(document.documentElement);
-        const VISIBLE = parseInt(
-            rootStyles.getPropertyValue('--visible-cards')
-        ) || 5;
-
-        const CARD_WIDTH = 100 / VISIBLE;
+        const VISIBLE = parseInt(rootStyles.getPropertyValue('--visible-cards')) || 5;
+        const CARD_WIDTH = 100 / VISIBLE; 
         const total = $designerCards.length;
 
-        // Índice de la tarjeta que debe estar en el centro
         let currentIndex = 0;
+        let timer; 
+        const AUTO_DELAY = 5000;
 
         function wrapIndex(index) {
-            return (index + total) % total;
+            return (index + total) % total; 
         }
 
         function updateCarousel() {
-            const translateX = 50 - (currentIndex + 0.5) * CARD_WIDTH;
-
+            const rootStyles = getComputedStyle(document.documentElement);
+            const VISIBLE = parseInt(rootStyles.getPropertyValue('--visible-cards').trim()) || 5;
+            const CARD_WIDTH = 100 / VISIBLE;
+            const translateX = 50 - (currentIndex * CARD_WIDTH + (CARD_WIDTH / 2));
             $designerTrack.css('transform', `translateX(${translateX}%)`);
-
             $designerCards.removeClass('is-center');
             const $centerCard = $designerCards.eq(currentIndex);
             $centerCard.addClass('is-center');
-
-            $nameEl.text($centerCard.data('name') || '');
-            $textEl.text($centerCard.data('description') || '');
+            $infoContent.stop(true, true).fadeOut(150, function() {
+                $nameEl.text($centerCard.data('name') || '');
+                $textEl.text($centerCard.data('description') || '');
+                $(this).fadeIn(300);
+            });
         }
-
         function goNext() {
             currentIndex = wrapIndex(currentIndex + 1);
             updateCarousel();
         }
-
         function goPrev() {
             currentIndex = wrapIndex(currentIndex - 1);
             updateCarousel();
         }
-
-        const AUTO_DELAY = 5000;
-        let timer = setInterval(goNext, AUTO_DELAY);
+        function goToIndex(index) {
+            currentIndex = wrapIndex(index);
+            updateCarousel();
+            resetAutoplay();
+        }
+        function startAutoplay() {
+            timer = setInterval(goNext, AUTO_DELAY);
+        }
 
         function resetAutoplay() {
             clearInterval(timer);
-            timer = setInterval(goNext, AUTO_DELAY);
+            startAutoplay();
         }
+
         $btnNext.on('click', function () {
             goNext();
             resetAutoplay();
@@ -411,7 +398,18 @@ $(function() {
             goPrev();
             resetAutoplay();
         });
-        updateCarousel();
+        $designerCards.on('click', function() {
+            const indexClicked = $(this).index();
+            if (indexClicked !== currentIndex) {
+                goToIndex(indexClicked);
+            }
+        });
+        const $initialCard = $designerCards.eq(currentIndex);
+        $nameEl.text($initialCard.data('name'));
+        $textEl.text($initialCard.data('description'));
+        
+        updateCarousel(); 
+        startAutoplay();  
         $(window).on('resize', function () {
             setTimeout(updateCarousel, 300);
         });

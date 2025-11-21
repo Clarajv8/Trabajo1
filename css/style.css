@@ -4,19 +4,13 @@
     --color-primario: #1a1a1a;
     --color-fondo: #fdfdfd;
     --color-fondo-secundario: #ffffff;
-
-    /* ticket */
     --color-ticket-bg: #fffdf0;
     --color-ticket-text: #333;
-
-    /* diseñadores */
     --visible-cards: 5;
     --card-gap: 1.5rem;
-    --designer-card-height: 320px;
+    --designer-card-height: 320px; 
 }
 
-
-/* 1. CONFIGURACIÓN GLOBAL Y CURSOR*/
 * { cursor: none; }
 
 img { width: 100%; display: block; }
@@ -54,8 +48,6 @@ a { text-decoration: none; color: inherit; }
 
 a, button, input, .btn { cursor: none; }
 
-
-/* 2. HEADER "CBA" */
 .header-principal {
     position: fixed; 
     top: 0; left: 0; 
@@ -116,7 +108,6 @@ main:has(.hero-collage-section) {
     padding-top: 0 !important;
 }
 
-/*  3. HERO SECTION*/
    .hero-collage-section {
     position: relative;
     height: 150vh;
@@ -164,7 +155,6 @@ main:has(.hero-collage-section) {
 }
 .poster-container:hover .poster-img { filter: grayscale(0%) contrast(1); }
 
-/* Celito */
 .tape-corner {
     position: absolute; 
     width: 120px; 
@@ -241,8 +231,6 @@ main:has(.hero-collage-section) {
     100% { transform: translateX(-50%); } 
 }
 
-
-/* 4. SECCIÓN ABOUT ME*/
 .about-me-section {
     min-height: 100vh; max-width: 100vw; height: calc(100vh - 4.375rem);
     padding: 3vh 3vw; background-color: var(--color-fondo-secundario);
@@ -276,7 +264,6 @@ main:has(.hero-collage-section) {
     font-size: 1rem; 
 }
 
-        /* CINTA ABOUT-CARD */
 .about-card::before {
     content: "";
     position: absolute;
@@ -375,7 +362,6 @@ main:has(.hero-collage-section) {
     cursor: pointer;
 }
 
-/* 5. BACKSTAGE & FOOTER */
 .backstage-section { padding-inline: 0; }
 .backstage-title { 
     text-transform: uppercase; 
@@ -400,7 +386,6 @@ main:has(.hero-collage-section) {
     grid-auto-flow: dense; 
 }
 
-        /*CUERPO DE LA TELE */
 .backstage-item { 
     position: relative; 
     display: block; 
@@ -413,7 +398,6 @@ main:has(.hero-collage-section) {
     overflow: visible;
 }
 
-        /* Base de la tele */
 .backstage-item::before {
     content: "";
     position: absolute;
@@ -426,7 +410,6 @@ main:has(.hero-collage-section) {
     opacity: 0.8;
 }
 
-        /* Botoncitos */
 .backstage-item::after {
     content: "";
     position: absolute;
@@ -440,7 +423,6 @@ main:has(.hero-collage-section) {
     opacity: 0.9;
 }
 
-        /* PANTALLA DE LA TELE */
 .backstage-media {
     position: relative;
     width: 100%; 
@@ -456,7 +438,6 @@ main:has(.hero-collage-section) {
     justify-content: center;
 }
 
-        /* Reflejo */
 .backstage-media::before {
     content: "";
     position: absolute;
@@ -493,7 +474,6 @@ main:has(.hero-collage-section) {
     border-radius: inherit;
 }
 
-        /*  glitch al pasar por encima */
 .backstage-item:hover .backstage-media {
     animation: tvGlitch 0.4s steps(2) 2;
 }
@@ -548,8 +528,6 @@ main:has(.hero-collage-section) {
 }
 .footer-img-box img { width: 120%; height: 100%; object-fit: cover; }
 
-
-/*  6. SISTEMA DE TICKETS Y MODALES (COMPARTIDO) */ 
 .modal-receipt, .long-receipt {
     background-color: var(--color-ticket-bg) !important;
     font-family: 'VT323', monospace; 
@@ -668,7 +646,7 @@ main:has(.hero-collage-section) {
     font-family: 'VT323', monospace; font-size: 1.2rem; letter-spacing: 4px;
     text-align: center; margin-top: 0; line-height: 1;
 }
-.barcode { font-size: 2rem; letter-spacing: 4px; transform: scaleY(1.5); opacity: 0.8; } /* Fallback antiguo */
+.barcode { font-size: 2rem; letter-spacing: 4px; transform: scaleY(1.5); opacity: 0.8; }
 
 .modal-dialog { max-height: 90vh; }
 
@@ -689,8 +667,6 @@ main:has(.hero-collage-section) {
     transform: scale(1.1);
 }
 
-
-/*  7. PÁGINA DATOS LEGALES (ESCRITORIO) */
 .page-datos {
     background-color: #e3e0d8;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
@@ -754,14 +730,12 @@ main:has(.hero-collage-section) {
     font-weight: bold; padding: 0.2rem 1rem; opacity: 0.6; transform: rotate(-15deg);
 }
 
-        /* TIPO DEL POST IT */
 .rock-salt-regular {
     font-family: "Rock Salt", cursive;
     font-weight: 400;
     font-style: normal;
 }
 
-        /* Texto del post-it */
 .handwritten-note {
     font-family: "Rock Salt", cursive;
 
@@ -789,8 +763,6 @@ main:has(.hero-collage-section) {
     box-shadow: 0 30px 60px rgba(0,0,0,0.3);
     transform: scale(1.02) !important;
 }
-
-/* 8. DATOS INTERACTIVOS (DRAG & DROP) */
 
 .draggable-zone {
     position: relative;
@@ -837,9 +809,6 @@ main:has(.hero-collage-section) {
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-
-/* CARRUSEL DISEÑADORES (NUEVA PÁGINA) */
-
 .designer-page {
     min-height: 100vh;
     display: flex;
@@ -848,7 +817,6 @@ main:has(.hero-collage-section) {
     padding-top: 0;
 }
 
-        /* Cuerda superior */
 .clothesline {
     width: 100%;
     display: flex;
@@ -859,73 +827,83 @@ main:has(.hero-collage-section) {
     object-fit: contain;
 }
 
-        /* Sección carrusel */
 .designer-carousel-section {
     width: 100%;
-    max-width: 1100px;
+    max-width: 1200px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem; 
     padding: 1rem;
+    margin: 0 auto;
+    position: relative;
 }
 .designer-arrow {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: none; border: none; padding: 0; cursor: pointer; z-index: 20;
 }
 .designer-arrow-img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-    transition: transform 0.2s ease, opacity 0.2s ease;
+    width: 40px; height: 40px; object-fit: contain;
+    transition: transform 0.2s;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .designer-arrow-img:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
     opacity: 0.9;
 }
 .designer-track-wrapper {
     overflow: hidden;
     flex: 1;
+    padding: 10rem 0; 
+    margin: 0 10px;
 }
 .designer-track {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    gap: var(--card-gap);
-    transition: transform 0.5s ease;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); 
+    will-change: transform;
 }
 .designer-card {
     flex: 0 0 calc(100% / var(--visible-cards));
+    max-width: calc(100% / var(--visible-cards));
     position: relative;
     height: var(--designer-card-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    transform: scale(0.9);
-    opacity: 0.6;
-    transition: transform 0.4s ease, opacity 0.4s ease, box-shadow 0.4s ease;
+    padding: 0 10px; 
+    transform: scale(0.8);
+    opacity: 0.5;
+    filter: grayscale(100%);
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    z-index: 1;
+}
+
+#info-designer-content {
+    transition: opacity 0.3s ease-in-out;
 }
 
 .designer-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 4px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: box-shadow 0.3s;
 }
 
-/* Tarjeta central (marcada con JS con .is-center) */
 .designer-card.is-center {
-    transform: scale(1.12);
+    transform: scale(1.25); 
     opacity: 1;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-    z-index: 2;
+    filter: grayscale(0%);
+    z-index: 10;
+}
+
+.designer-card.is-center img {
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .designer-description-wrapper {
@@ -949,9 +927,6 @@ main:has(.hero-collage-section) {
 }
 
 
-
-
-/*  9. RESPONSIVE / MEDIA QUERIES (UNIFICADO) */
 @media (max-width: 768px) {
     .header-principal.scrolled .navbar-menu-movil-icono {
         display: flex; width: 35px; height: 26px; 
@@ -1021,7 +996,6 @@ main:has(.hero-collage-section) {
         overflow-y: auto;       
         max-height: 85vh;
     }
-
     .about-overlay-media img {
         max-height: 35vh;
     }
@@ -1032,31 +1006,34 @@ main:has(.hero-collage-section) {
     .about-overlay-text p {
         font-size: 0.9rem;
     }
-
-
-/* carrusel diseñadores */
     :root {
-        --designer-card-height: 290px;
-        --visible-cards: 1;
+        --visible-cards: 1; 
+        --designer-card-height: 400px;
     }
     .designer-page {
         padding: 2rem 0;
     }
     .designer-carousel-section {
-        gap: 0.5rem;
-        padding: 2rem;
+        padding: 0;
+        gap: 0;
+    }
+    .designer-track-wrapper {
+         padding: 3rem 0; 
     }
     .designer-arrow-img {
         width: 38px;
         height: 38px;
     }
     .designer-card {
-        transform: scale(0.9);
-        opacity: 0.6;
+        padding: 0 1rem; 
+        transform: scale(0.9); 
+        opacity: 1;
     }
 
     .designer-card.is-center {
-        opacity: 1;
+       transform: scale(1); 
+        padding: 0; 
+        z-index: 100;
     }
     .designer-name {
         font-size: 1.3rem;
