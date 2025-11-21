@@ -226,7 +226,7 @@ $(function() {
 
         function cerrarOverlay() {
             $aboutOverlay.removeClass('is-visible');
-            $aboutOverlayImg.attr('src', '');
+            // $aboutOverlayImg.attr('src', '');
             $body.removeClass('no-scroll');
         }
 
@@ -349,6 +349,7 @@ $(function() {
 
 // 8. CARRUSEL DISEÑADORES – TODAS LAS FOTOS PUEDEN SER CENTRALES
     const $designerTrack = $('.designer-track');
+
 
     if ($designerTrack.length) {
         const $designerCards = $designerTrack.find('.designer-card');
