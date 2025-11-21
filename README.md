@@ -57,3 +57,6 @@ Las he dejado lo mejor posible
 El crrusel ya funciona bien también
 
 Creo que falta añadir una libreria de js o algo
+ya están
+
+Solo queda la ventana modal de laboutme
