@@ -1,4 +1,14 @@
 $(function() {
+
+     if (typeof AOS !== 'undefined') {
+        AOS.init({
+            once: true,
+            duration: 800,
+        });
+    } else {
+        console.warn("AOS NO CARGÓ");
+    }
+
     const $window = $(window);
     const $body = $('body');
     const $header = $('.header-principal');
@@ -210,9 +220,6 @@ $(function() {
         }
 
         function abrirOverlay($card) {
-            const imgSrc = $card.data('image');
-            if (imgSrc) { $aboutOverlayImg.attr('src', imgSrc); } 
-            else { $aboutOverlayImg.attr('src', ''); }
             $aboutOverlay.addClass('is-visible');
             $body.addClass('no-scroll');
         }

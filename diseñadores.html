@@ -6,6 +6,8 @@
     <title>CBA - Diseñadores</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,12 +45,12 @@
 
     <main class="designer-page">
       <!-- Cuerda con pinzas de arriba -->
-      <div class="clothesline">
+      <div class="clothesline" data-aos="fade-down" data-aos-duration="800">
         <img src="media/img/pinzas.png" alt="Cuerda con pinzas">
       </div>
 
       <!-- CARRUSEL -->
-      <section class="designer-carousel-section">
+      <section class="designer-carousel-section" data-aos="fade-up" data-aos-duration="900">
 
         <button class="designer-arrow designer-arrow--prev" type="button">
           <img src="media/img/flecha-izq.png" alt="Anterior" class="designer-arrow-img">
@@ -117,7 +119,7 @@
       </section>
 
       <!-- TEXTO DESCRIPCIÓN - para que cambie según la foto que toque-->
-      <section class="designer-description-wrapper">
+      <section class="designer-description-wrapper" data-aos="fade-up" data-aos-delay="200">
         <h2 class="designer-name"></h2>
         <p class="designer-text"></p>
       </section>
@@ -257,6 +259,7 @@
     </div>
     
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/script.js"></script>
   </body>

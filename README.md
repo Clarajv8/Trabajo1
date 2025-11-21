@@ -52,3 +52,8 @@ CUMPLICO:
 
 
 ¡Sigo sin conseguir que las teles del "Backstage" ocupen todo lo que puedan de su espacio!!!!, les he quitado el gap pero a no ser que haya el numero exacto de las que hacen falta, me deja siempre un espacio :'(
+
+Las he dejado lo mejor posible
+El crrusel ya funciona bien también
+
+Creo que falta añadir una libreria de js o algo
