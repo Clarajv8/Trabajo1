@@ -54,7 +54,7 @@ a { text-decoration: none; color: inherit; }
 a, button, input, .btn { cursor: none; }
 
 
-/* HEADER "CBA" */
+/* 2. HEADER "CBA" */
 .header-principal {
     position: fixed; 
     top: 0; left: 0; 
@@ -115,7 +115,7 @@ main:has(.hero-collage-section) {
     padding-top: 0 !important;
 }
 
-/*  HERO SECTION*/
+/*  3. HERO SECTION*/
    .hero-collage-section {
     position: relative;
     height: 150vh;
@@ -275,7 +275,7 @@ main:has(.hero-collage-section) {
     font-size: 1rem; 
 }
 
-/* CINTA ABOUT-CARD */
+        /* CINTA ABOUT-CARD */
 .about-card::before {
     content: "";
     position: absolute;
@@ -395,11 +395,7 @@ main:has(.hero-collage-section) {
 }
 
 
-
-
-/* =========================================
-   5. BACKSTAGE & FOOTER
-   ========================================= */
+/* 5. BACKSTAGE & FOOTER */
 .backstage-section { padding-inline: 0; }
 .backstage-title { 
     text-transform: uppercase; 
@@ -424,7 +420,7 @@ main:has(.hero-collage-section) {
     grid-auto-flow: dense; 
 }
 
-/*CUERPO DE LA TELE */
+        /*CUERPO DE LA TELE */
 .backstage-item { 
     position: relative; 
     display: block; 
@@ -437,7 +433,7 @@ main:has(.hero-collage-section) {
     overflow: visible;
 }
 
-/* Base de la tele */
+        /* Base de la tele */
 .backstage-item::before {
     content: "";
     position: absolute;
@@ -450,7 +446,7 @@ main:has(.hero-collage-section) {
     opacity: 0.8;
 }
 
-/* Botoncitos */
+        /* Botoncitos */
 .backstage-item::after {
     content: "";
     position: absolute;
@@ -464,7 +460,7 @@ main:has(.hero-collage-section) {
     opacity: 0.9;
 }
 
-/* PANTALLA DE LA TELE */
+        /* PANTALLA DE LA TELE */
 .backstage-media {
     position: relative;
     width: 100%; 
@@ -480,7 +476,7 @@ main:has(.hero-collage-section) {
     justify-content: center;
 }
 
-/* Reflejo */
+        /* Reflejo */
 .backstage-media::before {
     content: "";
     position: absolute;
@@ -517,7 +513,7 @@ main:has(.hero-collage-section) {
     border-radius: inherit;
 }
 
-/*  glitch al pasar por encima */
+        /*  glitch al pasar por encima */
 .backstage-item:hover .backstage-media {
     animation: tvGlitch 0.4s steps(2) 2;
 }
@@ -573,28 +569,36 @@ main:has(.hero-collage-section) {
 .footer-img-box img { width: 120%; height: 100%; object-fit: cover; }
 
 
-/* =========================================
-   6. SISTEMA DE TICKETS Y MODALES (COMPARTIDO)
-   ========================================= */
-   
+/*  6. SISTEMA DE TICKETS Y MODALES (COMPARTIDO) */ 
 .modal-receipt, .long-receipt {
     background-color: var(--color-ticket-bg) !important;
-    font-family: 'VT323', monospace; color: var(--color-ticket-text);
-    position: relative; overflow: visible !important;
+    font-family: 'VT323', monospace; 
+    color: var(--color-ticket-text);
+    position: relative; 
+    overflow: visible !important;
     background-image: linear-gradient(135deg, transparent 5px, var(--color-ticket-bg) 5px), linear-gradient(225deg, transparent 5px, var(--color-ticket-bg) 5px);
-    background-position: top left; background-size: 15px 15px; background-repeat: repeat-x;
+    background-position: top left; 
+    background-size: 15px 15px; 
+    background-repeat: repeat-x;
 }
 .modal-receipt {
-    border-radius: 0 !important; border: none !important;
+    border-radius: 0 !important; 
+    border: none !important;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5) !important;
-    margin: 20px; font-size: 1.2rem;
+    margin: 20px; 
+    font-size: 1.2rem;
 }
 .long-receipt {
     width: 100%; padding: 2.5rem 2rem; 
     box-shadow: 0 5px 15px rgba(0,0,0,0.15);
 }
 .modal-receipt::after, .receipt-jagged-bottom {
-    content: ""; position: absolute; bottom: -15px; left: 0; width: 100%; height: 15px;
+    content: ""; 
+    position: absolute; 
+    bottom: -15px; 
+    left: 0; 
+    width: 100%; 
+    height: 15px;
     background-image: linear-gradient(135deg, var(--color-ticket-bg) 5px, transparent 5px), linear-gradient(225deg, var(--color-ticket-bg) 5px, transparent 5px);
     background-position: top left; background-size: 15px 15px; background-repeat: repeat-x;
 }
@@ -605,30 +609,49 @@ main:has(.hero-collage-section) {
     background-size: 20px 20px;
 }
 .receipt-tape {
-    width: 100px; height: 35px; background-color: rgba(255,255,255,0.5);
-    position: absolute; top: -15px; left: 50%; transform: translateX(-50%) rotate(-2deg);
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1); backdrop-filter: blur(2px); z-index: 10;
+    width: 100px; 
+    height: 35px; 
+    background-color: rgba(255,255,255,0.5);
+    position: absolute; 
+    top: -15px; 
+    left: 50%; 
+    transform: translateX(-50%) rotate(-2deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+    backdrop-filter: blur(2px); 
+    z-index: 10;
     background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
-    background-size: 4px 4px; border-left: 2px solid rgba(255,255,255,0.4); border-right: 2px solid rgba(255,255,255,0.4);
+    background-size: 4px 4px; 
+    border-left: 2px solid rgba(255,255,255,0.4); border-right: 2px solid rgba(255,255,255,0.4);
 }
 .receipt-content {
     font-size: 1.4rem; 
 }
 .modal-ticket-theme .modal-header {
-    background-color: transparent !important; border-bottom: 1px dashed rgba(0,0,0,0.2) !important;
-    color: var(--color-ticket-text) !important; padding-bottom: 1rem; position: relative;
+    background-color: transparent !important; 
+    border-bottom: 1px dashed rgba(0,0,0,0.2) !important;
+    color: var(--color-ticket-text) !important; 
+    padding-bottom: 1rem; 
+    position: relative;
 }
 .modal-ticket-theme .modal-title {
-    font-size: 1.8rem; text-align: center; width: 100%; margin-top: 2rem;
-    text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 1.8rem; 
+    text-align: center; 
+    width: 100%; 
+    margin-top: 2rem;
+    text-transform: uppercase; 
+    letter-spacing: 0.1em;
 }
 .modal-ticket-theme .btn-close { filter: invert(1); opacity: 0.6; }
 .modal-ticket-theme .btn-close:hover { opacity: 1; }
 
 .input-ticket {
-    background-color: transparent !important; border: none !important;
-    border-bottom: 2px dashed #333 !important; border-radius: 0 !important;
-    font-family: 'VT323', monospace; font-size: 1.4rem; padding-left: 0 !important;
+    background-color: transparent !important; 
+    border: none !important;
+    border-bottom: 2px dashed #333 !important; 
+    border-radius: 0 !important;
+    font-family: 'VT323', monospace; 
+    font-size: 1.4rem;
+    padding-left: 0 !important;
     color: #333 !important; box-shadow: none !important;
 }
 .input-ticket:focus { border-bottom-style: solid !important; background-color: rgba(0,0,0,0.02) !important; }
@@ -636,9 +659,15 @@ main:has(.hero-collage-section) {
 .password-wrapper { position: relative; } 
 
 .btn-ticket {
-    background-color: #000 !important; color: #fff !important; border-radius: 0 !important;
-    font-family: 'VT323', monospace; font-size: 1.5rem; text-transform: uppercase;
-    letter-spacing: 2px; border: 2px solid #000; transition: 0.3s;
+    background-color: #000 !important; 
+    color: #fff !important; 
+    border-radius: 0 !important;
+    font-family: 'VT323', monospace; 
+    font-size: 1.5rem; 
+    text-transform: uppercase;
+    letter-spacing: 2px; 
+    border: 2px solid #000; 
+    transition: 0.3s;
 }
 .btn-ticket:hover { background-color: transparent !important; color: #000 !important; }
 
@@ -681,10 +710,7 @@ main:has(.hero-collage-section) {
 }
 
 
-/* =========================================
-   7. PÁGINA DATOS LEGALES (ESCRITORIO)
-   ========================================= */
-
+/*  7. PÁGINA DATOS LEGALES (ESCRITORIO) */
 .page-datos {
     background-color: #e3e0d8;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
@@ -748,14 +774,14 @@ main:has(.hero-collage-section) {
     font-weight: bold; padding: 0.2rem 1rem; opacity: 0.6; transform: rotate(-15deg);
 }
 
-/* TIPO DEL POST IT */
+        /* TIPO DEL POST IT */
 .rock-salt-regular {
     font-family: "Rock Salt", cursive;
     font-weight: 400;
     font-style: normal;
 }
 
-/* Texto del post-it */
+        /* Texto del post-it */
 .handwritten-note {
     font-family: "Rock Salt", cursive;
 
@@ -784,9 +810,7 @@ main:has(.hero-collage-section) {
     transform: scale(1.02) !important;
 }
 
-/* =========================================
-   8. DATOS INTERACTIVOS (DRAG & DROP)
-   ========================================= */
+/* 8. DATOS INTERACTIVOS (DRAG & DROP) */
 
 .draggable-zone {
     position: relative;
@@ -834,9 +858,7 @@ main:has(.hero-collage-section) {
 }
 
 
-/* =========================================
-   CARRUSEL DISEÑADORES (NUEVA PÁGINA)
-   ========================================= */
+/* CARRUSEL DISEÑADORES (NUEVA PÁGINA) */
 
 .designer-page {
     min-height: 100vh;
@@ -846,7 +868,7 @@ main:has(.hero-collage-section) {
     padding-top: 0;
 }
 
-/* Cuerda / tendedero superior */
+        /* Cuerda superior */
 .clothesline {
     width: 100%;
     display: flex;
@@ -857,7 +879,7 @@ main:has(.hero-collage-section) {
     object-fit: contain;
 }
 
-/* Sección carrusel */
+        /* Sección carrusel */
 .designer-carousel-section {
     width: 100%;
     max-width: 1100px;
@@ -867,8 +889,6 @@ main:has(.hero-collage-section) {
     gap: 1.5rem;
     padding: 1rem;
 }
-
-/* Flechas laterales (hueco preparado para tus imágenes) */
 .designer-arrow {
     background: none;
     border: none;
@@ -878,8 +898,6 @@ main:has(.hero-collage-section) {
     align-items: center;
     justify-content: center;
 }
-
-/* Tamaño parecido al botón de cerrar suscripción */
 .designer-arrow-img {
     width: 45px;
     height: 45px;
@@ -891,14 +909,10 @@ main:has(.hero-collage-section) {
     transform: scale(1.08);
     opacity: 0.9;
 }
-
-/* Ventana del carrusel */
 .designer-track-wrapper {
     overflow: hidden;
     flex: 1;
 }
-
-/* Pista con todas las tarjetas */
 .designer-track {
     list-style: none;
     padding: 0;
@@ -907,8 +921,6 @@ main:has(.hero-collage-section) {
     gap: var(--card-gap);
     transition: transform 0.5s ease;
 }
-
-/* Cada tarjeta de diseñador */
 .designer-card {
     flex: 0 0 calc(100% / var(--visible-cards));
     position: relative;
@@ -928,7 +940,7 @@ main:has(.hero-collage-section) {
     object-fit: cover;
 }
 
-/* Tarjeta central (marcada por JS con .is-center) */
+/* Tarjeta central (marcada con JS con .is-center) */
 .designer-card.is-center {
     transform: scale(1.12);
     opacity: 1;
@@ -936,12 +948,11 @@ main:has(.hero-collage-section) {
     z-index: 2;
 }
 
-/* Texto de descripción bajo el carrusel */
 .designer-description-wrapper {
     margin-top: 2.5rem;
     max-width: 700px;
     text-align: center;
-    min-height: 4.5rem; /* evita saltos cuando cambia el texto */
+    min-height: 4.5rem;
 }
 
 .designer-name {
@@ -960,9 +971,7 @@ main:has(.hero-collage-section) {
 
 
 
-/* ============================================================
-   9. RESPONSIVE / MEDIA QUERIES (UNIFICADO)
-   ============================================================ */
+/*  9. RESPONSIVE / MEDIA QUERIES (UNIFICADO) */
 @media (max-width: 768px) {
     .header-principal.scrolled .navbar-menu-movil-icono {
         display: flex; width: 35px; height: 26px; 

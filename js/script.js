@@ -340,7 +340,7 @@ $(function() {
         }
     }
 
-    // 8. CARRUSEL DISEÑADORES – TODAS LAS FOTOS PUEDEN SER CENTRALES
+// 8. CARRUSEL DISEÑADORES – TODAS LAS FOTOS PUEDEN SER CENTRALES
     const $designerTrack = $('.designer-track');
 
     if ($designerTrack.length) {
@@ -350,14 +350,12 @@ $(function() {
         const $nameEl = $('.designer-name');
         const $textEl = $('.designer-text');
         
-
-        // Número de tarjetas "pensadas" para caber en pantalla (igual que en el CSS)
         const rootStyles = getComputedStyle(document.documentElement);
         const VISIBLE = parseInt(
             rootStyles.getPropertyValue('--visible-cards')
         ) || 5;
 
-        const CARD_WIDTH = 100 / VISIBLE;  // por ejemplo 20% si son 5
+        const CARD_WIDTH = 100 / VISIBLE;
         const total = $designerCards.length;
 
         // Índice de la tarjeta que debe estar en el centro
@@ -368,18 +366,14 @@ $(function() {
         }
 
         function updateCarousel() {
-            // Calculamos cuánto hay que mover la tira para que
-            // el centro de la tarjeta [currentIndex] quede en el 50% de la pantalla
             const translateX = 50 - (currentIndex + 0.5) * CARD_WIDTH;
 
             $designerTrack.css('transform', `translateX(${translateX}%)`);
 
-            // Actualizar quién es la "central"
             $designerCards.removeClass('is-center');
             const $centerCard = $designerCards.eq(currentIndex);
             $centerCard.addClass('is-center');
 
-            // Actualizar textos
             $nameEl.text($centerCard.data('name') || '');
             $textEl.text($centerCard.data('description') || '');
         }
@@ -394,30 +388,22 @@ $(function() {
             updateCarousel();
         }
 
-        // Auto–play
-        const AUTO_DELAY = 5000; // 5 segundos
+        const AUTO_DELAY = 5000;
         let timer = setInterval(goNext, AUTO_DELAY);
 
         function resetAutoplay() {
             clearInterval(timer);
             timer = setInterval(goNext, AUTO_DELAY);
         }
-
-        // Flechas
         $btnNext.on('click', function () {
             goNext();
             resetAutoplay();
         });
-
         $btnPrev.on('click', function () {
             goPrev();
             resetAutoplay();
         });
-
-        // Primera colocación
         updateCarousel();
-
-        // Recalcular cuando cambie el tamaño (por si acaso)
         $(window).on('resize', function () {
             setTimeout(updateCarousel, 300);
         });
