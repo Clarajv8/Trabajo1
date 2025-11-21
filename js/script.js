@@ -36,7 +36,7 @@ $(function() {
     }
 
     // 2. HEADER SCROLL
-    if ($body.hasClass('page-datos')) {
+    if ($body.is('.page-datos, .page-diseñadores')) {
         $header.addClass('scrolled');
         $body.addClass('scrolled');
     } else {
